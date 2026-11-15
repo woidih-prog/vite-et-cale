@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<title>Vite & Calé : deux étudiantes en caisse</title>
+<!-- Vidéo animée 1080 × 1920, 18 s. window.seek(ms) dessine l'image d'un instant donné (voir rendu-caisse.js).
+     Le total « avec » (24,73 €) est une vraie semaine de l'appli : 1 personne, 30 € de budget, Lidl. La scène « sans » est imaginée. -->
+<style>
+@font-face{font-family:"Bricolage Grotesque";src:url(fonts/bricolage-800.woff2) format("woff2");font-weight:600 800}
+@font-face{font-family:"Figtree";src:url(fonts/figtree.woff2) format("woff2");font-weight:300 900}
+html,body{margin:0;background:#EAF7EC}
+#scene{position:relative;width:1080px;height:1920px;overflow:hidden;background:#EAF7EC;font-family:Figtree,sans-serif;color:#1B251E}
+.titre{position:absolute;left:0;right:0;top:54px;text-align:center;font-family:"Bricolage Grotesque";font-weight:800;font-size:58px;line-height:1.1}
+.titre small{display:block;font-family:Figtree;font-weight:600;font-size:34px;color:#56655B;margin-top:10px}
+.pan{position:absolute;left:30px;width:1020px;height:770px;border-radius:44px;overflow:hidden}
+#haut{top:236px;background:#FFE9E4}
+#bas{top:1030px;background:#D9F0DE}
+.pan svg{position:absolute;inset:0}
+.pill{position:absolute;left:34px;top:30px;padding:12px 28px;border-radius:40px;font-weight:800;font-size:36px;color:#fff}
+#haut .pill{background:#A33A2A}#bas .pill{background:#2D774A}
+.ecran{position:absolute;right:34px;top:30px;width:400px;padding:20px 26px 24px;border-radius:28px;background:#18201B;color:#DFF5E4;box-sizing:border-box}
+.ecran span{font-size:26px;font-weight:700;letter-spacing:.08em;opacity:.75}
+.ecran b{display:block;font-family:"Bricolage Grotesque";font-weight:800;font-size:84px;line-height:1.05;font-variant-numeric:tabular-nums}
+.jauge{height:16px;border-radius:8px;background:#34423A;margin-top:12px;position:relative}
+.jauge i{position:absolute;left:0;top:0;bottom:0;border-radius:8px;background:#6DC290}
+.jauge u{position:absolute;top:-8px;bottom:-8px;width:5px;background:#fff;border-radius:3px;left:75%}
+.ecran em{display:block;font-style:normal;font-size:24px;font-weight:700;margin-top:10px;text-align:right;opacity:.85}
+.item{position:absolute;top:566px;font-size:92px;line-height:1;margin-left:-46px}
+.verdict{position:absolute;left:34px;right:34px;bottom:30px;padding:22px 30px;border-radius:30px;font-family:"Bricolage Grotesque";font-weight:800;font-size:52px;line-height:1.1;color:#fff;text-align:center}
+#haut .verdict{background:#A33A2A}#bas .verdict{background:#2D774A}
+.verdict small{display:block;font-family:Figtree;font-weight:700;font-size:32px;opacity:.92;margin-top:6px}
+.bulle{position:absolute;left:290px;top:306px;padding:14px 24px;border-radius:26px 26px 26px 6px;background:#fff;font-weight:800;font-size:38px;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.note{position:absolute;left:0;right:0;bottom:36px;text-align:center;font-size:25px;color:#56655B;font-weight:600}
+#intro,#fin{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;text-align:center;padding:0 80px}
+#intro{background:#EAF7EC}
+#intro h1,#fin h1{font-family:"Bricolage Grotesque";font-weight:800;font-size:104px;line-height:1.04;margin:0}
+#intro h1 em,#fin h1 em{font-style:normal;color:#2D774A}
+#intro p{font-size:52px;font-weight:700;margin:0;color:#56655B}
+#fin{background:#2D774A;color:#fff}
+#fin h1 em{color:#BEEBCB}
+#fin p{font-size:54px;font-weight:700;margin:0;line-height:1.25}
+#fin .url{font-family:"Bricolage Grotesque";font-weight:800;font-size:76px;background:#fff;color:#2D774A;padding:22px 46px;border-radius:60px;margin-top:20px}
+#fin .ou{font-size:40px;font-weight:600;opacity:.9}
+</style></head><body>
+<div id="scene">
+  <div class="titre">Même magasin. Même budget.<small>30 € pour manger toute la semaine</small></div>
+
+  <div class="pan" id="haut">
+    <svg viewBox="0 0 1020 770"><g id="decorH"></g><g id="persoH"></g></svg>
+    <div class="pill">Sans liste</div>
+    <div class="ecran" id="ecranH"><span>TOTAL</span><b id="totH">0,00 €</b><div class="jauge"><i id="jH"></i><u></u></div><em>budget 30 €</em></div>
+    <div class="bulle" id="bulleH"></div>
+    <div id="itemsH"></div>
+    <div class="verdict" id="verdictH">38,40 €<small>8,40 € de trop. Elle repose des articles.</small></div>
+  </div>
+
+  <div class="pan" id="bas">
+    <svg viewBox="0 0 1020 770"><g id="decorB"></g><g id="persoB"></g></svg>
+    <div class="pill">Avec Vite &amp; Calé</div>
+    <div class="ecran" id="ecranB"><span>TOTAL</span><b id="totB">0,00 €</b><div class="jauge"><i id="jB"></i><u></u></div><em>budget 30 €</em></div>
+    <div class="bulle" id="bulleB"></div>
+    <div id="itemsB"></div>
+    <div class="verdict" id="verdictB">24,73 €<small>Midi et soir, 7 jours. Il lui reste 5,27 €.</small></div>
+  </div>
+
+  <div class="note">Scène imaginée. 24,73 € : semaine calculée dans l'appli, 1 personne, Lidl.</div>
+
+  <div id="intro"><h1>Deux étudiantes<br>passent <em>en caisse</em>.</h1><p>Même magasin. Même budget : 30 €.</p></div>
+  <div id="fin"><h1>Vite <em>&amp;</em> Calé</h1><p>Tes repas de la semaine<br>et ta liste de courses,<br>sans dépasser ton budget.</p><div class="url">viteetcale.fr</div><div class="ou">Lien dans la bio</div></div>
+</div>
+<script>
+window.DUREE = 18000; window.NOM = "29-deux-etudiantes-en-caisse"; window.MUSIQUE = "b";
+const $ = id => document.getElementById(id);
+const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const pr = (t, a, b) => cl((t - a) / (b - a));            // progression 0→1 entre a et b
+const ease = x => x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+const eur = v => v.toFixed(2).replace(".", ",") + " €";
+
+/* Les articles : [pictogramme, prix]. En haut, des achats au hasard ; en bas, la liste de l'appli (somme réelle : 24,73 €). */
+const H = [["🍕",4.2],["🥤",2.9],["🍫",3.1],["🧀",3.6],["🍪",2.8],["🥩",6.9],["🍟",2.5],["🍦",4.4],["🥗",3.9],["🧃",4.1]];
+const B = [["🍚",1.09],["🥚",2.19],["🥫",0.89],["🧅",1.29],["🫘",1.69],["🥕",2.98],["🍝",0.95],["🧀",2.29],["🥛",1.05],["🍗",5.49],["🥔",1.99],["🍌",2.83]];
+const T0 = 3000, T1 = 11200, TRAJET = 1500, X0 = 330, X1 = 940;
+function prepare(liste, hote) { const pas = (T1 - T0 - TRAJET) / (liste.length - 1);
+  return liste.map(([e, p], i) => { const el = document.createElement("div"); el.className = "item"; el.textContent = e; hote.appendChild(el); return { el, p, t: T0 + i * pas }; }); }
+const IH = prepare(H, $("itemsH")), IB = prepare(B, $("itemsB"));
+
+/* Décor commun : sol, tapis de caisse, borne. */
+function decor(sol, tapis) { return `<rect x="0" y="690" width="1020" height="80" fill="${sol}"/>
+  <rect x="280" y="640" width="740" height="64" rx="14" fill="#2B332E"/><rect x="290" y="648" width="720" height="20" rx="8" fill="${tapis}"/>
+  <rect x="930" y="520" width="90" height="130" rx="12" fill="#3B4740"/><rect x="944" y="536" width="62" height="12" rx="6" fill="#E14B3A"/>`; }
+$("decorH").innerHTML = decor("#F4CFC7", "#55615A"); $("decorB").innerHTML = decor("#BFE3C7", "#55615A");
+
+/* Une étudiante : cheveux, visage, sweat, bras. humeur : 0 sereine, 1 inquiète, 2 affolée, 3 ravie. */
+function perso(o) { const { x, y, peau, cheveux, sweat, humeur, tremble, tel, coche, bras } = o;
+  const dx = tremble ? Math.sin(o.t / 38) * 5 : 0, dy = o.saut || 0;
+  const sourcilG = humeur === 2 ? "M-44,-44 L-16,-56" : humeur === 1 ? "M-44,-48 L-16,-52" : "M-44,-50 Q-30,-56 -16,-50";
+  const sourcilD = humeur === 2 ? "M16,-56 L44,-44" : humeur === 1 ? "M16,-52 L44,-48" : "M16,-50 Q30,-56 44,-50";
+  const bouche = humeur === 2 ? `<ellipse cx="0" cy="34" rx="15" ry="20" fill="#5A1F1F"/>` : humeur === 1 ? `<path d="M-18,38 Q0,26 18,38" fill="none" stroke="#5A1F1F" stroke-width="6" stroke-linecap="round"/>`
+    : humeur === 3 ? `<path d="M-26,24 Q0,58 26,24 Z" fill="#5A1F1F"/><path d="M-18,28 Q0,36 18,28" fill="#fff"/>` : `<path d="M-20,28 Q0,46 20,28" fill="none" stroke="#5A1F1F" stroke-width="6" stroke-linecap="round"/>`;
+  const yeux = humeur === 2 ? `<circle cx="-30" cy="-22" r="13" fill="#fff"/><circle cx="30" cy="-22" r="13" fill="#fff"/><circle cx="-30" cy="-22" r="5" fill="#1B251E"/><circle cx="30" cy="-22" r="5" fill="#1B251E"/>`
+    : humeur === 3 ? `<path d="M-42,-22 Q-30,-36 -18,-22" fill="none" stroke="#1B251E" stroke-width="6" stroke-linecap="round"/><path d="M18,-22 Q30,-36 42,-22" fill="none" stroke="#1B251E" stroke-width="6" stroke-linecap="round"/>`
+    : `<circle cx="-30" cy="-22" r="8" fill="#1B251E"/><circle cx="30" cy="-22" r="8" fill="#1B251E"/>`;
+  const gouttes = humeur === 2 ? `<path d="M74,-70 q10,18 0,26 q-10,-8 0,-26" fill="#6FB7E8"/><path d="M-82,-40 q9,16 0,23 q-9,-7 0,-23" fill="#6FB7E8"/>` : "";
+  const telephone = tel ? `<g transform="translate(120,150) rotate(-8)"><rect x="-44" y="-78" width="88" height="156" rx="14" fill="#18201B"/><rect x="-37" y="-68" width="74" height="136" rx="8" fill="#fff"/>
+      ${[0,1,2,3,4].map(i => `<rect x="-28" y="${-58 + i * 24}" width="16" height="16" rx="4" fill="${i < coche ? "#2D774A" : "#D6DDD1"}"/><rect x="-6" y="${-54 + i * 24}" width="${34 - (i % 2) * 8}" height="8" rx="4" fill="#C9D3CC"/>`).join("")}</g>` : "";
+  return `<g transform="translate(${x + dx},${y + dy})">
+    <path d="M-96,330 Q-100,170 -60,130 L60,130 Q100,170 96,330 Z" fill="${sweat}"/>
+    <path d="M-30,130 Q0,160 30,130" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="8" stroke-linecap="round"/>
+    <path d="M-70,170 Q-120,${bras ? 120 : 240} -${bras ? 96 : 104},${bras ? 60 : 300}" fill="none" stroke="${sweat}" stroke-width="40" stroke-linecap="round"/>
+    <circle cx="-${bras ? 96 : 104}" cy="${bras ? 52 : 306}" r="22" fill="${peau}"/>
+    <path d="M70,170 Q124,200 118,${tel ? 190 : 300}" fill="none" stroke="${sweat}" stroke-width="40" stroke-linecap="round"/>
+    ${tel ? "" : `<circle cx="118" cy="306" r="22" fill="${peau}"/>`}
+    <rect x="-18" y="90" width="36" height="50" fill="${peau}"/>
+    ${o.long ? `<path d="M-96,-20 Q-110,120 -70,140 L-60,20 Z M96,-20 Q110,120 70,140 L60,20 Z" fill="${cheveux}"/>` : ""}
+    <circle cx="0" cy="0" r="90" fill="${peau}"/>
+    <path d="M-92,-8 Q-96,-104 0,-102 Q96,-104 92,-8 Q60,-58 0,-58 Q-60,-58 -92,-8 Z" fill="${cheveux}"/>
+    ${o.long ? "" : `<circle cx="0" cy="-108" r="34" fill="${cheveux}"/>`}
+    <path d="${sourcilG}" fill="none" stroke="#1B251E" stroke-width="7" stroke-linecap="round"/><path d="${sourcilD}" fill="none" stroke="#1B251E" stroke-width="7" stroke-linecap="round"/>
+    ${yeux}${bouche}${gouttes}
+    <circle cx="-56" cy="14" r="14" fill="#F2A6A0" opacity=".55"/><circle cx="56" cy="14" r="14" fill="#F2A6A0" opacity=".55"/>
+    ${telephone}</g>`; }
+
+function tapis(items, t) { let total = 0, n = 0;
+  for (const it of items) { const p = pr(t, it.t, it.t + TRAJET);
+    it.el.style.left = (X0 + (X1 - X0) * p) + "px";
+    it.el.style.opacity = t < it.t ? 0 : p < .08 ? p / .08 : p > .9 ? (1 - p) / .1 : 1;
+    it.el.style.transform = `translateY(${-Math.abs(Math.sin(p * Math.PI * 3)) * 6}px)`;
+    if (p >= 1) { total += it.p; n++; } }
+  return { total, n }; }
+
+window.seek = t => {
+  $("intro").style.opacity = 1 - pr(t, 2300, 2800); $("intro").style.display = t > 2800 ? "none" : "flex";
+  const f = ease(pr(t, 14600, 15200)); $("fin").style.opacity = f; $("fin").style.display = t < 14600 ? "none" : "flex";
+  $("fin").style.transform = `scale(${.94 + .06 * f})`;
+
+  const h = tapis(IH, t), b = tapis(IB, t);
+  $("totH").textContent = eur(h.total); $("totB").textContent = eur(b.total);
+  $("jH").style.width = cl(h.total / 40 * 100, 0, 100) + "%"; $("jB").style.width = cl(b.total / 40 * 100, 0, 100) + "%";
+  const trop = h.total > 30;
+  $("jH").style.background = trop ? "#F0705F" : h.total > 23 ? "#E7A15C" : "#6DC290";
+  $("ecranH").style.background = trop ? "#7A1F16" : "#18201B";
+  $("ecranH").style.transform = trop && t < 12500 ? `translateX(${Math.sin(t / 30) * 7}px)` : "";
+  $("haut").style.background = trop ? "#FFD3CB" : "#FFE9E4";
+
+  const humH = trop ? 2 : h.total > 20 ? 1 : 0, fini = t > 11400;
+  $("persoH").innerHTML = perso({ t, x: 170, y: 330, peau: "#F3C9A5", cheveux: "#7A3E22", sweat: "#D9654F", humeur: humH, tremble: trop, long: true, bras: trop });
+  $("persoB").innerHTML = perso({ t, x: 170, y: 330, peau: "#C68B62", cheveux: "#231A17", sweat: "#3E9A63", humeur: fini ? 3 : 0, tel: true, coche: Math.round(b.n / IB.length * 5),
+    saut: fini ? -Math.abs(Math.sin((t - 11400) / 260)) * 16 * (1 - pr(t, 11400, 13400)) : 0 });
+
+  const bh = t < 3200 ? "" : trop ? "Quoi ?!" : h.total > 20 ? "Euh… ça monte." : "Je prends au feeling.";
+  const bb = t < 3200 ? "" : fini ? "Pile dans le budget." : b.n > 6 ? "Tout est sur ma liste." : "J'ai ma liste.";
+  for (const [id, txt] of [["bulleH", bh], ["bulleB", bb]]) { $(id).textContent = txt; $(id).style.opacity = txt ? 1 : 0; }
+
+  const v = ease(pr(t, 11700, 12300));
+  for (const id of ["verdictH", "verdictB"]) { $(id).style.opacity = v; $(id).style.transform = `translateY(${(1 - v) * 40}px)`; }
+};
+if (!/rendu/.test(location.search)) { const t0 = performance.now(); (function boucle() { window.seek((performance.now() - t0) % window.DUREE); requestAnimationFrame(boucle); })(); } else window.seek(0);
+</script>
+</body></html>

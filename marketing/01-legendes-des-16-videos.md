@@ -60,3 +60,11 @@ Même principe : animations de 13 secondes, dans `videos/`. Les chiffres viennen
 | 28 | `28-hors-connexion` | Pas de réseau au fond du magasin ? Ta liste de courses marche quand même. | #petitbudget #courses #astuce #organisation #listedecourses |
 
 - La vidéo 24 est à publier dans les groupes de La Réunion plutôt que partout.
+
+## Vidéo 29 : deux étudiantes en caisse
+
+Animation de 18 secondes (`videos/29-deux-etudiantes-en-caisse.mp4`, fabriquée par `videos/rendu-caisse.js`). Même magasin, même budget de 30 € : l'une fait ses courses sans liste et dépasse, l'autre suit la liste de l'appli et paie 24,73 €.
+
+- **Légende** : Même magasin, même budget : 30 €. L'une passe en caisse au hasard, l'autre avec sa liste. Tu es laquelle ?
+- **Hashtags** : #petitbudget #courses #etudiant #vieetudiante #findemois
+- La scène « sans liste » est imaginée, et la vidéo le dit en bas de l'écran. Les 24,73 € viennent d'une semaine calculée dans l'appli (1 personne, Lidl).
