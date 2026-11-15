@@ -8,7 +8,7 @@ const IPS = 30;
   const page = await nav.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
   page.on("pageerror", e => { console.error(e.message); process.exit(1); });
   await page.goto("file://" + path.join(__dirname, "caisse.html") + "?rendu");
-  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => document.fonts.ready); await page.waitForLoadState("networkidle");
   const { duree, nom, musique } = await page.evaluate(() => ({ duree: window.DUREE, nom: window.NOM, musique: window.MUSIQUE }));
   const sortie = path.join(__dirname, nom + ".mp4");
   const ff = spawn("ffmpeg", ["-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(IPS), "-c:v", "mjpeg", "-i", "-",

@@ -63,8 +63,8 @@ Même principe : animations de 13 secondes, dans `videos/`. Les chiffres viennen
 
 ## Vidéo 29 : deux étudiantes en caisse
 
-Animation de 18 secondes (`videos/29-deux-etudiantes-en-caisse.mp4`, fabriquée par `videos/rendu-caisse.js`). Même magasin, même budget de 30 € : l'une fait ses courses sans liste et dépasse, l'autre suit la liste de l'appli et paie 24,73 €.
+Motion design de 19 secondes (`videos/29-deux-etudiantes-en-caisse.mp4`, fabriquée par `videos/rendu-caisse.js` à partir de `videos/caisse.html`). Même magasin, même budget de 30 € : deux tickets de caisse s'impriment côte à côte, l'un dépasse, l'autre s'arrête à 24,73 €. Puis les vraies photos de quatre plats de la semaine, avec leur prix par assiette, et l'écran de l'appli.
 
-- **Légende** : Même magasin, même budget : 30 €. L'une passe en caisse au hasard, l'autre avec sa liste. Tu es laquelle ?
+- **Légende** : Même magasin, même budget : 30 €. Deux tickets de caisse. Tu es lequel ?
 - **Hashtags** : #petitbudget #courses #etudiant #vieetudiante #findemois
-- La scène « sans liste » est imaginée, et la vidéo le dit en bas de l'écran. Les 24,73 € viennent d'une semaine calculée dans l'appli (1 personne, Lidl).
+- Le ticket « sans liste » est imaginé, et la vidéo le dit en bas de l'écran. Le ticket de droite, les plats et leurs prix viennent d'une semaine calculée dans l'appli (1 personne, Lidl, 20 minutes de cuisine au plus).

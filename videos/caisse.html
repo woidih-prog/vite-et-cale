@@ -1,156 +1,152 @@
 <!doctype html>
 <html lang="fr"><head><meta charset="utf-8">
-<title>Vite & Calé : deux étudiantes en caisse</title>
-<!-- Vidéo animée 1080 × 1920, 18 s. window.seek(ms) dessine l'image d'un instant donné (voir rendu-caisse.js).
-     Le total « avec » (24,73 €) est une vraie semaine de l'appli : 1 personne, 30 € de budget, Lidl. La scène « sans » est imaginée. -->
+<title>Vite & Calé : deux tickets de caisse</title>
+<!-- Vidéo en motion design, 1080 × 1920, 19 s. window.seek(ms) dessine l'image d'un instant donné (voir rendu-caisse.js).
+     Ticket de droite, plats, prix par assiette et écran de l'appli : une vraie semaine de l'appli (1 personne, 30 € de budget, Lidl, 20 min max).
+     Ticket de gauche : imaginé, et la vidéo le dit. -->
 <style>
 @font-face{font-family:"Bricolage Grotesque";src:url(fonts/bricolage-800.woff2) format("woff2");font-weight:600 800}
 @font-face{font-family:"Figtree";src:url(fonts/figtree.woff2) format("woff2");font-weight:300 900}
-html,body{margin:0;background:#EAF7EC}
-#scene{position:relative;width:1080px;height:1920px;overflow:hidden;background:#EAF7EC;font-family:Figtree,sans-serif;color:#1B251E}
-.titre{position:absolute;left:0;right:0;top:54px;text-align:center;font-family:"Bricolage Grotesque";font-weight:800;font-size:58px;line-height:1.1}
-.titre small{display:block;font-family:Figtree;font-weight:600;font-size:34px;color:#56655B;margin-top:10px}
-.pan{position:absolute;left:30px;width:1020px;height:770px;border-radius:44px;overflow:hidden}
-#haut{top:236px;background:#FFE9E4}
-#bas{top:1030px;background:#D9F0DE}
-.pan svg{position:absolute;inset:0}
-.pill{position:absolute;left:34px;top:30px;padding:12px 28px;border-radius:40px;font-weight:800;font-size:36px;color:#fff}
-#haut .pill{background:#A33A2A}#bas .pill{background:#2D774A}
-.ecran{position:absolute;right:34px;top:30px;width:400px;padding:20px 26px 24px;border-radius:28px;background:#18201B;color:#DFF5E4;box-sizing:border-box}
-.ecran span{font-size:26px;font-weight:700;letter-spacing:.08em;opacity:.75}
-.ecran b{display:block;font-family:"Bricolage Grotesque";font-weight:800;font-size:84px;line-height:1.05;font-variant-numeric:tabular-nums}
-.jauge{height:16px;border-radius:8px;background:#34423A;margin-top:12px;position:relative}
-.jauge i{position:absolute;left:0;top:0;bottom:0;border-radius:8px;background:#6DC290}
-.jauge u{position:absolute;top:-8px;bottom:-8px;width:5px;background:#fff;border-radius:3px;left:75%}
-.ecran em{display:block;font-style:normal;font-size:24px;font-weight:700;margin-top:10px;text-align:right;opacity:.85}
-.item{position:absolute;top:566px;font-size:92px;line-height:1;margin-left:-46px}
-.verdict{position:absolute;left:34px;right:34px;bottom:30px;padding:22px 30px;border-radius:30px;font-family:"Bricolage Grotesque";font-weight:800;font-size:52px;line-height:1.1;color:#fff;text-align:center}
-#haut .verdict{background:#A33A2A}#bas .verdict{background:#2D774A}
-.verdict small{display:block;font-family:Figtree;font-weight:700;font-size:32px;opacity:.92;margin-top:6px}
-.bulle{position:absolute;left:290px;top:306px;padding:14px 24px;border-radius:26px 26px 26px 6px;background:#fff;font-weight:800;font-size:38px;box-shadow:0 6px 18px rgba(0,0,0,.12)}
-.note{position:absolute;left:0;right:0;bottom:36px;text-align:center;font-size:25px;color:#56655B;font-weight:600}
-#intro,#fin{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;text-align:center;padding:0 80px}
-#intro{background:#EAF7EC}
-#intro h1,#fin h1{font-family:"Bricolage Grotesque";font-weight:800;font-size:104px;line-height:1.04;margin:0}
-#intro h1 em,#fin h1 em{font-style:normal;color:#2D774A}
-#intro p{font-size:52px;font-weight:700;margin:0;color:#56655B}
-#fin{background:#2D774A;color:#fff}
-#fin h1 em{color:#BEEBCB}
-#fin p{font-size:54px;font-weight:700;margin:0;line-height:1.25}
-#fin .url{font-family:"Bricolage Grotesque";font-weight:800;font-size:76px;background:#fff;color:#2D774A;padding:22px 46px;border-radius:60px;margin-top:20px}
-#fin .ou{font-size:40px;font-weight:600;opacity:.9}
+html,body{margin:0;background:#0F2A1C}
+#scene{position:relative;width:1080px;height:1920px;overflow:hidden;background:#0F2A1C;font-family:Figtree,sans-serif;color:#1B251E}
+.plein{position:absolute;inset:0}
+.d{font-family:"Bricolage Grotesque";font-weight:800;letter-spacing:-.02em}
+
+/* 1. Ouverture */
+#s1{background:#0F2A1C;color:#fff}
+#s1 .rond{position:absolute;border-radius:50%}
+#s1 .ligne{position:absolute;left:80px;right:80px;height:190px;overflow:hidden}
+#s1 .ligne b{display:block;font-family:"Bricolage Grotesque";font-weight:800;font-size:150px;line-height:190px;letter-spacing:-.03em;white-space:nowrap}
+#s1 .ligne b em{font-style:normal;color:#7FE0A2}
+
+/* 2. Les deux tickets */
+#s2 .moitie{position:absolute;top:0;bottom:0;width:540px}
+#gauche{left:0;background:#FFD5CC}#droite{left:540px;background:#C9EED4}
+.chip{position:absolute;left:36px;top:70px;padding:16px 26px;border-radius:50px;color:#fff;font-weight:800;font-size:34px;white-space:nowrap}
+#gauche .chip{background:#B23A28}#droite .chip{background:#1F6B3F}
+.ticket{position:absolute;left:36px;top:190px;width:468px;background:#fff;box-shadow:0 18px 40px rgba(0,0,0,.16);overflow:hidden}
+.ticket::after{content:"";position:absolute;left:0;right:0;bottom:0;height:18px;background:linear-gradient(135deg,transparent 50%,var(--fond) 50%) 0 0/24px 18px,linear-gradient(225deg,transparent 50%,var(--fond) 50%) 0 0/24px 18px}
+.ticket h3{margin:0;padding:24px 26px 14px;font-family:"Bricolage Grotesque";font-weight:800;font-size:30px;letter-spacing:.06em;text-align:center;border-bottom:3px dashed #C9D3CC}
+.ticket .l{display:flex;justify-content:space-between;gap:10px;padding:0 26px;font-size:27px;font-weight:600;white-space:nowrap}
+.ticket .l span:last-child{font-variant-numeric:tabular-nums;font-weight:700}
+.sous{position:absolute;left:36px;width:468px;top:1362px}
+.sous small{display:block;font-size:28px;font-weight:800;letter-spacing:.08em;opacity:.7}
+.sous b{display:block;font-family:"Bricolage Grotesque";font-weight:800;font-size:124px;line-height:1.02;letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.jauge{position:relative;height:26px;border-radius:13px;background:rgba(0,0,0,.14);margin-top:16px}
+.jauge i{position:absolute;left:0;top:0;bottom:0;border-radius:13px}
+.jauge u{position:absolute;left:75%;top:-12px;bottom:-12px;width:6px;border-radius:3px;background:#1B251E}
+.jauge em{position:absolute;left:75%;top:40px;transform:translateX(-50%);font-style:normal;font-weight:800;font-size:26px;white-space:nowrap}
+.tampon{position:absolute;left:50%;top:1745px;padding:16px 28px;border:9px solid;border-radius:24px;font-family:"Bricolage Grotesque";font-weight:800;font-size:58px;line-height:1.05;text-align:center;white-space:nowrap;background:rgba(255,255,255,.9)}
+.tampon small{display:block;font-family:Figtree;font-weight:800;font-size:34px;margin-top:2px}
+#tG{color:#B23A28;border-color:#B23A28}#tD{color:#1F6B3F;border-color:#1F6B3F}
+.note{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-size:24px;font-weight:700;color:#3A4A40}
+
+/* 3. Les plats */
+#s3{background:#1F6B3F;color:#fff}
+#s3 h2{position:absolute;left:70px;right:70px;top:120px;margin:0;font-family:"Bricolage Grotesque";font-weight:800;font-size:112px;line-height:1.02;letter-spacing:-.03em}
+#s3 h2 em{font-style:normal;color:#BEEBCB}
+#s3 p{position:absolute;left:70px;right:70px;top:400px;margin:0;font-size:50px;font-weight:700;color:#DDF5E3}
+.plat{position:absolute;width:440px;text-align:center}
+.plat img{width:400px;height:400px;border-radius:50%;object-fit:cover;border:12px solid #fff;box-shadow:0 20px 44px rgba(0,0,0,.28)}
+.plat span{display:block;font-size:34px;font-weight:800;line-height:1.15;margin-top:14px}
+.plat b{position:absolute;right:0;top:300px;background:#FFD166;color:#1B251E;font-family:"Bricolage Grotesque";font-weight:800;font-size:46px;padding:10px 22px;border-radius:40px;box-shadow:0 8px 18px rgba(0,0,0,.22)}
+
+/* 4. Fin */
+#s4{background:#EAF7EC}
+#s4 h1{position:absolute;left:0;right:0;top:130px;margin:0;text-align:center;font-family:"Bricolage Grotesque";font-weight:800;font-size:150px;letter-spacing:-.03em}
+#s4 h1 em{font-style:normal;color:#2D774A}
+#s4 p{position:absolute;left:80px;right:80px;top:340px;margin:0;text-align:center;font-size:54px;font-weight:700;line-height:1.22}
+#s4 .url{position:absolute;left:50%;top:600px;transform:translateX(-50%);background:#2D774A;color:#fff;font-family:"Bricolage Grotesque";font-weight:800;font-size:84px;padding:22px 54px;border-radius:70px;white-space:nowrap}
+#s4 .bio{position:absolute;left:0;right:0;top:780px;text-align:center;font-size:40px;font-weight:700;color:#56655B}
+.tel{position:absolute;left:50%;width:620px;margin-left:-310px;top:900px;border-radius:70px;background:#18201B;padding:20px;box-sizing:border-box;box-shadow:0 30px 70px rgba(0,0,0,.3)}
+.tel img{display:block;width:100%;border-radius:52px}
 </style></head><body>
 <div id="scene">
-  <div class="titre">Même magasin. Même budget.<small>30 € pour manger toute la semaine</small></div>
-
-  <div class="pan" id="haut">
-    <svg viewBox="0 0 1020 770"><g id="decorH"></g><g id="persoH"></g></svg>
-    <div class="pill">Sans liste</div>
-    <div class="ecran" id="ecranH"><span>TOTAL</span><b id="totH">0,00 €</b><div class="jauge"><i id="jH"></i><u></u></div><em>budget 30 €</em></div>
-    <div class="bulle" id="bulleH"></div>
-    <div id="itemsH"></div>
-    <div class="verdict" id="verdictH">38,40 €<small>8,40 € de trop. Elle repose des articles.</small></div>
+  <div class="plein" id="s2">
+    <div class="moitie" id="gauche"><div class="chip">Sans liste</div><div class="ticket" id="tkG" style="--fond:#FFD5CC"><h3>TICKET DE CAISSE</h3><div id="lG"></div></div>
+      <div class="sous"><small>TOTAL</small><b id="totG">0,00 €</b><div class="jauge"><i id="jG"></i><u></u><em>budget 30 €</em></div></div>
+      <div class="tampon" id="tG">DÉPASSÉ<small>+ 8,40 €</small></div></div>
+    <div class="moitie" id="droite"><div class="chip">Avec Vite &amp; Calé</div><div class="ticket" id="tkD" style="--fond:#C9EED4"><h3>TICKET DE CAISSE</h3><div id="lD"></div></div>
+      <div class="sous"><small>TOTAL</small><b id="totD">0,00 €</b><div class="jauge"><i id="jD"></i><u></u><em>budget 30 €</em></div></div>
+      <div class="tampon" id="tD">BUDGET TENU<small>il reste 5,27 €</small></div></div>
+    <div class="note">Ticket de gauche imaginé. Ticket de droite : semaine calculée dans l'appli, 1 personne, Lidl.</div>
   </div>
 
-  <div class="pan" id="bas">
-    <svg viewBox="0 0 1020 770"><g id="decorB"></g><g id="persoB"></g></svg>
-    <div class="pill">Avec Vite &amp; Calé</div>
-    <div class="ecran" id="ecranB"><span>TOTAL</span><b id="totB">0,00 €</b><div class="jauge"><i id="jB"></i><u></u></div><em>budget 30 €</em></div>
-    <div class="bulle" id="bulleB"></div>
-    <div id="itemsB"></div>
-    <div class="verdict" id="verdictB">24,73 €<small>Midi et soir, 7 jours. Il lui reste 5,27 €.</small></div>
+  <div class="plein" id="s3">
+    <h2>Et avec <em>24,73 €</em>,<br>elle mange quoi ?</h2><p id="s3p">14 repas : midi et soir, 7 jours.</p>
+    <div id="plats"></div>
   </div>
 
-  <div class="note">Scène imaginée. 24,73 € : semaine calculée dans l'appli, 1 personne, Lidl.</div>
+  <div class="plein" id="s4">
+    <h1 id="f1">Vite <em>&amp;</em> Calé</h1><p id="f2">Tes repas de la semaine et ta liste<br>de courses, sans dépasser ton budget.</p>
+    <div class="url" id="f3">viteetcale.fr</div><div class="bio" id="f4">Lien dans la bio</div>
+    <div class="tel" id="f5"><img src="img/caisse-courses.jpg" alt=""></div>
+  </div>
 
-  <div id="intro"><h1>Deux étudiantes<br>passent <em>en caisse</em>.</h1><p>Même magasin. Même budget : 30 €.</p></div>
-  <div id="fin"><h1>Vite <em>&amp;</em> Calé</h1><p>Tes repas de la semaine<br>et ta liste de courses,<br>sans dépasser ton budget.</p><div class="url">viteetcale.fr</div><div class="ou">Lien dans la bio</div></div>
+  <div class="plein" id="s1">
+    <div class="rond" id="r1" style="background:#E8604C;width:520px;height:520px;right:-170px;top:140px"></div>
+    <div class="rond" id="r2" style="background:#2D774A;width:700px;height:700px;left:-260px;bottom:-120px"></div>
+    <div class="ligne" style="top:600px"><b><em>2</em> étudiantes.</b></div>
+    <div class="ligne" style="top:800px"><b><em>1</em> magasin.</b></div>
+    <div class="ligne" style="top:1000px"><b><em>30 €</em> chacune.</b></div>
+  </div>
 </div>
 <script>
-window.DUREE = 18000; window.NOM = "29-deux-etudiantes-en-caisse"; window.MUSIQUE = "b";
+window.DUREE = 19000; window.NOM = "29-deux-etudiantes-en-caisse"; window.MUSIQUE = "b";
 const $ = id => document.getElementById(id);
 const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
-const pr = (t, a, b) => cl((t - a) / (b - a));            // progression 0→1 entre a et b
-const ease = x => x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+const pr = (t, a, b) => cl((t - a) / (b - a));
+const expo = x => x >= 1 ? 1 : 1 - Math.pow(2, -10 * x);
+const back = x => { const c = 1.9; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const dans = x => x * x * x;
 const eur = v => v.toFixed(2).replace(".", ",") + " €";
 
-/* Les articles : [pictogramme, prix]. En haut, des achats au hasard ; en bas, la liste de l'appli (somme réelle : 24,73 €). */
-const H = [["🍕",4.2],["🥤",2.9],["🍫",3.1],["🧀",3.6],["🍪",2.8],["🥩",6.9],["🍟",2.5],["🍦",4.4],["🥗",3.9],["🧃",4.1]];
-const B = [["🍚",1.09],["🥚",2.19],["🥫",0.89],["🧅",1.29],["🫘",1.69],["🥕",2.98],["🍝",0.95],["🧀",2.29],["🥛",1.05],["🍗",5.49],["🥔",1.99],["🍌",2.83]];
-const T0 = 3000, T1 = 11200, TRAJET = 1500, X0 = 330, X1 = 940;
-function prepare(liste, hote) { const pas = (T1 - T0 - TRAJET) / (liste.length - 1);
-  return liste.map(([e, p], i) => { const el = document.createElement("div"); el.className = "item"; el.textContent = e; hote.appendChild(el); return { el, p, t: T0 + i * pas }; }); }
-const IH = prepare(H, $("itemsH")), IB = prepare(B, $("itemsB"));
+/* Ticket de gauche : imaginé. Ticket de droite : les 20 lignes de la liste de courses de l'appli (somme : 24,73 €). */
+const G = [["Pizza surgelée",4.2],["Soda",2.9],["Chocolat",3.1],["Fromage",3.6],["Biscuits",2.8],["Steaks",6.9],["Chips",2.5],["Glace",4.4],["Salade toute prête",3.9],["Jus de fruits",4.1]];
+const D = [["Œufs",3.17],["Haricots rouges",2.61],["Jambon",2.27],["Fromage blanc",2.15],["Légumes",1.99],["Citrons",1.78],["Emmental râpé",1.6],["Pain complet",1.46],["Lardons",1.34],["Pois chiches",1.19],
+  ["Tomates concassées",0.98],["Crème fraîche",0.78],["Haricots blancs",0.78],["Riz",0.77],["Lentilles corail",0.4],["Pommes de terre",0.36],["Baguette",0.35],["Pâtes complètes",0.28],["Oignons",0.24],["Beurre",0.23]];
+const PLATS = [["p58","Salade lyonnaise",0.96],["p02","Pâtes carbonara",0.97],["p40","Frittata vide-frigo",1.42],["p59","Salade de haricots et pois chiches",1.64]];
+const T0 = 3500, T1 = 9700, TETE = 96, FIN = 44;
+const HG = 62, HD = 50;   // hauteur d'une ligne de chaque ticket
+function lignes(liste, hote, h) { hote.innerHTML = liste.map(([n, p]) => `<div class="l" style="height:${h}px;line-height:${h}px"><span>${n}</span><span>${eur(p)}</span></div>`).join(""); return [...hote.children]; }
+const LG = lignes(G, $("lG"), HG), LD = lignes(D, $("lD"), HD);
+$("plats").innerHTML = PLATS.map(([id, n, c], i) => `<div class="plat" id="pl${i}" style="left:${i % 2 ? 560 : 80}px;top:${i < 2 ? 560 : 1180}px"><img src="../photos/${id}.jpg" alt=""><b>${eur(c)}</b><span>${n}</span></div>`).join("");
 
-/* Décor commun : sol, tapis de caisse, borne. */
-function decor(sol, tapis) { return `<rect x="0" y="690" width="1020" height="80" fill="${sol}"/>
-  <rect x="280" y="640" width="740" height="64" rx="14" fill="#2B332E"/><rect x="290" y="648" width="720" height="20" rx="8" fill="${tapis}"/>
-  <rect x="930" y="520" width="90" height="130" rx="12" fill="#3B4740"/><rect x="944" y="536" width="62" height="12" rx="6" fill="#E14B3A"/>`; }
-$("decorH").innerHTML = decor("#F4CFC7", "#55615A"); $("decorB").innerHTML = decor("#BFE3C7", "#55615A");
-
-/* Une étudiante : cheveux, visage, sweat, bras. humeur : 0 sereine, 1 inquiète, 2 affolée, 3 ravie. */
-function perso(o) { const { x, y, peau, cheveux, sweat, humeur, tremble, tel, coche, bras } = o;
-  const dx = tremble ? Math.sin(o.t / 38) * 5 : 0, dy = o.saut || 0;
-  const sourcilG = humeur === 2 ? "M-44,-44 L-16,-56" : humeur === 1 ? "M-44,-48 L-16,-52" : "M-44,-50 Q-30,-56 -16,-50";
-  const sourcilD = humeur === 2 ? "M16,-56 L44,-44" : humeur === 1 ? "M16,-52 L44,-48" : "M16,-50 Q30,-56 44,-50";
-  const bouche = humeur === 2 ? `<ellipse cx="0" cy="34" rx="15" ry="20" fill="#5A1F1F"/>` : humeur === 1 ? `<path d="M-18,38 Q0,26 18,38" fill="none" stroke="#5A1F1F" stroke-width="6" stroke-linecap="round"/>`
-    : humeur === 3 ? `<path d="M-26,24 Q0,58 26,24 Z" fill="#5A1F1F"/><path d="M-18,28 Q0,36 18,28" fill="#fff"/>` : `<path d="M-20,28 Q0,46 20,28" fill="none" stroke="#5A1F1F" stroke-width="6" stroke-linecap="round"/>`;
-  const yeux = humeur === 2 ? `<circle cx="-30" cy="-22" r="13" fill="#fff"/><circle cx="30" cy="-22" r="13" fill="#fff"/><circle cx="-30" cy="-22" r="5" fill="#1B251E"/><circle cx="30" cy="-22" r="5" fill="#1B251E"/>`
-    : humeur === 3 ? `<path d="M-42,-22 Q-30,-36 -18,-22" fill="none" stroke="#1B251E" stroke-width="6" stroke-linecap="round"/><path d="M18,-22 Q30,-36 42,-22" fill="none" stroke="#1B251E" stroke-width="6" stroke-linecap="round"/>`
-    : `<circle cx="-30" cy="-22" r="8" fill="#1B251E"/><circle cx="30" cy="-22" r="8" fill="#1B251E"/>`;
-  const gouttes = humeur === 2 ? `<path d="M74,-70 q10,18 0,26 q-10,-8 0,-26" fill="#6FB7E8"/><path d="M-82,-40 q9,16 0,23 q-9,-7 0,-23" fill="#6FB7E8"/>` : "";
-  const telephone = tel ? `<g transform="translate(120,150) rotate(-8)"><rect x="-44" y="-78" width="88" height="156" rx="14" fill="#18201B"/><rect x="-37" y="-68" width="74" height="136" rx="8" fill="#fff"/>
-      ${[0,1,2,3,4].map(i => `<rect x="-28" y="${-58 + i * 24}" width="16" height="16" rx="4" fill="${i < coche ? "#2D774A" : "#D6DDD1"}"/><rect x="-6" y="${-54 + i * 24}" width="${34 - (i % 2) * 8}" height="8" rx="4" fill="#C9D3CC"/>`).join("")}</g>` : "";
-  return `<g transform="translate(${x + dx},${y + dy})">
-    <path d="M-96,330 Q-100,170 -60,130 L60,130 Q100,170 96,330 Z" fill="${sweat}"/>
-    <path d="M-30,130 Q0,160 30,130" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="8" stroke-linecap="round"/>
-    <path d="M-70,170 Q-120,${bras ? 120 : 240} -${bras ? 96 : 104},${bras ? 60 : 300}" fill="none" stroke="${sweat}" stroke-width="40" stroke-linecap="round"/>
-    <circle cx="-${bras ? 96 : 104}" cy="${bras ? 52 : 306}" r="22" fill="${peau}"/>
-    <path d="M70,170 Q124,200 118,${tel ? 190 : 300}" fill="none" stroke="${sweat}" stroke-width="40" stroke-linecap="round"/>
-    ${tel ? "" : `<circle cx="118" cy="306" r="22" fill="${peau}"/>`}
-    <rect x="-18" y="90" width="36" height="50" fill="${peau}"/>
-    ${o.long ? `<path d="M-96,-20 Q-110,120 -70,140 L-60,20 Z M96,-20 Q110,120 70,140 L60,20 Z" fill="${cheveux}"/>` : ""}
-    <circle cx="0" cy="0" r="90" fill="${peau}"/>
-    <path d="M-92,-8 Q-96,-104 0,-102 Q96,-104 92,-8 Q60,-58 0,-58 Q-60,-58 -92,-8 Z" fill="${cheveux}"/>
-    ${o.long ? "" : `<circle cx="0" cy="-108" r="34" fill="${cheveux}"/>`}
-    <path d="${sourcilG}" fill="none" stroke="#1B251E" stroke-width="7" stroke-linecap="round"/><path d="${sourcilD}" fill="none" stroke="#1B251E" stroke-width="7" stroke-linecap="round"/>
-    ${yeux}${bouche}${gouttes}
-    <circle cx="-56" cy="14" r="14" fill="#F2A6A0" opacity=".55"/><circle cx="56" cy="14" r="14" fill="#F2A6A0" opacity=".55"/>
-    ${telephone}</g>`; }
-
-function tapis(items, t) { let total = 0, n = 0;
-  for (const it of items) { const p = pr(t, it.t, it.t + TRAJET);
-    it.el.style.left = (X0 + (X1 - X0) * p) + "px";
-    it.el.style.opacity = t < it.t ? 0 : p < .08 ? p / .08 : p > .9 ? (1 - p) / .1 : 1;
-    it.el.style.transform = `translateY(${-Math.abs(Math.sin(p * Math.PI * 3)) * 6}px)`;
-    if (p >= 1) { total += it.p; n++; } }
-  return { total, n }; }
+function ticket(t, liste, els, h, paper) { const pas = (T1 - T0) / liste.length; let total = 0, vus = 0;
+  els.forEach((el, i) => { const p = pr(t, T0 + i * pas, T0 + i * pas + 260); el.style.opacity = p; el.style.transform = `translateX(${(1 - expo(p)) * -30}px)`; vus += expo(p); if (p >= 1) total += liste[i][1]; });
+  paper.style.height = (TETE + vus * h + FIN) * expo(pr(t, 3000, 3500)) + "px";
+  return total; }
 
 window.seek = t => {
-  $("intro").style.opacity = 1 - pr(t, 2300, 2800); $("intro").style.display = t > 2800 ? "none" : "flex";
-  const f = ease(pr(t, 14600, 15200)); $("fin").style.opacity = f; $("fin").style.display = t < 14600 ? "none" : "flex";
-  $("fin").style.transform = `scale(${.94 + .06 * f})`;
+  /* 1. Ouverture : trois lignes qui montent, puis le panneau s'en va vers le haut. */
+  const sortie = dans(pr(t, 2600, 3050));
+  $("s1").style.transform = `translateY(${-sortie * 1920}px)`; $("s1").style.display = t > 3050 ? "none" : "block";
+  document.querySelectorAll("#s1 .ligne b").forEach((b, i) => { b.style.transform = `translateY(${(1 - expo(pr(t, 200 + i * 620, 900 + i * 620))) * 200}px)`; });
+  $("r1").style.transform = `scale(${back(pr(t, 0, 800))}) translateY(${Math.sin(t / 700) * 14}px)`;
+  $("r2").style.transform = `scale(${back(pr(t, 250, 1100))}) translateX(${Math.cos(t / 800) * 14}px)`;
 
-  const h = tapis(IH, t), b = tapis(IB, t);
-  $("totH").textContent = eur(h.total); $("totB").textContent = eur(b.total);
-  $("jH").style.width = cl(h.total / 40 * 100, 0, 100) + "%"; $("jB").style.width = cl(b.total / 40 * 100, 0, 100) + "%";
-  const trop = h.total > 30;
-  $("jH").style.background = trop ? "#F0705F" : h.total > 23 ? "#E7A15C" : "#6DC290";
-  $("ecranH").style.background = trop ? "#7A1F16" : "#18201B";
-  $("ecranH").style.transform = trop && t < 12500 ? `translateX(${Math.sin(t / 30) * 7}px)` : "";
-  $("haut").style.background = trop ? "#FFD3CB" : "#FFE9E4";
+  /* 2. Les deux tickets s'impriment, les totaux montent. */
+  const g = ticket(t, G, LG, HG, $("tkG")), d = ticket(t, D, LD, HD, $("tkD"));
+  $("totG").textContent = eur(g); $("totD").textContent = eur(d);
+  $("jG").style.width = cl(g / 40 * 100, 0, 100) + "%"; $("jD").style.width = cl(d / 40 * 100, 0, 100) + "%";
+  const trop = g > 30, secousse = trop && t < 10200 ? Math.sin(t / 26) * 9 * (1 - pr(t, 8500, 10200)) : 0;
+  $("jG").style.background = trop ? "#B23A28" : g > 22 ? "#E08A2E" : "#1F6B3F"; $("jD").style.background = "#1F6B3F";
+  $("totG").style.color = trop ? "#B23A28" : "#1B251E"; $("totG").style.transform = `translateX(${secousse}px)`;
+  $("gauche").style.background = trop ? "#FFC2B5" : "#FFD5CC";
+  for (const [id, rot, t0] of [["tG", -5, 10100], ["tD", 4, 10500]]) { const p = pr(t, t0, t0 + 420), e = expo(p);
+    $(id).style.opacity = pr(t, t0, t0 + 120); $(id).style.transform = `translate(-50%,-50%) rotate(${rot}deg) scale(${2.4 - 1.4 * e})`; }
 
-  const humH = trop ? 2 : h.total > 20 ? 1 : 0, fini = t > 11400;
-  $("persoH").innerHTML = perso({ t, x: 170, y: 330, peau: "#F3C9A5", cheveux: "#7A3E22", sweat: "#D9654F", humeur: humH, tremble: trop, long: true, bras: trop });
-  $("persoB").innerHTML = perso({ t, x: 170, y: 330, peau: "#C68B62", cheveux: "#231A17", sweat: "#3E9A63", humeur: fini ? 3 : 0, tel: true, coche: Math.round(b.n / IB.length * 5),
-    saut: fini ? -Math.abs(Math.sin((t - 11400) / 260)) * 16 * (1 - pr(t, 11400, 13400)) : 0 });
+  /* 3. Les plats : le panneau vert arrive par la droite, les photos sautent une à une. */
+  const e3 = expo(pr(t, 12300, 12900)); $("s3").style.display = t < 12300 ? "none" : "block"; $("s3").style.clipPath = `inset(0 0 0 ${(1 - e3) * 100}%)`;
+  $("s3").querySelector("h2").style.transform = `translateX(${(1 - expo(pr(t, 12450, 13100))) * 300}px)`;
+  $("s3p").style.opacity = pr(t, 13000, 13300);
+  PLATS.forEach((_, i) => { const p = pr(t, 13150 + i * 260, 13700 + i * 260), el = $("pl" + i); el.style.opacity = pr(t, 13150 + i * 260, 13300 + i * 260); el.style.transform = `scale(${.3 + .7 * back(p)}) rotate(${(1 - expo(p)) * (i % 2 ? 10 : -10)}deg)`; });
 
-  const bh = t < 3200 ? "" : trop ? "Quoi ?!" : h.total > 20 ? "Euh… ça monte." : "Je prends au feeling.";
-  const bb = t < 3200 ? "" : fini ? "Pile dans le budget." : b.n > 6 ? "Tout est sur ma liste." : "J'ai ma liste.";
-  for (const [id, txt] of [["bulleH", bh], ["bulleB", bb]]) { $(id).textContent = txt; $(id).style.opacity = txt ? 1 : 0; }
-
-  const v = ease(pr(t, 11700, 12300));
-  for (const id of ["verdictH", "verdictB"]) { $(id).style.opacity = v; $(id).style.transform = `translateY(${(1 - v) * 40}px)`; }
+  /* 4. Fin : fond clair, le téléphone monte avec la vraie liste de courses. */
+  const e4 = expo(pr(t, 15700, 16300)); $("s4").style.display = t < 15700 ? "none" : "block"; $("s4").style.clipPath = `inset(${(1 - e4) * 100}% 0 0 0)`;
+  ["f1", "f2", "f3", "f4"].forEach((id, i) => { const p = expo(pr(t, 15950 + i * 170, 16550 + i * 170)), el = $(id); el.style.opacity = pr(t, 15950 + i * 170, 16200 + i * 170);
+    el.style.transform = (id === "f3" ? "translateX(-50%) " : "") + `translateY(${(1 - p) * 70}px)` + (id === "f3" ? ` scale(${.8 + .2 * back(pr(t, 16290, 16900))})` : ""); });
+  $("f5").style.transform = `translateY(${(1 - expo(pr(t, 16300, 17300))) * 1100 + Math.sin(t / 600) * 6}px)`;
 };
 if (!/rendu/.test(location.search)) { const t0 = performance.now(); (function boucle() { window.seek((performance.now() - t0) % window.DUREE); requestAnimationFrame(boucle); })(); } else window.seek(0);
 </script>
