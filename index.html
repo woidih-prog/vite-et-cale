@@ -1561,6 +1561,7 @@ function contenuProduit(prod,ing){
 const NIVEAUX=[[0,"Nouveau"],[1,"Premier prix partagé"],[5,"Chasseur de promos"],[20,"Éclaireur du quartier"],[50,"Pilier du rayon"],[100,"Légende des promos"]];
 function niveau(n){ let i=0; NIVEAUX.forEach((x,k)=>{ if(n>=x[0]) i=k; }); return {nom:NIVEAUX[i][1],suivant:NIVEAUX[i+1]||null,i}; }
 function blocContrib(){
+  if(!ST.contrib) ST.contrib={prix:0,photos:0};
   const n=ST.contrib.prix, nv=niveau(n), sv=nv.suivant;
   const pct=sv?Math.round((n-NIVEAUX[nv.i][0])/(sv[0]-NIVEAUX[nv.i][0])*100):100;
   return '<div class="card contrib"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><b>'+esc(nv.nom)+'</b><span class="muted num" style="font-size:13px">'+n+' prix partagé'+(n>1?"s":"")+(ST.contrib.photos?" · "+ST.contrib.photos+" photo"+(ST.contrib.photos>1?"s":"")+" de rayon":"")+'</span></div>'+
@@ -2074,7 +2075,7 @@ function vueProfil(v){
     $("save").onclick=()=>{ draft.osm=ST.profil.osm; ST.profil=draft; prepare(()=>{ nouveauPlan(); ST.onglet="semaine"; persist(); renderApp(); toast("Profil enregistré, nouvelle semaine prête."); }); };
     let arm=false;
     $("reset").onclick=()=>{ if(!arm){ arm=true; $("reset").textContent="Toucher encore pour tout effacer"; return; }
-      ST={profil:null,plan:null,coches:[],onglet:"courses",jour:null,filtre:"tous",stock:{},mesPromos:{}}; persist(); demarrer(); };
+      ST={profil:null,plan:null,coches:[],onglet:"courses",jour:null,filtre:"tous",stock:{},mesPromos:{},contrib:ST.contrib||{prix:0,photos:0}}; persist(); demarrer(); };
   };
   draw();
 }
