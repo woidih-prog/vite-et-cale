@@ -247,6 +247,38 @@ const R = [
   ing:[["pdt",250],["fb",200],["oignon",15]],
   steps:["Pommes de terre piquées, 8 min au micro-ondes.","Fromage blanc, échalote ou oignon très finement haché, ail, ciboulette, un filet d'huile et de vinaigre.","Sur les pommes de terre ouvertes en deux."]},
 
+ /* Végétariens et sans gluten, en 20 minutes ou moins */
+ {id:"p67",slot:"repas",origine:"asie",n:"Riz sauté aux œufs, légumes et cacahuètes",t:15,cook:"poêle",kcal:600,p:26,tags:["oeuf"],
+  ing:[["riz",80],["oeuf",2],["surg",150],["noix",25]],
+  steps:["Utilise du riz cuit la veille, il colle moins à la poêle.","Légumes surgelés et cacahuètes concassées, 3 min à la poêle avec un peu d'huile.","Ajoute les œufs battus, laisse prendre, puis le riz : 5 min en remuant, sauce soja."]},
+ {id:"p68",slot:"repas",origine:"classique",n:"Salade de pois chiches, crudités et fromage",t:8,cook:"aucune",kcal:470,p:22,tags:["lait"],
+  ing:[["pchiche",0.5],["leg",150],["fromage",30],["citron",15]],
+  steps:["Égoutte et rince les pois chiches.","Crudités en dés ou râpées, fromage râpé par-dessus.","Un filet de citron et d'huile, sel, poivre."]},
+ {id:"p69",slot:"repas",origine:"amerique",n:"Chili sin carne aux haricots rouges",t:20,actif:15,cook:"casserole",kcal:600,p:28,tags:[],
+  ing:[["hrouge",1],["tomate",150],["oignon",40],["riz",70]],
+  steps:["Cuis le riz.","Oignon 3 min à l'huile, puis haricots rouges égouttés, tomates, cumin, paprika et un peu de piment : 12 min à feu doux.","Sers avec le riz."]},
+ {id:"p70",slot:"repas",origine:"classique",n:"Pommes de terre sautées, œufs et fromage",t:20,actif:12,cook:"poêle",kcal:480,p:27,tags:["oeuf","lait"],
+  ing:[["pdt",150],["oeuf",3],["fromage",25],["oignon",20]],
+  steps:["Pommes de terre en très petits dés, 8 min à la poêle à couvert avec un peu d'huile.","Ajoute l'oignon, 3 min pour dorer.","Verse les œufs battus et le fromage, 6 min à feu doux à couvert."]},
+ {id:"p71",slot:"repas",origine:"asie",n:"Curry de pois chiches et patate douce au lait de coco",t:20,actif:15,cook:"casserole",kcal:650,p:16,tags:[],
+  ing:[["pchiche",0.5],["patate",150],["coco",80],["tomate",100],["riz",60]],
+  steps:["Cuis le riz.","Patate douce en petits dés, 10 min à la casserole avec un fond d'eau.","Pois chiches égouttés, tomates, lait de coco et 1 c. à café de curry : 8 min à feu doux. Sers avec le riz."]},
+ {id:"p72",slot:"repas",origine:"classique",n:"Omelette minute au fromage",t:8,cook:"poêle",kcal:420,p:27,tags:["oeuf","lait"],
+  ing:[["oeuf",3],["fromage",25],["beurre",8]],
+  steps:["Bats les œufs avec sel et poivre.","Fais fondre le beurre dans la poêle, verse les œufs.","Le fromage sur la moitié dès que les œufs commencent à prendre, plie en deux, 1 min de plus."]},
+ {id:"p73",slot:"repas",origine:"reunion",n:"Riz, lentilles corail et rougail tomate",t:20,actif:15,cook:"casserole",kcal:550,p:22,tags:[],
+  ing:[["lcorail",70],["tomate",100],["oignon",30],["riz",70]],
+  steps:["Cuis le riz.","Lentilles corail couvertes d'eau avec la moitié de l'oignon et du curcuma : 12 min à feu doux en remuant.","Rougail : tomates, le reste de l'oignon en petits dés, piment, un filet d'huile. Sers le tout ensemble."]},
+ {id:"p74",slot:"repas",origine:"espagne",n:"Œufs à la tomate et aux haricots blancs",t:15,cook:"poêle",kcal:520,p:30,tags:["oeuf"],
+  ing:[["hblanc",1],["tomate",150],["oignon",30],["oeuf",2]],
+  steps:["Oignon 3 min à l'huile avec du paprika.","Haricots blancs égouttés et tomates, 7 min à feu doux.","Casse les œufs dessus, couvre 4 min."]},
+ {id:"p75",slot:"repas",origine:"classique",n:"Purée de haricots blancs, citron et crudités",t:8,cook:"aucune",kcal:430,p:22,tags:["lait"],
+  ing:[["hblanc",1],["citron",20],["fb",100],["leg",150]],
+  steps:["Écrase à la fourchette les haricots blancs égouttés avec le fromage blanc, le citron, sel et poivre.","Un filet d'huile.","Avec les crudités en bâtonnets pour tremper."]},
+ {id:"p76",slot:"repas",origine:"italie",legNom:"champignons ou poireau",n:"Riz crémeux au fromage et aux légumes",t:20,actif:18,cook:"casserole",kcal:570,p:18,tags:["lait"],
+  ing:[["riz",80],["leg",120],["creme",40],["fromage",25],["beurre",10]],
+  steps:["Riz 1 min dans le beurre fondu, puis de l'eau chaude petit à petit en remuant : 15 min.","Les légumes en petits dés les 5 dernières minutes.","Hors du feu, la crème et le fromage râpé, bien mélanger."]},
+
  /* ===================== En-cas et goûters ===================== */
  {id:"e01",slot:"encas",origine:"classique",n:"Fruit de saison",t:0,cook:"aucune",kcal:80,p:1,tags:[],ing:[["fruit",1]],steps:["Rien à faire."]},
  {id:"e02",slot:"encas",origine:"classique",n:"Yaourt et fruit",t:0,cook:"aucune",kcal:140,p:5,tags:["lait"],ing:[["yaourt",1],["fruit",1]],steps:["Rien à faire."]},
@@ -281,6 +313,9 @@ const VIZ = {
  p58:[["salad",1.8],["egg",.7],["bread",.5]], p59:[["chickpea",1],["beans",1],["salad",1]], p60:[["potato",1.4],["tuna",.6],["egg",.5],["salad",.5]],
  p61:[["bread",1.8],["salad",.6],["carrot",.6]], p62:[["bread",1.6],["tuna",.6],["egg",.4],["tomatoRaw",.4]], p63:[["semoule",1.8],["tuna",.6],["tomatoRaw",.6]],
  p64:[["tuna",1],["chickpea",1],["tomatoRaw",1]], p65:[["wrap",2],["salad",1]], p66:[["potato",1.5],["fb",1.5]],
+ p67:[["friedrice",2.2],["nuts",.8]], p68:[["chickpea",1],["salad",1],["cheese",1]], p69:[["chili",1.6],["rice",1.4]], p70:[["potato",1.6],["scrambled",1.4]],
+ p71:[["curry",1.6],["rice",1.4]], p72:[["omelette",2],["cheese",1]], p73:[["lentils",1.4],["rougail",.8],["rice",1.2]], p74:[["whitebeans",1.6],["egg",1],["tomatoRaw",.4]],
+ p75:[["whitebeans",1.8],["salad",1],["carrot",.6]], p76:[["rice",1.6],["creamsauce",.8],["veg",.8]],
  e01:[["fruit",1]], e02:[["yogurt",1.5],["fruit",1]], e03:[["bread",1.5],["jam",1]], e04:[["cake",2]], e05:[["compote",2]]
 };
 
@@ -358,6 +393,16 @@ const DESCRIPTIONS = {
  "p64": "Thon, pois chiches et tomates : prête en 5 minutes.",
  "p65": "Wraps frais au thon et aux crudités, sans rien cuire.",
  "p66": "Pommes de terre chaudes et fromage blanc aux herbes, à la lyonnaise.",
+ "p67": "Riz sauté bien parfumé, avec le croquant des cacahuètes : prêt en un quart d'heure.",
+ "p68": "Une salade fraîche qui cale, prête en moins de 10 minutes, sans rien cuire.",
+ "p69": "Le chili qui réconforte, sans viande, aussi copieux que l'original.",
+ "p70": "Pommes de terre dorées, œufs et fromage fondant : simple et complet.",
+ "p71": "Patate douce et pois chiches dans une sauce coco et curry, douce et parfumée.",
+ "p72": "L'omelette au fromage, moelleuse et prête en moins de 10 minutes.",
+ "p73": "Lentilles corail fondantes et rougail tomate, le goût de La Réunion sans viande.",
+ "p74": "Des œufs cuits dans une sauce tomate aux haricots blancs et au paprika.",
+ "p75": "Une purée de haricots blancs au citron, sans cuisson, où tremper ses crudités.",
+ "p76": "Un riz façon risotto tout simple, crémeux et plein de légumes.",
  "e01": "Un fruit de saison, tout simplement.",
  "e02": "Un yaourt nature et un fruit.",
  "e03": "Le goûter d'enfance : tartine beurre-confiture.",
@@ -375,7 +420,7 @@ const PHOTOS = {
    calculées dans index.html : « monde » = origine non classique, « vege » = sans viande ni poisson, « copieux » = 700 kcal et plus). */
 const STYLES_PLATS = {
   fastfood:["p09","p16","p17","p18","p23","p31","p41","p61","p62","p65","p02","p12","p32"],
-  healthy:["p10","p11","p17","p19","p33","p34","p35","p37","p39","p40","p43","p46","p47","p48","p52","p55","p56","p57","p59","p60","p63","p64","p65","p66"],
+  healthy:["p10","p11","p17","p19","p33","p34","p35","p37","p39","p40","p43","p46","p47","p48","p52","p55","p56","p57","p59","p60","p63","p64","p65","p66","p68","p69","p71","p73","p75"],
   tradition:["p01","p04","p07","p08","p13","p15","p20","p21","p22","p24","p25","p26","p27","p28","p29","p38","p58"]
 };
 
@@ -1386,6 +1431,137 @@ const PHASES = {
    "Laisse refroidir avant de démouler. Se garde 4 jours dans une boîte."
   ]
  },
+ "p67": {
+  "prep": [
+   "Si tu n'as pas de riz cuit, cuis-le d'abord et laisse-le refroidir : froid, il ne colle pas.",
+   "Concasse les cacahuètes, bats les œufs avec une pincée de sel."
+  ],
+  "cuisson": [
+   "Poêle bien chaude avec un peu d'huile : légumes surgelés et cacahuètes, 3 min.",
+   "Pousse-les sur le côté, verse les œufs, laisse prendre puis brouille.",
+   "Ajoute le riz, 5 min à feu vif en remuant."
+  ],
+  "service": [
+   "Un trait de sauce soja, goûte avant de saler."
+  ]
+ },
+ "p68": {
+  "prep": [
+   "Égoutte et rince les pois chiches.",
+   "Coupe ou râpe les crudités."
+  ],
+  "cuisson": [],
+  "service": [
+   "Mélange le tout avec le fromage râpé, le jus de citron, un filet d'huile, sel et poivre.",
+   "Se garde jusqu'au lendemain au frigo."
+  ]
+ },
+ "p69": {
+  "prep": [
+   "Émince l'oignon, égoutte et rince les haricots rouges."
+  ],
+  "cuisson": [
+   "Lance le riz dans une casserole d'eau bouillante salée.",
+   "Dans une autre casserole, l'oignon 3 min à l'huile.",
+   "Ajoute haricots, tomates, 1 c. à café de cumin, 1 de paprika et un peu de piment : 12 min à feu doux."
+  ],
+  "service": [
+   "Sers le chili sur le riz. Encore meilleur réchauffé le lendemain."
+  ]
+ },
+ "p70": {
+  "prep": [
+   "Épluche les pommes de terre et coupe-les en très petits dés (1 cm), pour qu'elles cuisent vite.",
+   "Émince l'oignon, bats les œufs avec sel et poivre."
+  ],
+  "cuisson": [
+   "Pommes de terre à la poêle avec un peu d'huile, 8 min à couvert en remuant deux fois.",
+   "Ajoute l'oignon, 3 min à découvert pour dorer.",
+   "Verse les œufs et le fromage, couvre : 6 min à feu doux, jusqu'à ce que le dessus soit pris."
+  ],
+  "service": [
+   "Fais glisser sur une assiette et coupe en parts."
+  ]
+ },
+ "p71": {
+  "prep": [
+   "Épluche la patate douce et coupe-la en petits dés.",
+   "Égoutte et rince les pois chiches."
+  ],
+  "cuisson": [
+   "Lance le riz dans une casserole d'eau bouillante salée.",
+   "Patate douce dans une autre casserole avec un fond d'eau, 10 min à couvert.",
+   "Ajoute pois chiches, tomates, lait de coco et 1 c. à café de curry : 8 min à feu doux."
+  ],
+  "service": [
+   "Sers sur le riz, sale à la fin."
+  ]
+ },
+ "p72": {
+  "prep": [
+   "Bats les œufs à la fourchette avec sel et poivre, sans trop insister."
+  ],
+  "cuisson": [
+   "Fais mousser le beurre dans la poêle à feu moyen, verse les œufs.",
+   "Ramène les bords vers le centre pendant 2 min.",
+   "Fromage sur une moitié, plie en deux, 1 min de plus."
+  ],
+  "service": [
+   "À manger tout de suite, baveuse ou bien cuite selon ton goût."
+  ]
+ },
+ "p73": {
+  "prep": [
+   "Rince les lentilles corail.",
+   "Coupe l'oignon en petits dés et sépare-le en deux parts."
+  ],
+  "cuisson": [
+   "Lance le riz dans une casserole d'eau bouillante salée.",
+   "Lentilles couvertes de deux fois leur volume d'eau, avec la moitié de l'oignon et une pincée de curcuma : 12 min à feu doux, en remuant.",
+   "Rougail : mélange les tomates, le reste de l'oignon, un peu de piment et un filet d'huile, sans cuire."
+  ],
+  "service": [
+   "Riz, lentilles et rougail côte à côte dans l'assiette. Sale les lentilles à la fin."
+  ]
+ },
+ "p74": {
+  "prep": [
+   "Émince l'oignon, égoutte et rince les haricots blancs."
+  ],
+  "cuisson": [
+   "Oignon 3 min à l'huile avec 1 c. à café de paprika.",
+   "Haricots et tomates, 7 min à feu doux.",
+   "Creuse deux puits, casse les œufs dedans, couvre : 4 min, le blanc doit être pris."
+  ],
+  "service": [
+   "Sers dans la poêle, sel et poivre sur les œufs."
+  ]
+ },
+ "p75": {
+  "prep": [
+   "Égoutte et rince les haricots blancs.",
+   "Coupe les crudités en bâtonnets."
+  ],
+  "cuisson": [],
+  "service": [
+   "Écrase les haricots à la fourchette avec le fromage blanc, le jus de citron, sel et poivre.",
+   "Un filet d'huile dessus, les crudités autour pour tremper."
+  ]
+ },
+ "p76": {
+  "prep": [
+   "Coupe les légumes en petits dés.",
+   "Fais chauffer de l'eau (bouilloire ou casserole)."
+  ],
+  "cuisson": [
+   "Fais fondre le beurre dans une casserole, ajoute le riz, 1 min en remuant.",
+   "Verse l'eau chaude petit à petit, en remuant souvent : 15 min.",
+   "Ajoute les légumes pour les 5 dernières minutes."
+  ],
+  "service": [
+   "Hors du feu, la crème et le fromage râpé, mélange bien. Sale, poivre, sers tout de suite."
+  ]
+ },
  "e05": {
   "prep": [
    "Épluche les pommes ou les poires, retire le cœur, coupe-les en morceaux."
@@ -1399,3 +1575,272 @@ const PHASES = {
   ]
  }
 };
+
+/* Compléments des fiches : matériel, repères pour réussir, conservation, variante. */
+const DETAILS = {
+ p01:{materiel:"Une grande casserole pour les pâtes, une casserole ou une sauteuse pour la sauce, une passoire, une cuillère en bois.",
+  reussir:["Laisse la viande dorer sans la remuer tout le temps : c'est la couleur brune qui donne le goût.","La sauce est prête quand elle est épaisse et qu'il n'y a plus d'eau autour : une cuillère tirée au fond laisse un sillon.","Compte 1 litre d'eau et 1 cuillère à café rase de gros sel pour 100 g de pâtes. Goûte une pâte une minute avant la fin du temps du paquet."],
+  garder:"La sauce se garde 3 jours au frigo dans une boîte fermée, 3 mois au congélateur. Les pâtes cuites se gardent 2 jours.",
+  variante:"Sans viande : remplace le steak par des lentilles cuites, ajoutées avec les tomates."},
+ p02:{materiel:"Une grande casserole, une poêle, une passoire, un bol et une fourchette.",
+  reussir:["Le mélange à l'œuf se verse toujours hors du feu, sinon il cuit en grumeaux comme une omelette.","Garde un demi-verre d'eau de cuisson avant d'égoutter : c'est elle qui rend la sauce crémeuse.","Ne sale pas la sauce : les lardons et le fromage le font déjà. Poivre généreusement."],
+  garder:"À manger tout de suite. Réchauffée, la sauce devient sèche.",
+  variante:"Sans porc : des dés de poulet dorés ou des champignons à la place des lardons."},
+ p05:{materiel:"Un plat à gratin d'environ 20 × 30 cm, deux casseroles, un fouet, une cuillère en bois.",
+  reussir:["Pour la béchamel, verse le lait froid en trois ou quatre fois en fouettant sans arrêt : pas de grumeaux. Elle est prête quand elle nappe le dos de la cuillère.","Garde la bolognaise assez liquide : les plaques sèches boivent le jus pendant la cuisson.","Commence par une fine couche de sauce au fond du plat pour que les plaques n'accrochent pas, et finis par la béchamel et le fromage.","Si le dessus dore trop vite, couvre d'une feuille de papier cuisson."],
+  garder:"3 jours au frigo. Se congèle en parts, 3 mois. Réchauffe 20 min au four à 160 °C ou 3 min au micro-ondes.",
+  variante:"Version végétarienne : remplace la viande par des légumes surgelés revenus à la poêle."},
+ p08:{materiel:"Un grand plat allant au four, un couteau, une planche, une cuillère pour arroser.",
+  reussir:["Sèche la peau du poulet avec du papier absorbant avant de l'assaisonner : elle sera croustillante.","Étale les pommes de terre sur une seule couche : entassées, elles cuisent à la vapeur au lieu de dorer.","C'est cuit quand la chair se détache facilement de l'os et que le jus est clair, sans trace rose."],
+  garder:"3 jours au frigo. Le reste de poulet se mange froid en sandwich ou en salade le lendemain.",
+  variante:"Ajoute des carottes ou des patates douces en morceaux avec les pommes de terre."},
+ p16:{materiel:"Une plaque de four, du papier cuisson, une poêle avec un couvercle, un torchon propre.",
+  reussir:["Sèche bien les bâtonnets de pommes de terre dans le torchon : mouillés, ils ramollissent au lieu de dorer.","Espace les frites sur la plaque, sans les superposer, et retourne-les à mi-cuisson.","Ne presse pas le steak dans la poêle : il perd son jus. Retourne-le une seule fois.","Toaste le pain : il ne se détrempe pas avec la sauce."],
+  garder:"Le burger se mange tout de suite. Les frites se réchauffent 5 min au four chaud, pas au micro-ondes.",
+  variante:"Steak de haricots rouges écrasés avec un œuf et de la farine pour une version sans viande."},
+ p18:{materiel:"Une ou deux plaques de four, du papier cuisson, trois assiettes creuses, une fourchette.",
+  reussir:["Coupe le poulet en morceaux de même taille, environ 3 cm, pour qu'ils cuisent tous en même temps.","Utilise une main pour la farine et la chapelure, l'autre pour l'œuf : tes doigts ne s'enrobent pas.","Appuie la chapelure sur le poulet pour qu'elle tienne, puis retourne les nuggets à mi-cuisson.","Coupe un nugget en deux pour vérifier : la chair doit être blanche jusqu'au centre."],
+  garder:"2 jours au frigo. Réchauffe 8 min au four à 200 °C pour retrouver le croustillant.",
+  variante:"Pas de chapelure : écrase des biscottes ou des pétales de maïs nature."},
+ p30:{materiel:"Une cocotte ou une sauteuse avec un couvercle, une casserole pour le riz, une cuillère en bois.",
+  reussir:["Fais bien dorer les saucisses au début : c'est leur gras grillé qui parfume toute la sauce.","Si les saucisses sont très salées ou fumées, fais-les bouillir 5 min dans l'eau avant, puis jette l'eau.","La sauce est prête quand elle est épaisse et brillante, sans eau au fond. Si elle accroche, ajoute deux cuillères d'eau.","Pour le riz : rince-le, puis compte une fois et demie son volume d'eau, couvre, 12 min à feu très doux sans soulever le couvercle."],
+  garder:"3 jours au frigo, encore meilleur réchauffé. Se congèle 3 mois, sans le riz.",
+  variante:"Même recette avec des œufs durs coupés en deux à la place des saucisses."},
+ p69:{materiel:"Deux casseroles, une passoire, une cuillère en bois.",
+  reussir:["Rince les haricots sous l'eau froide jusqu'à ce que l'eau soit claire : le jus de la boîte donne un goût de conserve.","Fais chauffer les épices 30 secondes avec l'oignon avant d'ajouter les tomates : elles ont plus de goût.","Écrase quelques haricots contre le bord de la casserole pour épaissir la sauce."],
+  garder:"4 jours au frigo, 3 mois au congélateur. Encore meilleur le lendemain.",
+  variante:"Sers-le dans des tortillas avec du fromage râpé, ou ajoute du maïs en boîte."},
+ p72:{materiel:"Une poêle antiadhésive d'environ 24 cm, un bol, une fourchette, une spatule.",
+  reussir:["Bats les œufs juste assez pour mélanger le blanc et le jaune : trop battue, l'omelette est sèche.","Le beurre doit mousser sans brunir avant de verser les œufs. S'il fume, la poêle est trop chaude.","Arrête la cuisson quand le dessus est encore un peu brillant : l'omelette continue de cuire dans l'assiette."],
+  garder:"À manger tout de suite.",
+  variante:"Ajoute un reste de pommes de terre cuites, du jambon ou des oignons revenus avant de plier."},
+ p73:{materiel:"Deux casseroles dont une avec un couvercle, un bol, une passoire fine.",
+  reussir:["Les lentilles corail cuisent vite : après 12 min elles s'écrasent en purée, c'est normal et c'est ce qu'on cherche.","Sale les lentilles seulement à la fin : salées au début, elles restent fermes.","Remue de temps en temps et ajoute un peu d'eau si ça accroche au fond.","Prépare le rougail en premier : dix minutes de repos lui donnent plus de goût."],
+  garder:"Les lentilles se gardent 3 jours au frigo et se congèlent. Le rougail cru se mange dans la journée.",
+  variante:"Ajoute un œuf dur par personne pour un plat plus complet."}
+};
+Object.assign(DETAILS, {
+ m01:{materiel:"Un grand bol, un couteau à pain, un grille-pain ou une poêle.",
+  reussir:["Sors le beurre du frigo 10 min avant : il s'étale sans déchirer le pain.","Chauffe le lait sans le faire bouillir : il déborde vite et prend un goût de cuit."],
+  garder:"À préparer au moment. La baguette de la veille se garde dans un torchon, pas au frigo.",variante:"Du miel ou de la pâte d'arachide à la place de la confiture."},
+ m02:{materiel:"Un bol, un couteau, une cuillère.",
+  reussir:["Verse le lait au dernier moment pour garder les céréales croquantes.","Choisis un fruit mûr : il sucre le bol sans rien ajouter."],
+  garder:"À préparer au moment.",variante:"Remplace le lait par un yaourt nature pour un bol plus épais."},
+ m03:{materiel:"Un bol, un couteau, un grille-pain ou une poêle.",
+  reussir:["Coupe le fruit en petits morceaux : il se mélange mieux au yaourt.","Beurre la tartine tant qu'elle est chaude."],
+  garder:"À préparer au moment.",variante:"Ajoute une poignée de flocons d'avoine dans le yaourt pour tenir jusqu'à midi."},
+ m04:{materiel:"Une assiette creuse, une fourchette, une poêle, une spatule.",
+  reussir:["Prends du pain de la veille : le pain frais se défait dans le mélange.","Feu moyen, pas plus : à feu vif l'extérieur brûle avant que l'intérieur soit cuit.","Le pain est prêt quand il est doré des deux côtés et ferme sous le doigt."],
+  garder:"À manger chaud. Se réchauffe 1 min à la poêle.",variante:"Version salée : sans sucre, avec du fromage râpé fondu dessus."},
+ m05:{materiel:"Un saladier, un fouet, une louche, une poêle plate, une spatule.",
+  reussir:["Verse le lait en plusieurs fois en partant du centre : pas de grumeaux. S'il y en a, passe la pâte dans une passoire.","La poêle doit être bien chaude : une goutte de pâte doit grésiller.","La première crêpe est souvent ratée : elle sert à régler le feu.","Retourne la crêpe quand les bords se décollent et brunissent."],
+  garder:"La pâte se garde 24 h au frigo, les crêpes cuites 2 jours sous un film ou une assiette retournée.",variante:"Sucre et citron, ou compote maison, à la place de la confiture."},
+ m06:{materiel:"Un bol, une fourchette, une petite poêle, une spatule, un grille-pain.",
+  reussir:["Feu doux tout le long : les œufs brouillés ne doivent jamais colorer.","Retire la poêle du feu quand les œufs sont encore brillants et un peu coulants.","Sale à la fin : salés trop tôt, les œufs rendent de l'eau."],
+  garder:"À manger tout de suite.",variante:"Ajoute du fromage râpé ou des herbes hors du feu."},
+ p03:{materiel:"Une grande casserole, une poêle ou une petite casserole, une passoire.",
+  reussir:["Ajoute le thon hors du feu, à la fin : cuit longtemps, il devient sec.","Garde une louche d'eau de cuisson pour détendre la sauce.","La pincée de sucre enlève l'acidité des tomates en boîte."],
+  garder:"2 jours au frigo. Se mange aussi froid, en salade.",variante:"Des sardines ou des maquereaux en boîte à la place du thon."},
+ p04:{materiel:"Une casserole, une passoire, une cuillère en bois.",
+  reussir:["Remets les pâtes égouttées dans la casserole encore chaude : la chaleur suffit à faire fondre le fromage.","Ajoute le fromage en dernier et remue tout de suite pour qu'il file sans faire de paquets."],
+  garder:"2 jours au frigo. Réchauffe avec une cuillère de lait pour retrouver le crémeux.",variante:"Sans porc : du blanc de poulet cuit en dés."},
+ p06:{materiel:"Une grande casserole, une grande poêle, une passoire.",
+  reussir:["Ne remue pas le poulet pendant les deux premières minutes : il dore au lieu de bouillir.","Attends que les champignons aient rendu toute leur eau avant d'ajouter la crème, sinon la sauce est liquide.","Le poulet est cuit quand il est blanc à cœur, sans trace rose."],
+  garder:"2 jours au frigo. Réchauffe à feu doux avec un peu d'eau.",variante:"Sans champignons : des légumes surgelés ou des courgettes en dés."},
+ p07:{materiel:"Une casserole, une passoire, un plat à gratin.",
+  reussir:["Cuis les pâtes 2 min de moins que le temps du paquet : elles finissent au four.","Mélange bien la crème avant d'enfourner pour que les pâtes du dessus ne sèchent pas.","Pour un dessus plus croustillant, finis 2 min sous le gril."],
+  garder:"3 jours au frigo. Se réchauffe au four 10 min ou au micro-ondes 2 min.",variante:"Ajoute des légumes surgelés décongelés pour un plat complet."},
+ p09:{materiel:"Une plaque de four, du papier cuisson, une poêle, un torchon propre, un saladier.",
+  reussir:["Sèche les bâtonnets dans le torchon et espace-les sur la plaque : c'est ce qui les rend croustillants.","Poêle très chaude pour le steak, et ne le retourne qu'une fois.","Laisse reposer le steak 1 min dans l'assiette avant de servir : il reste juteux."],
+  garder:"À manger tout de suite. Les frites se réchauffent 5 min au four chaud.",variante:"Un œuf au plat sur le steak, façon « à cheval »."},
+ p10:{materiel:"Une poêle, une casserole avec couvercle pour le riz.",
+  reussir:["Aplatis l'escalope avec le fond d'une casserole : même épaisseur partout, cuisson régulière.","Gratte le fond de la poêle en versant la crème : les sucs dorés donnent le goût de la sauce.","Ne fais pas bouillir la crème à gros bouillons, elle se sépare."],
+  garder:"2 jours au frigo.",variante:"Une cuillère à café de moutarde dans la crème."},
+ p11:{materiel:"Une sauteuse ou une grande poêle, une casserole avec couvercle pour le riz.",
+  reussir:["Fais chauffer le curry 1 min avec le poulet avant d'ajouter le liquide : il perd son goût de poudre crue.","Secoue la boîte de lait de coco avant de l'ouvrir.","La sauce est prête quand elle nappe le dos de la cuillère."],
+  garder:"3 jours au frigo, 3 mois au congélateur sans le riz.",variante:"Des pois chiches à la place du poulet pour une version sans viande."},
+ p12:{materiel:"Une grande casserole ou une cocotte, une casserole pour le riz, une passoire.",
+  reussir:["Fais bien dorer la viande avant d'ajouter les tomates.","Rince les haricots jusqu'à ce que l'eau soit claire.","Vingt minutes à petit feu au minimum : c'est le temps qu'il faut aux épices pour se fondre."],
+  garder:"4 jours au frigo, 3 mois au congélateur. Meilleur le lendemain.",variante:"Dans des tortillas avec du fromage râpé."},
+ p13:{materiel:"Une grande casserole, une poêle, un presse-purée ou une fourchette, un plat à gratin.",
+  reussir:["Démarre les pommes de terre à l'eau froide : elles cuisent de façon régulière jusqu'au cœur.","Écrase-les à la main, jamais au mixeur : la purée devient collante.","Trace des sillons à la fourchette sur le dessus : ils dorent et croustillent."],
+  garder:"3 jours au frigo. Se congèle en parts. Réchauffe 20 min au four.",variante:"Un reste de viande cuite hachée au couteau à la place du steak."},
+ p14:{materiel:"Un saladier, une grande poêle avec couvercle, une casserole, une passoire.",
+  reussir:["Mouille tes mains pour former les boulettes : la viande ne colle pas.","Fais-les toutes de la même taille, comme une noix, pour qu'elles cuisent ensemble.","Ne les remue pas la première minute : elles se tiennent une fois saisies."],
+  garder:"3 jours au frigo dans leur sauce. Se congèlent très bien.",variante:"Avec du riz ou de la semoule à la place des pâtes."},
+ p15:{materiel:"Une casserole, une poêle, un presse-purée ou une fourchette.",
+  reussir:["Cuis les saucisses à feu moyen : à feu vif elles éclatent et restent crues au centre.","Égoutte bien les pommes de terre et remets-les 1 min sur le feu pour les sécher avant d'écraser.","Ajoute le lait chaud petit à petit jusqu'à la texture que tu aimes."],
+  garder:"2 jours au frigo. La purée se réchauffe avec un peu de lait.",variante:"Moitié pommes de terre, moitié carottes dans la purée."},
+ p17:{materiel:"Une poêle, un couteau, une planche, une râpe.",
+  reussir:["Tiédis les tortillas : froides, elles cassent au pliage.","Ne charge pas trop : laisse 3 cm libres sur les bords.","Replie d'abord le bas, puis roule serré."],
+  garder:"Le poulet cuit se garde 2 jours au frigo. Roule les wraps au dernier moment, ou emballe-les serrés pour le midi.",variante:"Un peu de curry ou de paprika dans le fromage blanc."},
+ p19:{materiel:"Une cocotte avec couvercle, une casserole pour le riz.",
+  reussir:["Dore le poulet côté peau en premier, sans le bouger, jusqu'à ce qu'il se décolle tout seul.","Feu doux et couvercle : la sauce doit frémir, pas bouillir.","C'est prêt quand la chair se détache de l'os."],
+  garder:"3 jours au frigo, meilleur réchauffé. Se congèle 3 mois.",variante:"Avec des pommes de terre vapeur à la place du riz."},
+ p20:{materiel:"Une cocotte-minute, un couteau, une planche.",
+  reussir:["Sèche la viande et dore-la en deux fois : trop de morceaux à la fois, elle bout dans son jus.","Laisse tomber la pression avant d'ouvrir la cocotte.","La viande est cuite quand elle se coupe à la cuillère. Sinon, referme pour 10 min."],
+  garder:"4 jours au frigo, meilleur réchauffé. Se congèle 3 mois.",variante:"Une cuillère de moutarde ou de concentré de tomate dans la sauce."},
+ p21:{materiel:"Une grande casserole, une petite casserole, un fouet, une casserole pour le riz.",
+  reussir:["La viande ne doit pas colorer : c'est ce qui garde la blanquette blanche.","Verse le bouillon chaud sur le mélange beurre-farine en fouettant : la sauce épaissit en 3 min.","Ajoute la crème à la fin et ne fais plus bouillir."],
+  garder:"3 jours au frigo. Réchauffe à feu doux.",variante:"Un filet de citron dans la sauce au moment de servir."},
+ p22:{materiel:"Une casserole, un fouet, un plat à gratin, une passoire.",
+  reussir:["Presse bien les endives cuites entre tes mains : sinon elles rendent de l'eau dans le plat.","Retire le cône dur à la base : c'est lui qui est amer.","La béchamel est prête quand elle nappe la cuillère."],
+  garder:"3 jours au frigo. Se réchauffe au four 15 min.",variante:"Des poireaux cuits à la place des endives."},
+ p23:{materiel:"Une poêle, une spatule, un couteau.",
+  reussir:["Beurre l'extérieur du pain, pas la poêle : la croûte dore de façon régulière.","Feu moyen et couvercle 1 min : le fromage fond avant que le pain brûle.","Appuie avec la spatule pour souder le croque."],
+  garder:"À manger chaud.",variante:"Une fine couche de moutarde ou une rondelle de tomate à l'intérieur."},
+ p24:{materiel:"Un moule à tarte d'environ 26 cm, un saladier, un fouet, une poêle.",
+  reussir:["Pique le fond de pâte à la fourchette pour qu'il ne gonfle pas.","Égoutte les lardons : leur gras détrempe la pâte.","La quiche est cuite quand le centre ne tremble presque plus et que le dessus est doré.","Attends 10 min avant de couper."],
+  garder:"3 jours au frigo. Se mange tiède ou froide, parfaite pour le midi du lendemain.",variante:"Sans lardons : thon, ou poireaux revenus à la poêle."},
+ p25:{materiel:"Une casserole, une poêle, un plat à gratin.",
+  reussir:["Garde les pommes de terre un peu fermes à l'eau : elles finissent de cuire au four.","Pose le reblochon croûte vers le haut : elle dore et le fromage coule dans le plat.","C'est prêt quand le fromage bouillonne sur les bords."],
+  garder:"3 jours au frigo. Se réchauffe au four 15 min.",variante:"Sans porc : des dés de volaille fumée ou des champignons."},
+ p26:{materiel:"Un saladier, un fouet, une louche, une poêle plate, une spatule.",
+  reussir:["Pâte fluide comme de la crème liquide : ajoute un peu de lait si elle est épaisse.","Garnis la crêpe dans la poêle, côté déjà cuit, puis replie les bords pour faire fondre le fromage.","Empile les crêpes sous une assiette retournée pour les garder chaudes."],
+  garder:"La pâte se garde 24 h au frigo, les crêpes nature 2 jours.",variante:"Un œuf cassé au centre de la crêpe, cuit 2 min à couvert."},
+ p27:{materiel:"Un plat à gratin, une casserole, un couteau bien aiguisé ou une mandoline.",
+  reussir:["Coupe des rondelles fines et régulières et ne les rince pas : l'amidon épaissit la crème.","Si le dessus dore trop vite, couvre de papier cuisson.","Le gratin est cuit quand la lame d'un couteau s'enfonce sans résistance."],
+  garder:"3 jours au frigo. Meilleur réchauffé au four.",variante:"Sans jambon, en accompagnement d'une viande ou d'une salade."},
+ p28:{materiel:"Une cocotte ou une casserole avec couvercle, une passoire.",
+  reussir:["Dore les saucisses en premier : leur gras parfume les lentilles.","Les lentilles en bocal sont déjà cuites : 15 min suffisent, plus et elles s'écrasent.","Goûte avant de saler, les saucisses le font déjà."],
+  garder:"3 jours au frigo, meilleur réchauffé.",variante:"Une cuillère de moutarde dans les lentilles au moment de servir."},
+ p29:{materiel:"Une grande casserole avec couvercle, une plaque de four, un torchon.",
+  reussir:["Jette les moules cassées et celles qui restent ouvertes quand tu les tapotes.","Secoue la casserole deux fois pendant la cuisson : toutes les moules s'ouvrent en même temps.","Elles sont cuites dès qu'elles sont ouvertes, 4 à 5 min. Jette celles qui restent fermées."],
+  garder:"Les moules se mangent tout de suite et ne se gardent pas.",variante:"Sans crème, avec du persil et un filet de citron."},
+ p31:{materiel:"Un saladier, une plaque de four, du papier cuisson, un torchon.",
+  reussir:["Eau tiède, pas chaude : au-dessus de 40 °C la levure meurt et la pâte ne lève pas.","Four au maximum et plaque déjà chaude : la pâte croustille dessous.","Peu de sauce et peu de garniture : une pizza trop chargée reste molle.","Égoutte bien les champignons ou fais-les revenir avant."],
+  garder:"2 jours au frigo. Se réchauffe à la poêle à couvert, pas au micro-ondes.",variante:"Thon et oignons, ou seulement tomate et fromage."},
+ p32:{materiel:"Une grande poêle ou un wok, un bol, une spatule.",
+  reussir:["Riz froid de la veille : le riz chaud colle et fait de la bouillie.","Feu vif et poêle large : le riz doit sauter, pas cuire à la vapeur.","Ajoute la sauce soja à la fin, sur le bord de la poêle."],
+  garder:"2 jours au frigo, refroidi vite. Réchauffe bien chaud à la poêle.",variante:"Sans porc : du poulet cuit en dés."},
+ p33:{materiel:"Trois assiettes creuses, une poêle, du papier absorbant, une casserole pour le riz.",
+  reussir:["Sèche bien le poisson : la panure ne tient pas sur un filet mouillé.","L'huile est assez chaude quand une miette de chapelure grésille.","Ne retourne les filets qu'une fois, avec une spatule large."],
+  garder:"À manger tout de suite pour le croustillant.",variante:"Un filet de citron et du fromage blanc aux herbes en sauce."},
+ p34:{materiel:"Une casserole, une poêle avec couvercle.",
+  reussir:["Le poisson est cuit quand il devient blanc et se sépare en feuilles sous la fourchette.","Feu doux : le colin se défait à gros bouillons.","Ajoute la crème à la fin, juste pour la chauffer."],
+  garder:"2 jours au frigo.",variante:"Un peu de moutarde ou de citron dans la crème."},
+ p35:{materiel:"Une casserole, une passoire, un saladier.",
+  reussir:["Rince le riz cuit à l'eau froide : il arrête de cuire et ne colle pas.","Assaisonne le riz tiède : il boit mieux la vinaigrette.","Ajoute la tomate au dernier moment pour qu'elle ne détrempe pas la salade."],
+  garder:"2 jours au frigo dans une boîte fermée. Idéal à emporter.",variante:"Du maïs en boîte ou des olives en plus."},
+ p36:{materiel:"Une poêle antiadhésive d'environ 22 cm, un saladier, une grande assiette plate.",
+  reussir:["Les pommes de terre doivent cuire doucement dans l'huile sans griller.","Pour retourner : pose l'assiette sur la poêle, retourne d'un geste franc au-dessus de l'évier, puis fais glisser la tortilla.","Elle est prête quand elle est ferme sous le doigt au centre."],
+  garder:"3 jours au frigo. Très bonne froide, en parts.",variante:"Du poivron ou du fromage râpé dans les œufs."},
+ p37:{materiel:"Une grande casserole ou une cocotte avec couvercle, une poêle.",
+  reussir:["Coupe tous les légumes à la même taille pour qu'ils cuisent ensemble.","Feu doux et patience : la ratatouille est prête quand les légumes sont fondants et qu'il n'y a presque plus de jus.","Si elle rend trop d'eau, retire le couvercle les 10 dernières minutes."],
+  garder:"4 jours au frigo, 3 mois au congélateur. Meilleure le lendemain.",variante:"Sur des pâtes ou du riz, ou froide en entrée."},
+ p38:{materiel:"Un plat à gratin, une petite cuillère, un saladier.",
+  reussir:["Sale l'intérieur des tomates vidées et retourne-les 10 min : elles rendent leur eau.","Ne tasse pas trop la farce, elle gonfle un peu.","Le riz cuit dans le jus du plat : vérifie à mi-cuisson qu'il reste du liquide, sinon ajoute un demi-verre d'eau."],
+  garder:"3 jours au frigo. Se réchauffent au four ou au micro-ondes.",variante:"Même farce dans des courgettes rondes ou des poivrons."},
+ p39:{materiel:"Une grande casserole, un mixeur plongeant ou un presse-purée.",
+  reussir:["Coupe les légumes en morceaux de même taille.","Couvre juste à hauteur d'eau : trop d'eau, la soupe est fade. Tu peux en ajouter après le mixage.","Les légumes sont cuits quand ils s'écrasent contre la casserole."],
+  garder:"4 jours au frigo, 3 mois au congélateur en portions.",variante:"Une cuillère de crème ou de fromage frais dans le bol."},
+ p40:{materiel:"Une poêle avec couvercle, un saladier, une fourchette.",
+  reussir:["Fais revenir les légumes jusqu'à ce qu'ils n'aient plus d'eau, sinon la frittata est molle.","Feu doux et couvercle : le dessous ne brûle pas pendant que le dessus prend.","Elle est prête quand le centre ne tremble plus."],
+  garder:"2 jours au frigo. Se mange froide, en parts.",variante:"Avec des pâtes ou des pommes de terre de la veille."},
+ p41:{materiel:"Une grande poêle et une petite, une spatule.",
+  reussir:["Beurre l'extérieur du pain pour une croûte dorée.","Pour l'œuf : feu moyen, et couvre 30 secondes à la fin si le blanc reste transparent autour du jaune.","Pose l'œuf au dernier moment."],
+  garder:"À manger chaud.",variante:"Un peu de crème et de fromage sur le dessus, 3 min sous le gril."},
+ p42:{materiel:"Une casserole, un fouet, un presse-purée, un plat à gratin.",
+  reussir:["Le potimarron se cuit avec la peau : elle devient tendre.","Garde la purée assez souple : les plaques boivent beaucoup de liquide.","Termine par la béchamel et le fromage, et couvre de papier si ça dore trop vite."],
+  garder:"3 jours au frigo. Se congèle en parts.",variante:"Avec de la courge butternut ou des patates douces."},
+ p43:{materiel:"Une grande poêle avec couvercle.",
+  reussir:["La sauce doit être épaisse avant de casser les œufs, sinon ils se noient.","Casse chaque œuf dans un bol d'abord : pas de coquille dans le plat.","Couvre et surveille : le blanc est pris en 5 min, le jaune reste coulant."],
+  garder:"La sauce se garde 3 jours au frigo. Ajoute les œufs au moment de réchauffer.",variante:"Avec des merguez dorées en morceaux dans la sauce."},
+ p44:{materiel:"Une très grande casserole ou un couscoussier, un saladier pour la semoule.",
+  reussir:["Ajoute les légumes dans l'ordre : carottes et navets d'abord, courgettes et pois chiches 20 min avant la fin.","Cuis les merguez à part à la poêle : leur gras rend le bouillon lourd.","Semoule : même volume d'eau bouillante salée que de semoule, couvre 5 min, puis égrène à la fourchette avec un peu d'huile ou de beurre."],
+  garder:"Le bouillon et la viande se gardent 3 jours au frigo et se congèlent. La semoule se garde 2 jours.",variante:"Sans viande : double les pois chiches et les légumes."},
+ p45:{materiel:"Une cocotte ou un plat à tajine avec couvercle.",
+  reussir:["Feu très doux et couvercle fermé : le poulet cuit dans sa vapeur.","Retire les pépins du citron, ils donnent de l'amertume.","C'est prêt quand la chair se détache de l'os et que la sauce est sirupeuse."],
+  garder:"3 jours au frigo, meilleur réchauffé.",variante:"Avec des olives vertes ajoutées 10 min avant la fin."},
+ p46:{materiel:"Une cocotte ou une grande casserole, une râpe.",
+  reussir:["Râper les légumes les fait fondre dans la soupe et l'épaissit.","Ajoute les vermicelles à la fin : ils continuent de gonfler hors du feu.","Le jus de citron se met dans l'assiette, pas dans la casserole."],
+  garder:"3 jours au frigo. Elle épaissit : ajoute un peu d'eau en réchauffant.",variante:"Sans poulet, avec plus de pois chiches."},
+ p47:{materiel:"Une casserole, une passoire.",
+  reussir:["Rince les haricots jusqu'à ce que l'eau soit claire.","Fais chauffer les épices avec l'oignon avant le liquide.","La sauce est prête quand elle nappe les haricots, sans eau autour."],
+  garder:"4 jours au frigo, meilleur réchauffé. Se congèle.",variante:"Un œuf poché dans la sauce les 5 dernières minutes."},
+ p48:{materiel:"Une casserole, une passoire.",
+  reussir:["Les lentilles en bocal sont déjà cuites : inutile de dépasser 20 min.","Écrase quelques lentilles pour lier la sauce.","Goûte à la fin : un filet de citron ou de vinaigre réveille le plat."],
+  garder:"4 jours au frigo. Se congèle.",variante:"Avec des carottes en petits dés ajoutées en même temps que l'oignon."},
+ p49:{materiel:"Un saladier, une grande poêle avec couvercle.",
+  reussir:["Râpe l'oignon dans la viande : les boulettes restent moelleuses.","Boulettes de la taille d'une noix, mains mouillées.","Casse les œufs entre les boulettes à la fin et couvre 4 min : blanc pris, jaune coulant."],
+  garder:"Les boulettes en sauce se gardent 3 jours au frigo. Ajoute les œufs au moment de réchauffer.",variante:"Sans œufs, sur de la semoule."},
+ p50:{materiel:"Une cocotte avec couvercle, une casserole pour le riz.",
+  reussir:["Fais chauffer la poudre de colombo 1 min dans la cocotte : elle développe son parfum.","Coupe les pommes de terre en dés de même taille.","La sauce est prête quand les pommes de terre s'écrasent un peu et l'épaississent."],
+  garder:"3 jours au frigo, meilleur réchauffé. Se congèle.",variante:"Un filet de citron vert au moment de servir."},
+ p51:{materiel:"Une cocotte ou une marmite avec couvercle, une casserole pour le riz.",
+  reussir:["Laisse l'oignon devenir blond avant d'ajouter le curcuma.","Ne noie pas le cari : un verre d'eau suffit, la sauce doit être courte et épaisse.","C'est prêt quand la chair se détache de l'os."],
+  garder:"3 jours au frigo, meilleur réchauffé. Se congèle.",variante:"Même base avec des œufs durs ou du poisson."},
+ p52:{materiel:"Deux casseroles, un bol, une passoire.",
+  reussir:["Coupe la tomate et l'oignon du rougail en tout petits dés.","Laisse le rougail reposer 10 min avant de servir.","Les grains doivent être crémeux : écrases-en quelques-uns dans la casserole."],
+  garder:"Les grains se gardent 3 jours au frigo. Le rougail cru se mange dans la journée.",variante:"Avec des lentilles ou des haricots blancs à la place des haricots rouges."},
+ p53:{materiel:"Un saladier pour la marinade, une cocotte avec couvercle, une casserole pour le riz.",
+  reussir:["Plus la marinade est longue, plus le poulet a de goût : une nuit au frigo, c'est l'idéal.","Les oignons doivent fondre longtemps, jusqu'à devenir tendres et dorés : c'est eux qui font la sauce.","Verse la marinade dans la cocotte et fais-la bouillir avec le reste."],
+  garder:"3 jours au frigo, meilleur réchauffé.",variante:"Des olives vertes et un peu de piment en fin de cuisson."},
+ p54:{materiel:"Une cocotte avec couvercle, un bol, une casserole pour le riz.",
+  reussir:["Délaie la pâte d'arachide dans l'eau chaude avant de la verser : sinon elle fait des paquets.","Remue souvent et à feu doux : la sauce arachide accroche vite au fond.","Elle est prête quand une fine couche d'huile remonte à la surface."],
+  garder:"3 jours au frigo. Elle épaissit : ajoute un peu d'eau en réchauffant. Se congèle.",variante:"Sans viande, avec des patates douces et des pois chiches."},
+ p55:{materiel:"Une grande poêle ou un wok, un bol, une spatule.",
+  reussir:["Riz froid de la veille, bien égrené avec les doigts.","Poêle très chaude et large.","Laisse les œufs prendre 20 secondes avant de les brouiller."],
+  garder:"2 jours au frigo, refroidi vite. Réchauffe bien chaud à la poêle.",variante:"Un reste de poulet ou de jambon en dés."},
+ p56:{materiel:"Une casserole ou une sauteuse, une casserole pour le riz, une passoire.",
+  reussir:["Fais chauffer le curry avec l'oignon avant le liquide.","Laisse réduire à découvert les 5 dernières minutes pour une sauce épaisse.","Écrase quelques pois chiches pour la lier."],
+  garder:"4 jours au frigo, 3 mois au congélateur.",variante:"Une poignée d'épinards ou de légumes surgelés en fin de cuisson."},
+ p57:{materiel:"Une casserole, une passoire fine, une casserole pour le riz.",
+  reussir:["Rince les lentilles : elles moussent moins et sont plus digestes.","Remue souvent, elles accrochent au fond en épaississant.","Le dahl est prêt quand les lentilles sont défaites, comme une purée souple."],
+  garder:"4 jours au frigo, 3 mois au congélateur. Ajoute un peu d'eau en réchauffant.",variante:"Un oignon doré avec du cumin versé dessus au moment de servir."},
+ p58:{materiel:"Une poêle, une casserole, un saladier.",
+  reussir:["Sors l'œuf du frigo avant : il ne se fend pas dans l'eau bouillante.","Six minutes exactement pour un œuf mollet, puis eau froide tout de suite.","Assaisonne la salade au dernier moment et pose les lardons encore chauds."],
+  garder:"À manger tout de suite.",variante:"Sans porc : des dés de pommes de terre sautées."},
+ p59:{materiel:"Un saladier, une passoire, un couteau.",
+  reussir:["Rince bien les légumes secs en boîte.","Coupe les légumes en petits dés : chaque bouchée a de tout.","Laisse reposer 10 min après l'assaisonnement."],
+  garder:"2 jours au frigo. Idéal à emporter.",variante:"Avec du thon ou du fromage en dés."},
+ p60:{materiel:"Une casserole, un saladier.",
+  reussir:["Sors les pommes de terre quand elles sont juste tendres : trop cuites, elles s'écrasent dans la salade.","Assaisonne-les tièdes, elles prennent mieux la vinaigrette.","Refroidis l'œuf sous l'eau froide : il s'écale facilement."],
+  garder:"2 jours au frigo. Idéal à emporter.",variante:"Des maquereaux en boîte à la place du thon."},
+ p61:{materiel:"Un couteau à pain, une râpe.",
+  reussir:["Beurre mou et pain frais : c'est toute la recette.","Plie le jambon au lieu de le poser à plat : le sandwich est plus moelleux."],
+  garder:"Emballé serré, il tient jusqu'au midi.",variante:"Du fromage en plus, ou des œufs durs à la place du jambon."},
+ p62:{materiel:"Une casserole, un couteau à pain.",
+  reussir:["Arrose bien la mie d'huile d'olive : le pan bagnat doit être imbibé.","Presse le sandwich 10 min sous une assiette : les saveurs se mélangent et il se tient mieux.","Égoutte bien le thon."],
+  garder:"Meilleur 1 à 2 h après, emballé serré. Se garde jusqu'au soir au frais.",variante:"Des radis, de l'oignon nouveau ou des olives."},
+ p63:{materiel:"Un saladier, une bouilloire ou une casserole, une fourchette.",
+  reussir:["Même volume d'eau que de semoule, pas plus.","Égrène à la fourchette, pas à la cuillère : les grains restent séparés.","Laisse reposer 30 min au frais."],
+  garder:"2 jours au frigo. Idéal à emporter.",variante:"Des pois chiches à la place du thon."},
+ p64:{materiel:"Un saladier, une passoire.",
+  reussir:["Égoutte bien le thon et les pois chiches.","Assaisonne juste avant de manger."],
+  garder:"Jusqu'au lendemain au frigo.",variante:"Avec du concombre ou du poivron en dés."},
+ p65:{materiel:"Une poêle, une râpe, un couteau.",
+  reussir:["Tiédis les tortillas pour qu'elles ne cassent pas.","Égoutte bien le thon et essore la salade : le wrap ne se détrempe pas.","Roule serré et coupe en biais."],
+  garder:"Emballé serré, il tient jusqu'au midi au frais.",variante:"Des œufs durs écrasés à la place du thon."},
+ p66:{materiel:"Une assiette allant au micro-ondes, un bol, une fourchette.",
+  reussir:["Pique les pommes de terre : sinon elles éclatent au micro-ondes.","Retourne-les à mi-cuisson. Elles sont cuites quand le couteau entre sans forcer.","Hache l'oignon très fin : cru, de gros morceaux piquent."],
+  garder:"La sauce se garde 2 jours au frigo.",variante:"Sans micro-ondes : pommes de terre à l'eau, 20 min."},
+ p67:{materiel:"Une grande poêle ou un wok, un bol, une spatule.",
+  reussir:["Riz froid, bien égrené.","Fais griller les cacahuètes 1 min à sec : elles ont plus de goût.","Feu vif et gestes rapides."],
+  garder:"2 jours au frigo, refroidi vite. Réchauffe bien chaud à la poêle.",variante:"Un filet de citron à la place de la sauce soja."},
+ p68:{materiel:"Un saladier, une passoire, une râpe.",
+  reussir:["Rince les pois chiches jusqu'à ce que l'eau soit claire.","Le citron et le sel se mettent en dernier, en goûtant."],
+  garder:"Jusqu'au lendemain au frigo.",variante:"Avec du cumin et de la menthe ou du persil."},
+ p70:{materiel:"Une poêle avec couvercle, un bol, une spatule.",
+  reussir:["Dés d'un centimètre, pas plus : c'est ce qui permet de cuire en 20 min.","Couvercle au début pour cuire, découvert ensuite pour dorer.","Les pommes de terre sont prêtes quand la pointe du couteau entre sans résistance."],
+  garder:"2 jours au frigo. Se mange froid, en parts.",variante:"Avec du poivron ou un reste de légumes."},
+ p71:{materiel:"Deux casseroles dont une avec couvercle, une passoire.",
+  reussir:["Petits dés de patate douce, tous de la même taille.","Elle est cuite quand elle s'écrase à la fourchette.","Laisse réduire à découvert si la sauce est trop liquide."],
+  garder:"4 jours au frigo, 3 mois au congélateur.",variante:"Avec une pomme de terre ou des carottes à la place de la patate douce."},
+ p74:{materiel:"Une poêle avec couvercle.",
+  reussir:["La sauce doit être épaisse avant de casser les œufs.","Couvre et surveille : 4 min pour un jaune coulant, 6 pour un jaune pris."],
+  garder:"La base se garde 3 jours au frigo. Ajoute les œufs au moment de réchauffer.",variante:"Avec des pois chiches à la place des haricots blancs."},
+ p75:{materiel:"Un bol, une fourchette, une passoire.",
+  reussir:["Écrase longtemps pour une purée lisse, ou laisse des morceaux si tu préfères.","Goûte et ajuste le citron et le sel à la fin."],
+  garder:"2 jours au frigo dans une boîte fermée.",variante:"Avec une pointe de cumin ou de paprika, à tartiner sur du pain."},
+ p76:{materiel:"Une casserole, une bouilloire ou une seconde casserole, une cuillère en bois.",
+  reussir:["Verse l'eau chaude en plusieurs fois et attends qu'elle soit bue avant d'en remettre.","Remue souvent : c'est ce qui rend le riz crémeux.","Le riz est prêt quand il est tendre et encore un peu ferme au centre."],
+  garder:"2 jours au frigo. Réchauffe avec un peu d'eau.",variante:"Avec des champignons ou des petits pois surgelés."},
+ e03:{materiel:"Un couteau à pain, un grille-pain ou une poêle.",reussir:["Beurre le pain tant qu'il est tiède."],garder:"À préparer au moment.",variante:"Avec du miel ou de la compote maison."},
+ e04:{materiel:"Un saladier, un fouet, un moule à cake ou à manqué.",
+  reussir:["Mélange juste ce qu'il faut : une pâte trop travaillée donne un gâteau dur.","N'ouvre pas le four pendant les 25 premières minutes, le gâteau retomberait.","Il est cuit quand une lame plantée au centre ressort sèche."],
+  garder:"4 jours dans une boîte fermée ou sous un torchon. Se congèle en parts.",variante:"Avec des morceaux de pomme ou un zeste de citron."},
+ e05:{materiel:"Une casserole avec couvercle, un couteau, une fourchette.",
+  reussir:["Des fruits bien mûrs : pas besoin d'ajouter de sucre.","Feu doux et couvercle : les fruits cuisent dans leur jus."],
+  garder:"4 jours au frigo. Se congèle en petites boîtes.",variante:"Pomme et banane, ou pomme et poire."}
+});
