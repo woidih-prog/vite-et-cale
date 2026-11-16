@@ -73,7 +73,7 @@ Motion design de 19 secondes (`videos/29-deux-etudiantes-en-caisse.mp4`, fabriqu
 
 Démonstration filmée de l'appli avec une voix off, 1 min 36 (`videos/30-paul-30-euros-chez-aldi.mp4`). Paul fait les cinq étapes (prénom, Aldi et 30 € pour deux, ce qu'il a déjà, ses goûts, sa cuisine), lance la recherche, puis montre la liste de courses, la semaine, une recette et les promos.
 
-- **Accroche dite par la voix** : « Si je vous présente cette appli, je vais me faire bannir de chez Aldi. »
+- **Accroche** : à l'écran, en grand, « Je vais me faire ban… mais tant pis » ; la voix dit « Si je vous présente cette appli, je vais me faire bannir de chez Aldi. »
 - **Légende** : 30 € pour manger à deux toute la semaine chez Aldi. Je te montre comment, étape par étape.
 - **Hashtags** : #petitbudget #courses #aldi #findemois #menudelasemaine
 - Les chiffres sont ceux que l'appli a donnés pendant l'enregistrement : 27,03 € pour 14 repas à deux, avec des œufs, du lait, du beurre, des pâtes, du riz et des oignons déjà à la maison. La voix est une voix de synthèse.
