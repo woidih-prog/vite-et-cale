@@ -16,3 +16,7 @@ Huit images au format portrait (1080 × 1350), à publier dans l'ordre, de `1.jp
 **Hashtags** : #petitbudget #courses #aldi #findemois #menudelasemaine
 
 Les chiffres sont ceux de l'appli pour 2 personnes chez Aldi, avec des œufs, du lait, du beurre, des pâtes, du riz et des oignons déjà à la maison.
+
+## Version vidéo pour TikTok
+
+`videos/32-carrousel-en-video.mp4` : les huit images défilent l'une après l'autre pendant 35 secondes, avec une voix off qui commence par « Regarde cette appli, et ce qu'elle peut faire » et de la musique. Même légende et mêmes hashtags que le carrousel. La voix est une voix de synthèse.
