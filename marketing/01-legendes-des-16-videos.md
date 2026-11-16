@@ -60,3 +60,28 @@ Même principe : animations de 13 secondes, dans `videos/`. Les chiffres viennen
 | 28 | `28-hors-connexion` | Pas de réseau au fond du magasin ? Ta liste de courses marche quand même. | #petitbudget #courses #astuce #organisation #listedecourses |
 
 - La vidéo 24 est à publier dans les groupes de La Réunion plutôt que partout.
+
+## Vidéo 29 : deux étudiantes en caisse
+
+Motion design de 19 secondes (`videos/29-deux-etudiantes-en-caisse.mp4`, fabriquée par `videos/rendu-caisse.js` à partir de `videos/caisse.html`). Même magasin, même budget de 30 € : deux tickets de caisse s'impriment côte à côte, l'un dépasse, l'autre s'arrête à 24,73 €. Puis les vraies photos de quatre plats de la semaine, avec leur prix par assiette, et l'écran de l'appli.
+
+- **Légende** : Même magasin, même budget : 30 €. Deux tickets de caisse. Tu es lequel ?
+- **Hashtags** : #petitbudget #courses #etudiant #vieetudiante #findemois
+- Le ticket « sans liste » est imaginé, et la vidéo le dit en bas de l'écran. Le ticket de droite, les plats et leurs prix viennent d'une semaine calculée dans l'appli (1 personne, Lidl, 20 minutes de cuisine au plus).
+
+## Vidéo 30 : Paul, 30 € pour deux chez Aldi
+
+Démonstration filmée de l'appli avec une voix off, 1 min 36 (`videos/30-paul-30-euros-chez-aldi.mp4`). Paul fait les cinq étapes (prénom, Aldi et 30 € pour deux, ce qu'il a déjà, ses goûts, sa cuisine), lance la recherche, puis montre la liste de courses, la semaine, une recette et les promos.
+
+- **Accroche** : à l'écran, en grand, « Je vais me faire ban… mais tant pis » ; la voix dit « Si je vous présente cette appli, je vais me faire bannir de chez Aldi. »
+- **Légende** : 30 € pour manger à deux toute la semaine chez Aldi. Je te montre comment, étape par étape.
+- **Hashtags** : #petitbudget #courses #aldi #findemois #menudelasemaine
+- Les chiffres sont ceux que l'appli a donnés pendant l'enregistrement : 27,03 € pour 14 repas à deux, avec des œufs, du lait, du beurre, des pâtes, du riz et des oignons déjà à la maison. La voix est une voix de synthèse.
+
+## Vidéo 31 : 27 € de courses, 14 repas, pour deux
+
+Vidéo courte de 40 secondes en motion design, avec voix off et vraies images de l'appli (`videos/31-27-euros-14-repas.mp4`). Accroche sur le chiffre, puis le total qui explose en caisse, le budget fixé à 30 € chez Aldi, le panier qui se remplit, la liste, quatre plats en photo avec leur prix, une recette, et le prix de l'abonnement.
+
+- **Légende** : 27 € de courses, 14 repas, pour deux. Je te montre comment en 40 secondes.
+- **Hashtags** : #petitbudget #courses #aldi #findemois #menudelasemaine
+- Les 27,03 €, les 14 repas et les prix par assiette sont ceux de l'appli pour 2 personnes chez Aldi, avec six produits déjà à la maison (la vidéo le dit). Le ticket à 61,40 € est imaginé, et marqué comme tel. La voix est une voix de synthèse.

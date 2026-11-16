@@ -1164,13 +1164,15 @@ function renderOnb(){
   $("root").innerHTML='<div id="onb" class="page"><div class="dots" aria-hidden="true">'+steps.map((_,i)=>'<i class="'+(i<=s?"on":"")+'"></i>').join("")+'</div>'+
     '<div id="onbForm">'+steps[s]()+'</div>'+
     '<div class="onb-nav">'+(s>0?'<button type="button" class="btn ghost" id="prev">Retour</button>':'<span></span>')+
-    '<button type="button" class="btn" id="next">'+(s<steps.length-1?"Continuer":"Faire ma liste de courses")+'</button></div></div>';
+    '<button type="button" class="btn" id="next">'+(s<steps.length-1?"Continuer":ONB.modif?"Refaire ma liste de courses":"Faire ma liste de courses")+'</button></div>'+
+    (ONB.modif?'<button type="button" class="btn small ghost" id="onbAnnuler" style="align-self:center">Annuler mes changements</button>':"")+'</div>';
   bindForm($("onbForm"),P,renderOnb);
   $("onbForm").querySelectorAll("[data-chez]").forEach(b=>b.addEventListener("click",()=>{ const id=b.dataset.chez;
     if(ONB.stock[id]) delete ONB.stock[id]; else ONB.stock[id]=ING[id].size; b.setAttribute("aria-pressed",!!ONB.stock[id]); }));
   $("onbForm").querySelectorAll("[data-bientot]").forEach(b=>b.addEventListener("click",()=>toast("La photo du "+b.dataset.bientot+" arrive bientôt. En attendant, touche ce que tu as.")));
   const pr=$("prenom"); if(pr) pr.oninput=e=>{P.prenom=e.target.value.slice(0,30);};
   if($("prev")) $("prev").onclick=()=>{ONB.step--;renderOnb();window.scrollTo(0,0);};
+  if($("onbAnnuler")) $("onbAnnuler").onclick=()=>{ ONB={step:0,draft:null,stock:null}; renderApp(); window.scrollTo(0,0); };
   $("next").onclick=()=>{
     if(s<steps.length-1){ ONB.step++; renderOnb(); window.scrollTo(0,0); return; }
     $("next").disabled=true; ST.profil=P; ST.stock=ONB.stock; ONB.stock=null;
@@ -2054,10 +2056,16 @@ function supprimeMaRecette(id){
 function vueProfil(v){
   const draft=JSON.parse(JSON.stringify(ST.profil));
   const draw=()=>{
-    v.innerHTML='<h2>Mon profil</h2>'+
-      '<div class="field"><label class="lbl" for="prenom2">Prénom</label><input type="text" id="prenom2" value="'+esc(draft.prenom)+'"></div>'+
-      '<div class="card">'+sectionLieu(draft)+'</div><div class="card">'+sectionSante(draft)+'</div><div class="card">'+sectionBudget(draft)+'</div>'+
-      '<button type="button" class="btn" id="save">Enregistrer et refaire ma semaine</button>'+
+    const P=ST.profil, nb=Object.keys(ST.stock||{}).filter(k=>ST.stock[k]>0).length, tps=(TEMPS.find(t=>t[0]===P.temps)||["",""])[1];
+    const gouts=[(REGIMES.find(r=>r[0]===P.regime)||["",""])[1]].concat(P.allergies.length?[P.allergies.length+" allergie"+(P.allergies.length>1?"s":"")]:[],P.degouts.length?[P.degouts.length+" aliment"+(P.degouts.length>1?"s":"")+" retiré"+(P.degouts.length>1?"s":"")]:[]).filter(Boolean).join(" · ");
+    const etapes=[["Ton profil",(P.prenom?P.prenom+" · ":"")+P.personnes+(P.personnes>1?" personnes":" personne")],
+      ["Tes courses et ton budget",magasin(P)[1]+" · "+P.budget+" € par semaine"+(P.ville?" · "+P.ville.nom:"")],
+      ["Ce que tu as déjà",nb?nb+" produit"+(nb>1?"s":"")+" noté"+(nb>1?"s":""):"Rien de noté pour l'instant"],
+      ["Ce que tu aimes, ce que tu ne manges pas",gouts||"Tu manges de tout"],
+      ["Ta cuisine et ton temps",equipDe(P).length+" appareil"+(equipDe(P).length>1?"s":"")+" · "+tps]];
+    v.innerHTML='<h2>Mon profil</h2><p class="muted" style="font-size:13.5px;margin:0">Touche une étape pour la modifier.</p>'+
+      '<div class="card" style="padding:6px 12px">'+etapes.map(([t,d],i)=>'<button type="button" class="alt" data-etape="'+i+'" style="width:100%;text-align:left"><span class="etape-no" style="min-width:22px">'+(i+1)+'</span><span><b>'+esc(t)+'</b><br><span class="muted" style="font-size:12.5px">'+esc(d)+'</span></span><span class="c" aria-hidden="true">›</span></button>').join("")+'</div>'+
+      '<button type="button" class="btn" id="save">Refaire ma semaine</button>'+
       sectionOpenPrices()+
       '<div class="card"><h3>Ton avis compte</h3><p class="muted" style="font-size:13.5px;margin:4px 0 10px">'+(ST.beta?"Tu es inscrit·e comme bêta-testeur. Merci !":"Rejoins les bêta-testeurs pour nous aider à améliorer l'appli.")+'</p>'+
         '<div class="row">'+(ST.beta?"":'<button type="button" class="btn small" id="pBeta">Rejoindre les bêta-testeurs</button>')+'<button type="button" class="btn small ghost" id="pAvis">Donner mon avis</button></div></div>'+
@@ -2067,12 +2075,11 @@ function vueProfil(v){
         '<li>les promos que tu choisis de partager, sur Open Prices.</li></ul><p class="muted" style="font-size:13.5px">Pour faire effacer tes informations, écris-le dans « Donner mon avis » avec ton e-mail.</p></details>'+
       '<button type="button" class="btn ghost" id="reset">Tout effacer et recommencer</button>'+
       '<p class="foot" id="resetMsg" hidden></p>';
-    bindForm(v,draft,draw);
-    $("prenom2").oninput=e=>{draft.prenom=e.target.value.slice(0,30);};
+    v.querySelectorAll("[data-etape]").forEach(b=>b.onclick=()=>{ ONB={step:+b.dataset.etape,draft:JSON.parse(JSON.stringify(ST.profil)),stock:null,modif:true}; renderOnb(); window.scrollTo(0,0); });
     bindOpenPrices(()=>{ draft.osm=ST.profil.osm; draw(); });
     if($("pBeta")) $("pBeta").onclick=()=>ficheBeta("beta");
     $("pAvis").onclick=()=>ficheBeta("avis");
-    $("save").onclick=()=>{ draft.osm=ST.profil.osm; ST.profil=draft; prepare(()=>{ nouveauPlan(); ST.onglet="semaine"; persist(); renderApp(); toast("Profil enregistré, nouvelle semaine prête."); }); };
+    $("save").onclick=()=>{ prepare(()=>{ nouveauPlan(); ST.onglet="semaine"; persist(); renderApp(); toast("Nouvelle semaine prête."); }); };
     let arm=false;
     $("reset").onclick=()=>{ if(!arm){ arm=true; $("reset").textContent="Toucher encore pour tout effacer"; return; }
       ST={profil:null,plan:null,coches:[],onglet:"courses",jour:null,filtre:"tous",stock:{},mesPromos:{},contrib:ST.contrib||{prix:0,photos:0}}; persist(); demarrer(); };
