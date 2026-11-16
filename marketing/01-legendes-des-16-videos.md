@@ -77,3 +77,11 @@ Démonstration filmée de l'appli avec une voix off, 1 min 36 (`videos/30-paul-3
 - **Légende** : 30 € pour manger à deux toute la semaine chez Aldi. Je te montre comment, étape par étape.
 - **Hashtags** : #petitbudget #courses #aldi #findemois #menudelasemaine
 - Les chiffres sont ceux que l'appli a donnés pendant l'enregistrement : 27,03 € pour 14 repas à deux, avec des œufs, du lait, du beurre, des pâtes, du riz et des oignons déjà à la maison. La voix est une voix de synthèse.
+
+## Vidéo 31 : 27 € de courses, 14 repas, pour deux
+
+Vidéo courte de 40 secondes en motion design, avec voix off et vraies images de l'appli (`videos/31-27-euros-14-repas.mp4`). Accroche sur le chiffre, puis le total qui explose en caisse, le budget fixé à 30 € chez Aldi, le panier qui se remplit, la liste, quatre plats en photo avec leur prix, une recette, et le prix de l'abonnement.
+
+- **Légende** : 27 € de courses, 14 repas, pour deux. Je te montre comment en 40 secondes.
+- **Hashtags** : #petitbudget #courses #aldi #findemois #menudelasemaine
+- Les 27,03 €, les 14 repas et les prix par assiette sont ceux de l'appli pour 2 personnes chez Aldi, avec six produits déjà à la maison (la vidéo le dit). Le ticket à 61,40 € est imaginé, et marqué comme tel. La voix est une voix de synthèse.
