@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<title>Vite & Calé — spot vacances</title>
+<!-- Spot vertical 1080 × 1920, 29,5 s, 30 i/s. window.seek(ms) pose l'image d'un instant et renvoie une promesse
+     (l'écran du téléphone affiche de vraies images de l'appli). Rendu : node rendu.js spot2.html son2.wav -->
+<style>
+@font-face{font-family:"Bricolage";src:url(fonts/bricolage-800.woff2) format("woff2");font-weight:600 800}
+@font-face{font-family:"Figtree";src:url(fonts/figtree.woff2) format("woff2");font-weight:300 900}
+:root{
+  /* Direction : de la nuit verte au coucher de soleil. Le vert de la marque devient la mer, le jaune étiquette devient le soleil. */
+  --night:#0A1A12; --forest:#10301F; --leaf:#2D774A; --leaf-2:#7FE0A2; --mint:#EAF7EC;
+  --ink:#10201A; --muted:#5D6F63; --sun:#FFD166; --coral:#F28C6B; --dusk:#3B2340; --white:#FFFFFF;
+  --d:"Bricolage",ui-sans-serif,system-ui,sans-serif; --b:"Figtree",ui-sans-serif,system-ui,sans-serif;
+}
+html,body{margin:0;background:#000}
+#sc{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--night);font-family:var(--b);color:var(--white)}
+.abs{position:absolute}
+.layer{position:absolute;inset:0}
+.disp{font-family:var(--d);font-weight:800;letter-spacing:-.035em;line-height:.95}
+.eyebrow{font-family:var(--b);font-weight:800;font-size:30px;letter-spacing:.28em;text-transform:uppercase}
+.mask{display:block;overflow:hidden;padding:0 .04em .08em}
+.mask>span{display:inline-block}
+.num{display:inline-flex;align-items:baseline;letter-spacing:0}
+.num i{font-style:normal;display:inline-block;text-align:center}
+.num i.dg{width:.575em}.num i.sp{width:.18em}.num i.cm{width:.22em}
+#bgNight{background:radial-gradient(1200px 900px at 50% 42%,#14392A 0%,var(--night) 62%)}
+#bgForest{background:radial-gradient(1300px 1100px at 30% 18%,#1D5137 0%,var(--forest) 55%,#0B2216 100%)}
+#bgMint{background:radial-gradient(1100px 900px at 50% 38%,#FFFFFF 0%,var(--mint) 70%)}
+#grain{position:absolute;inset:0;pointer-events:none;opacity:.07;mix-blend-mode:overlay}
+#vign{position:absolute;inset:0;pointer-events:none;background:radial-gradient(1400px 1700px at 50% 50%,transparent 55%,rgba(0,0,0,.42) 100%)}
+/* 1 : l'accroche, avec un soleil qui se lève derrière le texte */
+#sun1{left:290px;top:820px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#FFE29A,var(--sun) 55%,#F7B24A);box-shadow:0 0 160px 40px rgba(255,209,102,.35)}
+#hor1{left:80px;right:80px;top:1240px;height:4px;border-radius:2px;background:rgba(255,255,255,.5);transform-origin:50% 50%}
+#hook{left:70px;right:70px;top:420px;text-align:center;font-size:122px}
+#hook em{font-style:normal;color:var(--sun)}
+/* 2 : le calcul */
+#s2 .row{left:110px;right:110px;display:flex;justify-content:space-between;align-items:baseline}
+#s2 .k{font-size:36px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
+#avant{top:520px}#avant .k{color:rgba(255,255,255,.55)}
+#apres{top:760px}#apres .k{color:var(--leaf-2)}
+#s2 .v{font-size:150px}
+#vAvant{color:rgba(255,255,255,.55);position:relative}
+#cut{left:-10px;right:-10px;top:52%;height:12px;border-radius:6px;background:var(--coral);transform-origin:0 50%}
+#vApres{color:var(--sun)}
+#gain{left:50%;top:1090px;padding:26px 54px;border-radius:80px;background:var(--sun);color:var(--ink);font-size:120px;white-space:nowrap}
+#gainL{left:0;right:0;top:1300px;text-align:center;font-size:52px;font-weight:700}
+#fine2{left:100px;right:100px;bottom:130px;text-align:center;font-size:26px;font-weight:700;color:rgba(255,255,255,.55);line-height:1.4}
+/* 3 : le téléphone */
+#cam{left:0;top:0;width:1080px;height:1920px;perspective:2400px;perspective-origin:540px 900px}
+#rig{position:absolute;left:220px;top:640px;width:640px;height:1107px;transform-style:preserve-3d}
+#phone{position:absolute;inset:0;border-radius:88px;background:linear-gradient(145deg,#2B3530,#0B100D 45%,#1B231F);padding:20px;box-sizing:border-box;box-shadow:inset 0 0 0 2px rgba(255,255,255,.10),inset 0 0 0 9px #050806}
+#screen{position:relative;width:100%;height:100%;border-radius:68px;overflow:hidden;background:var(--mint)}
+#scr{display:block;width:100%;height:100%;object-fit:cover}
+#island{left:50%;top:22px;width:160px;height:44px;margin-left:-80px;border-radius:22px;background:#050806}
+#gloss{inset:0;border-radius:68px;background:linear-gradient(112deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,0) 28%,rgba(255,255,255,0) 70%,rgba(255,255,255,.06) 100%)}
+#shadow{left:240px;width:600px;height:90px;top:1720px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.55),rgba(0,0,0,0));filter:blur(14px)}
+.cap{left:90px;right:90px;top:170px}
+.cap .eyebrow{color:var(--leaf-2);display:block;margin-bottom:22px}
+.cap .t{font-size:96px}
+.cap .t em{font-style:normal;color:var(--sun)}
+.cap .s{font-size:38px;font-weight:600;color:rgba(255,255,255,.72);margin-top:22px}
+#chip{left:0;top:0;padding:18px 34px;border-radius:60px;background:var(--sun);color:var(--ink);font-size:72px;white-space:nowrap;box-shadow:0 24px 50px rgba(0,0,0,.35)}
+/* 4 : les assiettes */
+#s4 .cap{text-align:center}
+.dish{position:absolute;left:540px;top:1000px;width:540px;height:540px;margin:-270px 0 0 -270px}
+.dish img{width:100%;height:100%;border-radius:50%;object-fit:cover;box-shadow:0 40px 80px rgba(0,0,0,.45),0 0 0 14px rgba(255,255,255,.95)}
+.dish .px{position:absolute;right:-6px;top:380px;padding:12px 26px;border-radius:40px;background:var(--sun);color:var(--ink);font-family:var(--d);font-weight:800;font-size:60px;box-shadow:0 18px 36px rgba(0,0,0,.3)}
+#dname{left:0;right:0;top:1350px;text-align:center;font-size:56px}
+#nutri{left:0;right:0;top:1440px;display:flex;justify-content:center;gap:18px}
+#nutri div{padding:14px 28px;border-radius:40px;border:2px solid rgba(255,255,255,.35);font-size:36px;font-weight:800}
+#nutri div b{color:var(--leaf-2)}
+/* 5 : l'argent qui reste, sur une année */
+#s5{color:var(--ink)}
+#s5 .eyebrow{left:0;right:0;top:330px;text-align:center;color:var(--leaf)}
+#save{left:0;right:0;top:400px;text-align:center;font-size:250px;color:var(--leaf);white-space:nowrap}
+#saveL{left:0;right:0;top:680px;text-align:center;font-size:44px;font-weight:700;color:var(--muted)}
+#line{left:110px;width:860px;top:1180px;height:8px;border-radius:4px;background:rgba(16,32,26,.12)}
+#lineF{left:0;top:0;bottom:0;border-radius:4px;background:var(--leaf)}
+#dot{top:-18px;width:44px;height:44px;margin-left:-22px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 8px rgba(255,209,102,.35)}
+.mo{top:1215px;font-size:26px;font-weight:800;color:var(--muted);transform:translateX(-50%)}
+.ms{position:absolute;top:960px;transform:translateX(-50%);text-align:center}
+.ms div{padding:16px 28px;border-radius:30px;background:var(--ink);color:#fff;font-family:var(--d);font-weight:800;font-size:44px;white-space:nowrap}
+.ms i{display:block;width:4px;height:120px;margin:0 auto;background:var(--ink);opacity:.25;border-radius:2px}
+#fine5{left:110px;right:110px;bottom:150px;text-align:center;font-size:28px;font-weight:600;color:var(--muted);line-height:1.4}
+/* 6 : le coucher de soleil */
+#sky{background:linear-gradient(180deg,#2A1B3D 0%,#7A3B55 32%,var(--coral) 58%,#FFC27A 74%)}
+#sun6{left:290px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle at 50% 45%,#FFF1C4,var(--sun) 60%,#F7B24A);box-shadow:0 0 220px 70px rgba(255,190,100,.45)}
+#sea{left:0;right:0;top:1360px;bottom:0;background:linear-gradient(180deg,#1F5A3C,#0E2F1F 70%,#081A11);overflow:hidden}
+.wave{position:absolute;left:-200px;right:-200px;height:6px;border-radius:3px;background:rgba(255,209,102,.55)}
+#plane{left:0;top:0;width:180px;height:60px}
+#trail{left:0;top:0;height:4px;border-radius:2px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.85));transform-origin:100% 50%}
+#vac{left:70px;right:70px;top:250px;text-align:center;font-size:118px;color:#fff;text-shadow:0 6px 40px rgba(60,20,40,.35)}
+#vac .mask:nth-child(3) span{color:var(--sun)}
+/* 7 : signature */
+#logo{left:0;right:0;top:600px;text-align:center;font-size:190px;white-space:nowrap}
+#logo .amp{color:var(--sun);display:inline-block;font-family:var(--b);font-weight:900;font-size:.86em;margin:0 .12em;position:relative;top:-.06em}
+#tag{left:110px;right:110px;top:860px;text-align:center;font-size:46px;font-weight:600;line-height:1.25;color:rgba(255,255,255,.82)}
+#price{left:0;right:0;top:1090px;text-align:center;font-size:170px}
+#price small{font-family:var(--b);font-weight:700;font-size:48px;letter-spacing:0;color:rgba(255,255,255,.7)}
+#sansEng{left:0;right:0;top:1280px;text-align:center;font-size:34px;font-weight:700;color:var(--leaf-2);letter-spacing:.12em;text-transform:uppercase}
+#url{left:50%;top:1410px;padding:30px 64px;border-radius:80px;background:#fff;color:var(--forest);font-family:var(--d);font-weight:800;font-size:96px;letter-spacing:-.03em;white-space:nowrap;overflow:hidden}
+#shine{left:0;top:0;bottom:0;width:180px;background:linear-gradient(100deg,transparent,rgba(255,209,102,.55),transparent)}
+#bio{left:0;right:0;top:1610px;text-align:center;font-size:44px;font-weight:800}
+</style></head><body>
+<div id="sc">
+  <div class="layer" id="bgNight"></div>
+  <div class="layer" id="bgForest"></div>
+  <div class="layer" id="bgMint"></div>
+
+  <div class="layer" id="s1">
+    <div class="abs" style="left:0;top:0;width:1080px;height:1240px;overflow:hidden"><div class="abs" id="sun1"></div></div>
+    <div class="abs" id="hor1"></div>
+    <div class="abs disp" id="hook"><span class="mask"><span>Et si tes courses</span></span><span class="mask"><span>te payaient</span></span><span class="mask"><span>tes <em>vacances</em> ?</span></span></div>
+  </div>
+
+  <div class="layer" id="s2">
+    <div class="abs row" id="avant"><span class="k">Avant</span><span class="disp v" id="vAvant"><span id="vAvantN"></span><i class="abs" id="cut"></i></span></div>
+    <div class="abs row" id="apres"><span class="k">Avec l'appli</span><span class="disp v" id="vApres"></span></div>
+    <div class="abs disp" id="gain">+ 30 €</div>
+    <div class="abs" id="gainL">de côté, chaque semaine</div>
+    <div class="abs" id="fine2">Exemple pour 2 personnes : 60 € de courses par semaine avant, budget fixé à 30 € dans l'appli.</div>
+  </div>
+
+  <div class="layer" id="s3">
+    <div class="abs cap" id="capA"><span class="eyebrow mask"><span>Ton budget</span></span><div class="disp t"><span class="mask"><span>Tu fixes ton budget.</span></span><span class="mask"><span>L'appli <em>tient</em> dedans.</span></span></div></div>
+    <div class="abs" id="shadow"></div>
+    <div class="abs" id="cam"><div id="rig"><div id="phone"><div id="screen"><img id="scr" alt=""><div class="abs" id="island"></div><div class="abs" id="gloss"></div></div></div></div></div>
+    <div class="abs disp" id="chip">30 € max</div>
+  </div>
+
+  <div class="layer" id="s4">
+    <div class="abs cap"><span class="eyebrow mask"><span>Dans l'assiette</span></span><div class="disp t"><span class="mask"><span>Et tu manges</span></span><span class="mask"><span><em>bien.</em></span></span></div></div>
+    <div class="abs" id="track"></div>
+    <div class="abs disp" id="dname"></div>
+    <div class="abs" id="nutri"><div><b id="nP"></b> protéines</div><div><b id="nK"></b> kcal</div></div>
+  </div>
+
+  <div class="layer" id="s5">
+    <div class="abs eyebrow"><span class="mask" style="display:inline-block"><span>Ce qui te reste en un an</span></span></div>
+    <div class="abs disp" id="save"></div>
+    <div class="abs" id="saveL">pour faire autre chose</div>
+    <div class="abs" id="line"><div class="abs" id="lineF"></div><div class="abs" id="dot"></div></div>
+    <div id="months"></div>
+    <div id="miles"></div>
+    <div class="abs" id="fine5">30 € de côté par semaine, pendant 52 semaines.</div>
+  </div>
+
+  <div class="layer" id="s6">
+    <div class="layer" id="sky"></div>
+    <div class="abs" id="sun6"></div>
+    <div class="abs" id="sea"></div>
+    <div class="abs" id="trail"></div>
+    <svg class="abs" id="plane" viewBox="0 0 120 40"><path d="M4 22 L70 18 L96 4 L104 6 L88 19 L114 18 Q120 20 114 22 L88 23 L104 36 L96 38 L70 24 Z" fill="#fff"/></svg>
+    <div class="abs disp" id="vac"><span class="mask"><span>Mange mieux.</span></span><span class="mask"><span>Dépense moins.</span></span><span class="mask"><span>Pars plus souvent.</span></span></div>
+  </div>
+
+  <div class="layer" id="s7">
+    <div class="abs disp" id="logo"></div>
+    <div class="abs" id="tag"><span class="mask"><span>Tes repas de la semaine</span></span><span class="mask"><span>et ta liste de courses,</span></span><span class="mask"><span>sans dépasser ton budget.</span></span></div>
+    <div class="abs disp" id="price">2,99 €<small> / mois</small></div>
+    <div class="abs" id="sansEng">sans engagement</div>
+    <div class="abs" id="url">viteetcale.fr<div class="abs" id="shine"></div></div>
+    <div class="abs" id="bio">Lien dans la bio</div>
+  </div>
+
+  <canvas id="grain" width="540" height="960"></canvas>
+  <div id="vign"></div>
+</div>
+<script>
+window.DUREE = 29500; window.NOM = "34-spot-vacances";
+const $ = id => document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)), pr=(t,a,b)=>cl((t-a)/(b-a)), lerp=(a,b,p)=>a+(b-a)*p;
+const expo=p=>p>=1?1:1-Math.pow(2,-10*p), quart=p=>1-Math.pow(1-p,4), inCub=p=>p*p*p, ioCub=p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
+const spring=p=>p>=1?1:1-Math.exp(-7*p)*Math.cos(11*p);
+const eur=v=>v.toFixed(2).replace(".",","), show=(el,on)=>{ el.style.display=on?"":"none"; };
+const sep=n=>String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g," ");
+function digits(str){ return '<span class="num">'+[...str].map(c=>c===" "?'<i class="sp"></i>':c===","?'<i class="cm">,</i>':/\d/.test(c)?'<i class="dg">'+c+'</i>':'<i>'+c+'</i>').join("")+'</span>'; }
+function lines(root,t,t0,step=90,dur=650,dist=110){ root.querySelectorAll(".mask>span").forEach((s,i)=>{ const p=expo(pr(t,t0+i*step,t0+i*step+dur)); s.style.transform=`translateY(${(1-p)*dist}%)`; }); }
+function linesOut(root,t,t0,dur=380){ const p=inCub(pr(t,t0,t0+dur)); if(p>0) root.querySelectorAll(".mask>span").forEach(s=>{ s.style.transform=`translateY(${-p*110}%)`; }); }
+
+const G=$("grain"), gx=G.getContext("2d"), TR=[];
+for(let k=0;k<4;k++){ const im=gx.createImageData(540,960); let s=1234+k*977; for(let i=0;i<im.data.length;i+=4){ s=(s*16807)%2147483647; const v=s%255; im.data[i]=im.data[i+1]=im.data[i+2]=v; im.data[i+3]=255; } TR.push(im); }
+
+/* Plats de la vraie semaine (2 personnes, Aldi) : prix par assiette, protéines et calories de l'appli. */
+const PLATS=[["p59","Salade de haricots et pois chiches","1,64 €",25,520],["p58","Salade lyonnaise","0,96 €",22,480],["p40","Frittata vide-frigo","1,42 €",31,520]];
+$("track").innerHTML=PLATS.map(([id,n,p],i)=>`<div class="dish" id="d${i}"><img src="photos/${id}.jpg" alt=""><div class="px">${p}</div></div>`).join("");
+const MOIS=["J","F","M","A","M","J","J","A","S","O","N","D"];
+$("months").innerHTML=MOIS.map((m,i)=>`<div class="abs mo" style="left:${110+860*(i+0.5)/12}px">${m}</div>`).join("");
+const MILES=[[2,"Un resto à deux",880,-30],[6,"Un week-end",1000,-50],[11.3,"Les vacances",880,-82]];
+$("miles").innerHTML=MILES.map(([m,txt,top,ax],i)=>`<div class="ms" id="ms${i}" style="left:${110+860*m/12}px;top:${top}px;height:${1180-top}px"><div style="transform:translateX(${ax+50}%)">${txt}</div><i style="height:${1180-top-70}px"></i></div>`).join("");
+$("logo").innerHTML=[..."Vite"].map(c=>`<span class="mask" style="display:inline-block"><span>${c}</span></span>`).join("")+'<span class="amp" id="amp">&amp;</span>'+[..."Calé"].map(c=>`<span class="mask" style="display:inline-block"><span>${c}</span></span>`).join("");
+const WAVES=[]; for(let i=0;i<9;i++){ const w=document.createElement("div"); w.className="wave"; w.style.top=(40+i*i*9)+"px"; w.style.opacity=String(0.65-i*0.06); $("sea").appendChild(w); WAVES.push(w); }
+
+const SEQ={budget:132,liste:150}; let srcCourant="";
+function ecran(seq,i){ const n=Math.max(1,Math.min(SEQ[seq],Math.round(i))); const src=`f/${seq}/${String(n).padStart(4,"0")}.jpg`;
+  if(src===srcCourant) return null; srcCourant=src; const im=$("scr"); im.src=src; return im.decode().catch(()=>{}); }
+
+window.seek = t => {
+  let attente=null;
+  gx.putImageData(TR[Math.floor(t/33)%4],0,0);
+  /* fonds */
+  $("bgForest").style.opacity = t<3200?0 : t<15900? expo(pr(t,3200,3800)) : 0;
+  $("bgMint").style.opacity = t<15800?0 : t<21600? expo(pr(t,15800,16200)) : 0;
+
+  /* 1 : accroche, le soleil se lève derrière les mots */
+  show($("s1"), t<3800);
+  if(t<3800){
+    const S=$("s1"); S.style.opacity=1-pr(t,3350,3700);
+    lines($("hook"),t,250,140,750);
+    const r=expo(pr(t,500,2600)); $("sun1").style.transform=`translateY(${(1-r)*520}px) scale(${0.85+0.15*r})`; $("sun1").style.opacity=pr(t,400,900);
+    $("hor1").style.transform=`scaleX(${expo(pr(t,300,1300))})`;
+  }
+
+  /* 2 : le calcul, 60 € → 30 € → +30 € par semaine */
+  show($("s2"), t>3300 && t<7700);
+  if(t>3300 && t<7700){
+    const S=$("s2"); const out=inCub(pr(t,7200,7650)); S.style.opacity=1-out; S.style.transform=`translateY(${-out*200}px)`;
+    const a=expo(pr(t,3500,4300)); $("avant").style.opacity=a; $("avant").style.transform=`translateY(${(1-a)*40}px)`;
+    $("vAvantN").innerHTML=digits(Math.round(60*quart(pr(t,3500,4300)))+" €");
+    $("cut").style.transform=`scaleX(${expo(pr(t,4600,4950))})`;
+    const b=expo(pr(t,4800,5500)); $("apres").style.opacity=b; $("apres").style.transform=`translateY(${(1-b)*40}px)`;
+    $("vApres").innerHTML=digits(Math.round(30*quart(pr(t,4800,5500)))+" €");
+    const g=pr(t,5700,6300); $("gain").style.opacity=pr(g,0,.15); $("gain").style.transform=`translateX(-50%) scale(${0.3+0.7*spring(g)}) rotate(${(1-spring(g))*-8}deg)`;
+    $("gainL").style.opacity=pr(t,6100,6400); $("gainL").style.transform=`translateY(${(1-expo(pr(t,6100,6600)))*30}px)`;
+    $("fine2").style.opacity=pr(t,5000,5400);
+  }
+
+  /* 3 : le téléphone, budget puis liste réelle */
+  show($("s3"), t>7300 && t<11900);
+  if(t>7300 && t<11900){
+    const ent=expo(pr(t,7350,8250));
+    let ry=lerp(-22,-6,ent)+(t>8250?2.4*Math.sin((t-8250)/900):0), rx=lerp(28,6,ent)+(t>8250?1.1*Math.sin((t-8250)/1300):0), ty=lerp(1300,0,ent)+(t>8250?9*Math.sin((t-8250)/700):0);
+    const ex=ioCub(pr(t,11300,11850)); ty+=ex*1400; rx+=ex*-20;
+    $("rig").style.transform=`translateY(${ty}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    $("gloss").style.backgroundPosition=`${ry*6}px 0`;
+    $("shadow").style.opacity=ent*(1-ex)*0.9;
+    attente = t<9700 ? ecran("budget", lerp(30,132,pr(t,7700,9600))) : ecran("liste", lerp(1,80,pr(t,9750,11300)));
+    const A=$("capA"); lines(A,t,7600,100,700); linesOut(A,t,11150,300);
+    const ch=$("chip"); const cp=pr(t,8900,9500); show(ch,t>8850);
+    ch.style.transform=`translate(700px,${690+ty*0.6}px) rotate(${6+ry*0.2}deg) scale(${0.2+0.8*spring(cp)})`; ch.style.opacity=pr(t,8850,9000)*(1-ex);
+  }
+
+  /* 4 : manger bien, avec protéines et calories */
+  show($("s4"), t>11500 && t<16200);
+  if(t>11500 && t<16200){
+    const S=$("s4"); lines(S.querySelector(".cap"),t,11700,100,700); S.style.opacity=1-pr(t,15700,16100);
+    const t0=12500, per=1150; let pos=0; for(let k=1;k<PLATS.length;k++) pos+=ioCub(pr(t,t0+k*per-380,t0+k*per));
+    PLATS.forEach((_,i)=>{ const d=i-pos, ad=Math.abs(d), e=$("d"+i), enter=expo(pr(t,11900+i*70,12700+i*70));
+      e.style.transform=`translateX(${d*540+(1-enter)*700}px) scale(${Math.max(.45,1-ad*.38)})`; e.style.zIndex=String(10-Math.round(ad*2));
+      e.style.filter=`blur(${Math.min(8,ad*6).toFixed(1)}px) brightness(${1-Math.min(.5,ad*.4)})`; e.style.opacity=enter*(ad>1.6?0:1);
+      const px=e.querySelector(".px"), near=1-cl(ad*3); px.style.transform=`scale(${.4+.6*spring(near)}) rotate(${-6+near*2}deg)`; px.style.opacity=near; });
+    const k=cl(Math.round(pos),0,2), frac=Math.abs(pos-Math.round(pos));
+    $("dname").textContent=PLATS[k][1]; $("nP").textContent=PLATS[k][3]+" g"; $("nK").textContent=PLATS[k][4];
+    const vis=pr(t,12500,12800)*(1-frac*2.2);
+    $("dname").style.opacity=vis; $("nutri").style.opacity=vis; $("nutri").style.transform=`translateY(${frac*30}px)`;
+  }
+
+  /* 5 : l'argent qui reste, mois après mois */
+  show($("s5"), t>15800 && t<21800);
+  if(t>15800 && t<21800){
+    const S=$("s5"); const out=inCub(pr(t,21200,21700)); S.style.opacity=1-out; S.style.transform=`translateY(${-out*300}px)`;
+    lines(S.querySelector(".eyebrow"),t,16100,0,600);
+    const y=ioCub(pr(t,16600,20200));                    /* avance sur l'année */
+    $("save").innerHTML=digits(sep(1560*y)+" €"); $("save").style.opacity=pr(t,16200,16400);
+    $("saveL").style.opacity=pr(t,16500,16800);
+    $("line").style.opacity=pr(t,16300,16600); $("lineF").style.width=(y*100)+"%"; $("dot").style.left=(y*860)+"px";
+    document.querySelectorAll("#months .mo").forEach((m,i)=>{ m.style.opacity=0.35+0.65*(y*12>=i+0.5?1:0); m.style.color=y*12>=i+0.5?"var(--ink)":""; });
+    MILES.forEach(([mo],i)=>{ const e=$("ms"+i), p=cl((y*12-mo)/0.6+0); const q=spring(pr(p,0,1)); e.style.opacity=pr(p,0,.2); e.style.transform=`translateX(-50%) translateY(${(1-q)*40}px) scale(${0.7+0.3*q})`; });
+    $("save").style.transform=`scale(${1+0.05*Math.sin(Math.PI*pr(t,20200,20500))})`;
+    $("fine5").style.opacity=pr(t,17000,17400);
+  }
+
+  /* 6 : le coucher de soleil */
+  show($("s6"), t>21300 && t<25600);
+  if(t>21300 && t<25600){
+    const S=$("s6"); const a=expo(pr(t,21300,22000)); S.style.clipPath=`inset(${(1-a)*100}% 0 0 0)`; S.style.opacity=1-pr(t,25100,25550);
+    const sp=pr(t,21300,25500); $("sun6").style.top=(1020+sp*170)+"px";
+    $("sky").style.filter=`brightness(${1.05-sp*0.12})`;
+    WAVES.forEach((w,i)=>{ w.style.transform=`translateX(${Math.sin(t/900+i)*60}px) scaleX(${0.4+0.06*i})`; });
+    const pl=pr(t,22000,25400); const px=lerp(-160,1200,pl), py=lerp(760,560,pl)+Math.sin(pl*Math.PI)*-40;
+    $("plane").style.transform=`translate(${px}px,${py}px) rotate(-8deg)`;
+    $("trail").style.width=Math.max(0,Math.min(px+20,700))+"px"; $("trail").style.transform=`translate(${px-Math.min(px+20,700)+20}px,${py+20}px) rotate(-8deg)`;
+    $("trail").style.opacity=0.8*(1-pr(pl,.85,1));
+    lines($("vac"),t,22200,420,800);
+  }
+
+  /* 7 : signature */
+  show($("s7"), t>25300);
+  if(t>25300){
+    $("logo").querySelectorAll(".mask>span").forEach((s,i)=>{ const st=25550+(i<4?i:i+1)*70; const p=expo(pr(t,st,st+700)); s.style.transform=`translateY(${(1-p)*115}%)`; });
+    const ap=pr(t,25800,26500); $("amp").style.transform=`rotate(${(1-spring(ap))*-40}deg) scale(${spring(ap)})`; $("amp").style.opacity=pr(ap,0,.15);
+    lines($("tag"),t,26350,110,700);
+    const pp=pr(t,26900,27550); $("price").style.opacity=pr(pp,0,.2); $("price").style.transform=`translateY(${(1-expo(pp))*50}px)`;
+    $("sansEng").style.opacity=pr(t,27300,27600);
+    const up=pr(t,27600,28200); $("url").style.opacity=pr(up,0,.2); $("url").style.transform=`translateX(-50%) scale(${0.85+0.15*spring(up)})`;
+    $("shine").style.transform=`translateX(${lerp(-220,760,ioCub(pr(t,28200,29000)))}px) skewX(-18deg)`;
+    $("bio").style.opacity=pr(t,28100,28400); $("bio").style.transform=`translateY(${Math.sin(Math.max(0,t-28400)/170)*6}px)`;
+  }
+  return attente || Promise.resolve();
+};
+if(!/rendu/.test(location.search)){ const t0=performance.now(); (function b(){ window.seek((performance.now()-t0)%window.DUREE); requestAnimationFrame(b); })(); } else window.seek(0);
+</script>
+</body></html>

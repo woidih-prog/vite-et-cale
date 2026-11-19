@@ -4,10 +4,10 @@ const IPS = 30;
 (async () => {
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
   p.on("pageerror", e => { console.error(e.message); process.exit(1); });
-  await p.goto("file://" + path.join(__dirname, "spot.html") + "?rendu"); await p.evaluate(() => document.fonts.ready); await p.waitForLoadState("networkidle");
+  await p.goto("file://" + path.join(__dirname, process.argv[2] || "spot.html") + "?rendu"); await p.evaluate(() => document.fonts.ready); await p.waitForLoadState("networkidle");
   const { duree, nom } = await p.evaluate(() => ({ duree: window.DUREE, nom: window.NOM }));
   const sortie = path.join(__dirname, nom + ".mp4");
-  const ff = spawn("ffmpeg", ["-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(IPS), "-c:v", "mjpeg", "-i", "-", "-i", path.join(__dirname, "son.wav"),
+  const ff = spawn("ffmpeg", ["-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(IPS), "-c:v", "mjpeg", "-i", "-", "-i", path.join(__dirname, process.argv[3] || "son.wav"),
     "-c:v", "libx264", "-preset", "slow", "-crf", "17", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-t", String(duree / 1000), "-movflags", "+faststart", sortie], { stdio: ["pipe", "inherit", "inherit"] });
   const total = Math.round(duree / 1000 * IPS);
   for (let i = 0; i < total; i++) {

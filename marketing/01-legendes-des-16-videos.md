@@ -92,3 +92,11 @@ Spot de 26,5 secondes (`videos/33-spot-27-euros.mp4`), fabriqué à partir de `v
 
 - **Légende** : Ton total, tu le découvres à la caisse. Et si tu le décidais avant ?
 - **Hashtags** : #petitbudget #courses #findemois #menudelasemaine #bonplan
+
+## Vidéo 34 : le spot « vacances » (motion design)
+
+Spot de 29,5 secondes (`videos/34-spot-vacances.mp4`), fabriqué à partir de `videos/spot/spot2.html` et `son2.py` (rendu : `node rendu.js spot2.html son2.wav`). Le message : tes courses tiennent dans ton budget, tu manges bien, et l'argent qui reste sert à autre chose.
+
+- **Légende** : Et si tes courses te payaient tes vacances ? Mange mieux, dépense moins, pars plus souvent.
+- **Hashtags** : #petitbudget #courses #economies #vacances #mangersain
+- Le « 60 € avant » est un exemple, et c'est écrit à l'écran ; les 1 560 € sont ce calcul : 30 € de côté par semaine pendant 52 semaines. Les plats, leurs prix, protéines et calories viennent de l'appli (2 personnes, Aldi).
