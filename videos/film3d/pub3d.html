@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<title>Vite & Calé — film 3D</title>
+<!-- Film 3D vertical, 30 s. Rendu temps réel three.js, piloté image par image par window.seek(ms) (promesse : textures prêtes).
+     Les textes français sont posés par-dessus, en HTML, comme une post-production. -->
+<style>
+@font-face{font-family:"Bricolage";src:url(fonts/bricolage-800.woff2) format("woff2");font-weight:600 800}
+@font-face{font-family:"Figtree";src:url(fonts/figtree.woff2) format("woff2");font-weight:300 900}
+:root{--forest:#10301F;--leaf:#2D774A;--leaf2:#7FE0A2;--cream:#F4EDE1;--ink:#14231A;--sun:#FFD166}
+html,body{margin:0;background:#000}
+#sc{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:"Figtree",sans-serif}
+canvas#gl{position:absolute;inset:0;width:1080px;height:1920px}
+.o{position:absolute;left:0;right:0;text-align:center}
+.d{font-family:"Bricolage";font-weight:800;letter-spacing:-.035em;line-height:.98}
+.m{display:block;overflow:hidden;padding-bottom:.08em}.m>span{display:inline-block}
+#t1{top:120px;font-size:80px;color:var(--ink)}
+#t2{top:190px;font-size:88px;color:#fff}
+#t2 em,#t3 em{font-style:normal;color:var(--sun)}
+#t3{top:190px;font-size:84px;color:#fff}
+#t3s{top:430px;font-size:38px;font-weight:700;color:rgba(255,255,255,.75)}
+#t4{top:150px;font-size:84px;color:var(--ink)}
+#t4 em{font-style:normal;color:var(--leaf)}
+#res{top:1600px;display:flex;justify-content:center;gap:16px}
+#res div{padding:16px 30px;border-radius:50px;font-family:"Bricolage";font-weight:800;font-size:50px;background:var(--ink);color:#fff;white-space:nowrap}
+#res div:first-child{background:var(--sun);color:var(--ink)}
+#note4{top:1730px;font-size:28px;font-weight:700;color:rgba(20,35,26,.6)}
+#logo{top:190px;font-size:180px;color:#fff;white-space:nowrap}
+#logo .amp{color:var(--sun);font-family:"Figtree";font-weight:900;font-size:.86em;display:inline-block;margin:0 .1em;position:relative;top:-.06em}
+#slog{top:1520px;font-size:76px;color:#fff}
+#slog .m:nth-child(2) span{color:var(--sun)}
+#url{left:50%;right:auto;top:1730px;padding:24px 56px;border-radius:70px;background:#fff;color:var(--forest);font-family:"Bricolage";font-weight:800;font-size:76px;letter-spacing:-.03em;white-space:nowrap}
+#grain{position:absolute;inset:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay}
+</style>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+</head><body>
+<div id="sc">
+  <canvas id="gl" width="1080" height="1920"></canvas>
+  <div class="o d" id="t1"><span class="m"><span>Les courses</span></span><span class="m"><span>coûtent toujours</span></span><span class="m"><span>plus cher.</span></span></div>
+  <div class="o d" id="t2"><span class="m"><span>Et si ton budget</span></span><span class="m"><span>décidait <em>avant</em> ?</span></span></div>
+  <div class="o d" id="t3"><span class="m"><span>Les prix de ton magasin.</span></span><span class="m"><span>Les promos <em>autour de toi.</em></span></span></div>
+  <div class="o" id="t3s">10 enseignes · relevés de prix réels</div>
+  <div class="o d" id="t4"><span class="m"><span>Ta semaine,</span></span><span class="m"><span><em>dans ton budget.</em></span></span></div>
+  <div class="o" id="res"><div>16,87 €</div><div>14 repas</div><div>7 jours</div></div>
+  <div class="o" id="note4">Budget de 22 € · 1 personne · Lidl · calculé dans l'appli</div>
+  <div class="o d" id="logo"></div>
+  <div class="o d" id="slog"><span class="m"><span>MANGE MIEUX.</span></span><span class="m"><span>DÉPENSE MOINS.</span></span></div>
+  <div class="o" id="url">viteetcale.fr</div>
+  <canvas id="grain" width="540" height="960"></canvas>
+</div>
+<script type="module">
+import * as THREE from "three";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)), pr=(t,a,b)=>cl((t-a)/(b-a)), lerp=(a,b,p)=>a+(b-a)*p;
+const expo=p=>p>=1?1:1-Math.pow(2,-10*p), ioc=p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2, inc=p=>p*p*p;
+const spring=p=>p>=1?1:1-Math.exp(-6.5*p)*Math.cos(10*p);
+await document.fonts.ready;
+
+/* ---------- rendu ---------- */
+const renderer=new THREE.WebGLRenderer({canvas:$("gl"),antialias:true,preserveDrawingBuffer:true});
+renderer.setPixelRatio(1); renderer.setSize(1080,1920,false);
+renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.05; renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+const scene=new THREE.Scene();
+const pmrem=new THREE.PMREMGenerator(renderer); scene.environment=pmrem.fromScene(new RoomEnvironment(),0.04).texture;
+const cam=new THREE.PerspectiveCamera(32,1080/1920,0.1,100);
+const key=new THREE.DirectionalLight(0xfff1dd,2.4); key.position.set(3,6,4); key.castShadow=true; key.shadow.mapSize.set(1024,1024);
+Object.assign(key.shadow.camera,{left:-4,right:4,top:4,bottom:-4,near:1,far:20}); key.shadow.radius=6; scene.add(key);
+const rim=new THREE.DirectionalLight(0x9fe8b8,1.2); rim.position.set(-4,3,-4); scene.add(rim);
+scene.add(new THREE.HemisphereLight(0xffffff,0x334433,0.35));
+const sol=new THREE.Mesh(new THREE.PlaneGeometry(40,40),new THREE.ShadowMaterial({opacity:.22})); sol.rotation.x=-Math.PI/2; sol.position.y=-1.6; sol.receiveShadow=true; scene.add(sol);
+const C={cream:new THREE.Color("#F2EADC"),forest:new THREE.Color("#0F2C1D"),green:new THREE.Color("#1E5A3A"),creamDeep:new THREE.Color("#E9DFCD")};
+scene.background=new THREE.Color();
+const ombre=m=>{ m.traverse(o=>{ if(o.isMesh){ o.castShadow=true; o.receiveShadow=true; } }); return m; };
+
+/* ---------- matières ---------- */
+const metal=new THREE.MeshStandardMaterial({color:0xd9dde0,metalness:1,roughness:.22});
+const plast=c=>new THREE.MeshPhysicalMaterial({color:c,roughness:.35,clearcoat:.6,clearcoatRoughness:.2});
+const mat=(c,r=.6,m=0)=>new THREE.MeshStandardMaterial({color:c,roughness:r,metalness:m});
+
+/* ---------- textures texte (étiquettes de prix) ---------- */
+function etiquette(txt,fond="#FFD166",encre="#14231A",w=360,h=180){
+  const c=document.createElement("canvas"); c.width=w; c.height=h; const g=c.getContext("2d");
+  g.fillStyle=fond; g.beginPath(); g.roundRect(0,0,w,h,40); g.fill();
+  g.fillStyle="rgba(0,0,0,.18)"; g.beginPath(); g.arc(44,h/2,14,0,7); g.fill();
+  g.fillStyle=encre; g.font=`800 ${h*.46}px Bricolage`; g.textAlign="center"; g.textBaseline="middle"; g.fillText(txt,w/2+16,h/2+4);
+  const tx=new THREE.CanvasTexture(c); tx.colorSpace=THREE.SRGBColorSpace; tx.anisotropy=8; return {tx,c,g};
+}
+function planEtiquette(txt,s=0.55){ const e=etiquette(txt); const m=new THREE.Mesh(new THREE.PlaneGeometry(s,s/2),new THREE.MeshBasicMaterial({map:e.tx,transparent:true,toneMapped:false})); m.userData.e=e; return m; }
+
+/* ---------- 1 : le caddie ---------- */
+const caddie=new THREE.Group(); scene.add(caddie);
+const tube=(a,b,r=.018)=>{ const v=new THREE.Vector3().subVectors(b,a); const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,v.length(),10),metal);
+  m.position.copy(a).addScaledVector(v,.5); m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),v.clone().normalize()); caddie.add(m); return m; };
+const V=(x,y,z)=>new THREE.Vector3(x,y,z);
+{ const W=.9,D=1.25,H=.62,y0=-.45; const pts=[V(-W/2,y0,-D/2),V(W/2,y0,-D/2),V(W/2,y0,D/2),V(-W/2,y0,D/2)], top=[V(-W/2-.05,y0+H,-D/2-.08),V(W/2+.05,y0+H,-D/2-.08),V(W/2+.05,y0+H,D/2+.1),V(-W/2-.05,y0+H,D/2+.1)];
+  for(let i=0;i<4;i++){ tube(pts[i],pts[(i+1)%4],.022); tube(top[i],top[(i+1)%4],.026); tube(pts[i],top[i],.022); }
+  for(let k=1;k<9;k++){ const f=k/9; tube(pts[0].clone().lerp(pts[1],f),top[0].clone().lerp(top[1],f),.012); tube(pts[3].clone().lerp(pts[2],f),top[3].clone().lerp(top[2],f),.012); }
+  for(let k=1;k<12;k++){ const f=k/12; tube(pts[1].clone().lerp(pts[2],f),top[1].clone().lerp(top[2],f),.012); tube(pts[0].clone().lerp(pts[3],f),top[0].clone().lerp(top[3],f),.012); }
+  for(let k=1;k<4;k++){ const f=k/4; tube(top[0].clone().lerp(pts[0],f).lerp(top[1].clone().lerp(pts[1],f),0),top[1].clone().lerp(pts[1],f),.012); }
+  for(let k=1;k<6;k++){ const f=k/6; tube(pts[0].clone().lerp(pts[3],f),pts[1].clone().lerp(pts[2],f),.012); }
+  const hy=y0+H+.12; tube(top[3],V(-W/2,hy,D/2+.32),.024); tube(top[2],V(W/2,hy,D/2+.32),.024);
+  const poign=new THREE.Mesh(new THREE.CylinderGeometry(.04,.04,W+.04,16),plast("#2D774A")); poign.rotation.z=Math.PI/2; poign.position.set(0,hy,D/2+.32); caddie.add(poign);
+  const yb=-1.42; for(const [x,z] of [[-.38,-.5],[.38,-.5],[-.42,.62],[.42,.62]]){ tube(V(x,y0,z*.95),V(x,yb+.1,z),.02);
+    const roue=new THREE.Mesh(new THREE.CylinderGeometry(.08,.08,.05,24),mat("#20262A",.5)); roue.rotation.z=Math.PI/2; roue.position.set(x,yb+.02,z); caddie.add(roue); }
+  tube(V(-.38,yb+.1,-.5),V(.38,yb+.1,-.5)); tube(V(-.42,yb+.1,.62),V(.42,yb+.1,.62)); tube(V(-.4,yb+.1,-.5),V(-.42,yb+.1,.62)); tube(V(.4,yb+.1,-.5),V(.42,yb+.1,.62));
+}
+/* les courses : formes simples, matières soignées */
+const courses=new THREE.Group(); caddie.add(courses);
+const boite=(w,h,d,c,x,y,z,ry=0)=>{ const m=new THREE.Mesh(new RoundedBoxGeometry(w,h,d,4,.025),plast(c)); m.position.set(x,y,z); m.rotation.y=ry; courses.add(m); return m; };
+boite(.32,.46,.14,"#E8553D",-.22,-.2,-.3,.3); boite(.26,.38,.12,"#F4D35E",.1,-.24,-.35,-.2); boite(.22,.3,.22,"#FFFFFF",.28,-.28,.05,.5);
+boite(.34,.2,.24,"#2D774A",-.2,-.33,.25,.1); boite(.18,.42,.18,"#3A86FF",.3,-.22,-.25);
+for(const [x,z] of [[-.05,.0],[.05,.12],[-.12,.12]]){ const can=new THREE.Mesh(new THREE.CylinderGeometry(.07,.07,.18,32),new THREE.MeshStandardMaterial({color:"#C9302C",metalness:.6,roughness:.3})); can.position.set(x,-.36,z); courses.add(can); }
+const pain=new THREE.Mesh(new THREE.CapsuleGeometry(.06,.75,8,16),mat("#D9A35B",.8)); pain.rotation.set(.3,0,1.2); pain.position.set(.05,-.05,.0); courses.add(pain);
+for(const [x,z,c] of [[-.3,.0,"#C0392B"],[-.22,-.05,"#7CB342"],[-.34,.1,"#C0392B"]]){ const p=new THREE.Mesh(new THREE.SphereGeometry(.075,32,24),plast(c)); p.position.set(x,-.15,z); courses.add(p); }
+const bout=new THREE.Mesh(new THREE.LatheGeometry([V(0,0,0),V(.07,0,0),V(.075,.02,0),V(.075,.28,0),V(.03,.36,0),V(.03,.44,0),V(0,.44,0)].map(v=>new THREE.Vector2(v.x,v.y)),32),new THREE.MeshPhysicalMaterial({color:"#BFE6D0",roughness:.05,transmission:.6,thickness:.2,transparent:true,opacity:.9}));
+bout.position.set(.32,-.45,.3); courses.add(bout);
+ombre(caddie);
+/* étiquettes de prix qui s'envolent autour du caddie */
+const prix=["2,49 €","3,90 €","1,75 €","4,29 €","2,99 €","5,60 €"].map(x=>planEtiquette(x,.34));
+const posPrix=[V(-.66,.42,.3),V(.66,.5,.1),V(-.7,.9,-.2),V(.7,1.0,.3),V(-.5,1.36,.1),V(.5,1.4,-.1)];
+prix.forEach(p=>scene.add(p));
+const total=planEtiquette("0 €",.82); total.material.map=etiquette("0 €","#E5533D","#FFFFFF",520,200).tx; scene.add(total);
+const totE=total.material.map; const totC=totE.image, totG=totC.getContext("2d");
+function majTotal(v){ totG.clearRect(0,0,520,200); totG.fillStyle="#E5533D"; totG.beginPath(); totG.roundRect(0,0,520,200,48); totG.fill();
+  totG.fillStyle="#fff"; totG.font="800 108px Bricolage"; totG.textAlign="center"; totG.textBaseline="middle"; totG.fillText(v.toFixed(2).replace(".",",")+" €",260,108); totE.needsUpdate=true; }
+/* le porte-monnaie qui s'ouvre sur trois pièces */
+const pm=new THREE.Group(); scene.add(pm);
+const cuir=new THREE.MeshStandardMaterial({color:"#5A3A26",roughness:.55});
+const bas=new THREE.Mesh(new RoundedBoxGeometry(.7,.08,.48,4,.03),cuir); pm.add(bas);
+const charn=new THREE.Group(); charn.position.set(0,.04,-.24); pm.add(charn);
+const haut=new THREE.Mesh(new RoundedBoxGeometry(.7,.06,.48,4,.03),cuir); haut.position.set(0,.03,.24); charn.add(haut);
+for(const [x,z] of [[-.12,.02],[.08,.08],[.16,-.06]]){ const p=new THREE.Mesh(new THREE.CylinderGeometry(.06,.06,.012,40),new THREE.MeshStandardMaterial({color:"#D4A63A",metalness:1,roughness:.28})); p.position.set(x,.05,z); pm.add(p); }
+ombre(pm);
+
+/* ---------- 2-3 : le téléphone ---------- */
+const tel=new THREE.Group(); scene.add(tel);
+const TW=.78,TH=1.6,TD=.075;
+const corps=new THREE.Mesh(new RoundedBoxGeometry(TW,TH,TD,8,.1),new THREE.MeshPhysicalMaterial({color:"#1A201C",metalness:.9,roughness:.25,clearcoat:1,clearcoatRoughness:.1})); tel.add(corps);
+const ecranTex=new THREE.Texture(); ecranTex.colorSpace=THREE.SRGBColorSpace; ecranTex.anisotropy=8;
+const SW=TW-.06, SH=SW*1536/864;
+const ecran=new THREE.Mesh(new THREE.PlaneGeometry(SW,SH),new THREE.MeshBasicMaterial({map:ecranTex,toneMapped:false})); ecran.position.z=TD/2+.001; tel.add(ecran);
+/* coins arrondis de l'écran : un cadre noir par-dessus */
+{ const s=new THREE.Shape(); s.moveTo(-TW/2,-TH/2); s.lineTo(TW/2,-TH/2); s.lineTo(TW/2,TH/2); s.lineTo(-TW/2,TH/2); s.lineTo(-TW/2,-TH/2);
+  const h=new THREE.Path(), r=.075, w=SW/2, hh=SH/2; h.moveTo(-w+r,-hh); h.lineTo(w-r,-hh); h.quadraticCurveTo(w,-hh,w,-hh+r); h.lineTo(w,hh-r); h.quadraticCurveTo(w,hh,w-r,hh); h.lineTo(-w+r,hh); h.quadraticCurveTo(-w,hh,-w,hh-r); h.lineTo(-w,-hh+r); h.quadraticCurveTo(-w,-hh,-w+r,-hh); s.holes.push(h);
+  const cadre=new THREE.Mesh(new THREE.ShapeGeometry(s,24),new THREE.MeshBasicMaterial({color:"#050806"})); cadre.position.z=TD/2+.002; tel.add(cadre);
+  const ile=new THREE.Mesh(new RoundedBoxGeometry(.2,.055,.004,4,.027),new THREE.MeshBasicMaterial({color:"#050806"})); ile.position.set(0,SH/2-.07,TD/2+.004); tel.add(ile); }
+const verre=new THREE.Mesh(new THREE.PlaneGeometry(TW-.02,TH-.02),new THREE.MeshPhysicalMaterial({color:0xffffff,metalness:0,roughness:.03,transparent:true,opacity:.09,envMapIntensity:3,clearcoat:1}));
+verre.position.z=TD/2+.006; tel.add(verre);
+ombre(tel); ecran.castShadow=false;
+const cacheTex=new Map(); const loader=new THREE.ImageBitmapLoader(); loader.setOptions({imageOrientation:"flipY"});
+let srcCourant="";
+function ecranSur(seq,n,N){ n=Math.max(1,Math.min(N,Math.round(n))); const src=`f/${seq}/${String(n).padStart(4,"0")}.jpg`; if(src===srcCourant) return null; srcCourant=src;
+  return new Promise(ok=>loader.load(src,bmp=>{ ecranTex.image=bmp; ecranTex.needsUpdate=true; ok(); },undefined,()=>ok())); }
+
+/* enseignes et produits en orbite, anneau de budget */
+const tl=new THREE.TextureLoader();
+const LOGOS=["lidl","aldi","leclerc","carrefour","auchan","inter","superu","monoprix"];
+const jetons=LOGOS.map(n=>{ const g=new THREE.Group(); const disque=new THREE.Mesh(new THREE.CylinderGeometry(.17,.17,.04,48),new THREE.MeshPhysicalMaterial({color:"#ffffff",roughness:.3,clearcoat:1}));
+  disque.rotation.x=Math.PI/2; g.add(disque); const tx=tl.load(`logos/${n}.png`); tx.colorSpace=THREE.SRGBColorSpace;
+  const face=new THREE.Mesh(new THREE.CircleGeometry(.12,48),new THREE.MeshBasicMaterial({map:tx,transparent:true,toneMapped:false})); face.position.z=.021; g.add(face); scene.add(g); return ombre(g); });
+const mini=[["#E8553D",.12,.18,.06],["#F4D35E",.1,.15,.05],["#2D774A",.14,.09,.1],["#3A86FF",.08,.17,.08]].map(([c,w,h,d])=>{ const m=new THREE.Mesh(new RoundedBoxGeometry(w,h,d,3,.012),plast(c)); scene.add(m); return ombre(m); });
+const anneauM=new THREE.MeshStandardMaterial({color:"#FFD166",emissive:"#FFB020",emissiveIntensity:.35,roughness:.3,metalness:.3});
+const fondAnneau=new THREE.Mesh(new THREE.TorusGeometry(1.05,.012,12,160),new THREE.MeshStandardMaterial({color:"#ffffff",transparent:true,opacity:.18})); scene.add(fondAnneau);
+let anneau=null, anneauP=-1;
+function majAnneau(p){ if(Math.abs(p-anneauP)<.004) return; anneauP=p; if(anneau){ scene.remove(anneau); anneau.geometry.dispose(); }
+  if(p<=0) { anneau=null; return; } anneau=new THREE.Mesh(new THREE.TorusGeometry(1.05,.026,16,200,Math.PI*2*p),anneauM); anneau.rotation.z=Math.PI/2; scene.add(anneau); }
+
+/* ---------- 4 : les assiettes (vraies photos de plats de l'appli) ---------- */
+const PH=["p02","p58","p59","p40","p41","p13","p16"];
+const assiettes=PH.map(id=>{ const g=new THREE.Group();
+  const prof=[V(0,0,0),V(.30,0,0),V(.34,.02,0),V(.40,.05,0),V(.41,.06,0),V(.36,.035,0),V(.29,.012,0),V(0,.012,0)].map(v=>new THREE.Vector2(v.x,v.y));
+  const ass=new THREE.Mesh(new THREE.LatheGeometry(prof,64),new THREE.MeshPhysicalMaterial({color:"#FBFAF6",roughness:.25,clearcoat:.8})); g.add(ass);
+  const tx=tl.load(`photos/${id}.jpg`); tx.colorSpace=THREE.SRGBColorSpace; tx.anisotropy=8;
+  const plat=new THREE.Mesh(new THREE.CircleGeometry(.285,64),new THREE.MeshStandardMaterial({map:tx,roughness:.55})); plat.rotation.x=-Math.PI/2; plat.position.y=.016; g.add(plat);
+  g.rotation.x=1.15; scene.add(g); return ombre(g); });
+const AS=.72;
+
+/* grain */
+const G=$("grain"),gx=G.getContext("2d"),TR=[];
+for(let k=0;k<4;k++){ const im=gx.createImageData(540,960); let s=99+k*713; for(let i=0;i<im.data.length;i+=4){ s=(s*16807)%2147483647; const v=s%255; im.data[i]=im.data[i+1]=im.data[i+2]=v; im.data[i+3]=255; } TR.push(im); }
+$("logo").innerHTML=[..."Vite"].map(c=>`<span class="m" style="display:inline-block"><span>${c}</span></span>`).join("")+'<span class="amp" id="amp">&amp;</span>'+[..."Calé"].map(c=>`<span class="m" style="display:inline-block"><span>${c}</span></span>`).join("");
+function lignes(el,t,t0,step=110,dur=700){ el.querySelectorAll(".m>span").forEach((s,i)=>{ const p=expo(pr(t,t0+i*step,t0+i*step+dur)); s.style.transform=`translateY(${(1-p)*110}%)`; }); }
+const vis=(el,o)=>{ el.style.opacity=o; el.style.display=o>0.001?"":"none"; };
+
+window.DUREE=30000; window.NOM="35-film-3d";
+window.seek=async t=>{
+  let att=null;
+  gx.putImageData(TR[Math.floor(t/33)%4],0,0);
+  /* fond : crème → forêt → crème → vert */
+  const b=scene.background;
+  if(t<5000) b.copy(C.cream); else if(t<16000) b.copy(C.cream).lerp(C.forest,ioc(pr(t,4600,5600))); else if(t<23000) b.copy(C.forest).lerp(C.cream,ioc(pr(t,15700,16500))); else b.copy(C.cream).lerp(C.green,ioc(pr(t,22800,23800)));
+  sol.material.opacity = t<5600||(t>16200&&t<23400) ? .22 : .08;
+
+  /* caméra */
+  let cp, ct;
+  if(t<5600){ const a=lerp(-.55,.35,ioc(pr(t,0,5600))); const r=lerp(6.6,5.8,ioc(pr(t,0,5600))); cp=V(Math.sin(a)*r,lerp(1.9,1.3,pr(t,0,5600)),Math.cos(a)*r); ct=V(0,.35,0); }
+  else { const a=Math.sin(t/2600)*.12; cp=V(Math.sin(a)*5.4,.35,Math.cos(a)*5.4); ct=V(0,.32,0);
+    if(t>16000&&t<23200){ const p=ioc(pr(t,16000,17200)); cp=V(lerp(cp.x,0,p),lerp(.35,2.0,p),lerp(cp.z,5.8,p)); ct=V(0,lerp(.32,.05,p),0); }
+    if(t>=23200){ const p=ioc(pr(t,23200,25200)); cp=V(0,lerp(2.0,.2,p),lerp(5.8,6.4,p)); ct=V(0,lerp(.05,.0,p),0); } }
+  cam.position.copy(cp); cam.lookAt(ct);
+
+  /* 1 : caddie, prix qui montent, porte-monnaie presque vide */
+  const s1=t<6200; caddie.visible=pm.visible=total.visible=s1; prix.forEach(p=>p.visible=s1);
+  if(s1){ const sortie=inc(pr(t,4700,5900)); caddie.position.set(0,-sortie*3.2,0); caddie.rotation.y=lerp(.5,-.2,ioc(pr(t,0,5600)));
+    prix.forEach((p,i)=>{ const t0=500+i*420, a=spring(pr(t,t0,t0+700)), f=Math.sin((t-t0)/600+i)*.04; p.position.copy(posPrix[i]).add(V(0,f-(1-a)*.4,0)); p.position.y-=sortie*3; p.scale.setScalar(Math.max(.001,a)); p.lookAt(cam.position); });
+    const v=61.4*ioc(pr(t,600,3400)); majTotal(v); total.position.set(0,1.02-sortie*3,-.2); total.scale.setScalar(Math.max(.001,spring(pr(t,400,1100)))); total.lookAt(cam.position);
+    pm.position.set(.42,-1.02+(1-expo(pr(t,2400,3200)))*-1.2-sortie*2,1.0); pm.rotation.y=-.35; pm.scale.setScalar(.85); charn.rotation.x=-lerp(0,1.7,expo(pr(t,3300,4100)));
+  }
+
+  /* 2-3 : téléphone */
+  const s23=t>4600; tel.visible=s23;
+  if(s23){ const ent=expo(pr(t,4800,6600)); let ry=lerp(-2.6,-.35,ent)+Math.sin(t/1700)*.18, rx=lerp(.5,.05,ent)+Math.sin(t/2300)*.05;
+    let y=lerp(-3.2,-.12,ent)+Math.sin(t/900)*.03;
+    if(t>15500){ const p=ioc(pr(t,15500,16800)); ry=lerp(ry,0,p); rx=lerp(rx,-.25,p); y=lerp(y,-.2,p); }
+    if(t>23000){ const p=ioc(pr(t,23000,25000)); ry=lerp(ry,Math.PI*2,p); rx=lerp(rx,0,p); y=lerp(y,-.05,p); }
+    tel.rotation.set(rx,ry,0); tel.position.set(0,y,0); const sc=t>23000?lerp(1,.62,ioc(pr(t,24800,26400))):1; tel.scale.setScalar(sc);
+    if(t<10000) att=ecranSur("budget",lerp(30,132,pr(t,6200,9800)),132);
+    else att=ecranSur("panier",lerp(25,330,pr(t,10000,15800)),339);
+  }
+  /* orbites : enseignes, produits, anneau de budget */
+  const s3=t>9200&&t<17200;
+  jetons.forEach((j,i)=>{ j.visible=s3; if(!s3) return; const a=pr(t,9400+i*120,10400+i*120), out=inc(pr(t,15800,16900));
+    const ang=t/2400+i/LOGOS.length*Math.PI*2, R=lerp(2.4,1.45,expo(a))+out*2;
+    j.position.set(Math.cos(ang)*R,.15+Math.sin(ang*2+i)*.35,Math.sin(ang)*R*.6); j.scale.setScalar(Math.max(.001,expo(a)*(1-out))); j.lookAt(cam.position); });
+  mini.forEach((m,i)=>{ m.visible=s3; if(!s3) return; const ang=-t/1800+i*1.6, R=1.9*(1+inc(pr(t,15800,16900))); m.position.set(Math.cos(ang)*R,-.75+i*.45,Math.sin(ang)*R*.5); m.rotation.set(t/900+i,t/700,0); m.scale.setScalar(Math.max(.001,expo(pr(t,10000+i*200,10800+i*200))*(1-inc(pr(t,15800,16900))))); });
+  fondAnneau.visible=s3; fondAnneau.position.copy(tel.position); fondAnneau.material.opacity=.18*pr(t,10400,10900)*(1-pr(t,15800,16400));
+  if(s3){ majAnneau(.9*ioc(pr(t,11000,15200))*(1-pr(t,15900,16300))); if(anneau){ anneau.position.copy(tel.position); } } else majAnneau(0);
+
+  /* 4 : les assiettes en arc, puis 5 : elles convergent */
+  const s4=t>16200;
+  assiettes.forEach((g,i)=>{ g.visible=s4; if(!s4) return; const n=PH.length, ang=lerp(-1.25,1.25,i/(n-1)), t0=16900+i*330, a=spring(pr(t,t0,t0+900));
+    let x=Math.sin(ang)*1.55, z=Math.cos(ang)*.7-.3, y=-1.15+(i%2)*.32;
+    const cv=ioc(pr(t,22600+i*80,24200+i*80)); const tour=cv*2.6;
+    const cx=Math.cos(ang*1.3+tour)*lerp(1.75,.25,cv), cz=Math.sin(ang*1.3+tour)*lerp(.9,.25,cv)-.6*(1-cv);
+    g.position.set(lerp(x,cx,cv),lerp(y,-.25,cv)-(1-a)*1.4,lerp(z,cz,cv)); g.scale.setScalar(Math.max(.001,AS*a*(1-pr(cv,.75,1)))); g.rotation.set(1.05+(1-a)*.6,Math.sin(t/1500+i)*.1,0); });
+
+  /* lumière : plus douce et plus haute à la fin */
+  key.intensity = t>23000? lerp(2.4,1.8,pr(t,23000,24500)) : 2.4;
+
+  /* ---------- textes (post-production) ---------- */
+  vis($("t1"),t<4900?1-pr(t,4400,4800):0); lignes($("t1"),t,300);
+  vis($("t2"),t>5600&&t<10000?1-pr(t,9500,9900):0); lignes($("t2"),t,6400);
+  vis($("t3"),t>10000&&t<16000?1-pr(t,15400,15900):0); lignes($("t3"),t,10300);
+  vis($("t3s"),t>11000&&t<16000?pr(t,11000,11500)*(1-pr(t,15400,15900)):0);
+  vis($("t4"),t>16500&&t<23000?1-pr(t,22500,22900):0); lignes($("t4"),t,16800);
+  [...$("res").children].forEach((c,i)=>{ const p=pr(t,19200+i*180,19900+i*180); c.style.transform=`translateY(${(1-expo(p))*50}px) scale(${.6+.4*spring(p)})`; c.style.opacity=pr(p,0,.2); });
+  vis($("res"),t>19000&&t<23000?1-pr(t,22500,22900):0);
+  vis($("note4"),t>19800&&t<23000?pr(t,19800,20200)*(1-pr(t,22500,22900)):0);
+  vis($("logo"),t>25000?1:0); $("logo").querySelectorAll(".m>span").forEach((s,i)=>{ const st=25200+(i<4?i:i+1)*70, p=expo(pr(t,st,st+700)); s.style.transform=`translateY(${(1-p)*115}%)`; });
+  const ap=pr(t,25450,26150); $("amp").style.transform=`rotate(${(1-spring(ap))*-40}deg) scale(${spring(ap)})`; $("amp").style.opacity=pr(ap,0,.15);
+  vis($("slog"),t>26300?1:0); lignes($("slog"),t,26400,160,800);
+  const up=pr(t,27300,27900); vis($("url"),t>27300?pr(up,0,.2):0); $("url").style.transform=`translateX(-50%) scale(${.85+.15*spring(up)})`;
+
+  renderer.render(scene,cam);
+  if(att) await att;
+  if(att) renderer.render(scene,cam);
+};
+window.pret=true;
+if(!/rendu/.test(location.search)){ const t0=performance.now(); (function b(){ window.seek((performance.now()-t0)%window.DUREE); requestAnimationFrame(b); })(); } else window.seek(0);
+</script>
+</body></html>

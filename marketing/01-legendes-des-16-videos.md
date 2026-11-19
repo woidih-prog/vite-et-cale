@@ -100,3 +100,11 @@ Spot de 29,5 secondes (`videos/34-spot-vacances.mp4`), fabriqué à partir de `v
 - **Légende** : Et si tes courses te payaient tes vacances ? Mange mieux, dépense moins, pars plus souvent.
 - **Hashtags** : #petitbudget #courses #economies #vacances #mangersain
 - Le « 60 € avant » est un exemple, et c'est écrit à l'écran ; les 1 560 € sont ce calcul : 30 € de côté par semaine pendant 52 semaines. Les plats, leurs prix, protéines et calories viennent de l'appli (2 personnes, Aldi).
+
+## Vidéo 35 : le film 3D
+
+Film 3D de 30 secondes (`videos/35-film-3d.mp4`), rendu en temps réel avec three.js à partir de `videos/film3d/pub3d.html` (installer `three@0.160.0`, servir le dossier en local, puis `node rendu.js`). Caddie et prix qui montent, téléphone en 3D avec de vraies images de l'appli, enseignes en orbite, vraies photos de plats, signature « MANGE MIEUX. DÉPENSE MOINS. ».
+
+- **Légende** : Les courses coûtent toujours plus cher. Et si ton budget décidait avant ?
+- **Hashtags** : #petitbudget #courses #findemois #menudelasemaine #bonplan
+- Le résultat affiché (16,87 € pour 14 repas) est un vrai calcul de l'appli : budget de 22 €, 1 personne, Lidl. Pour 2 personnes, 22 € ne couvrent pas une semaine entière, d'où ce choix.
