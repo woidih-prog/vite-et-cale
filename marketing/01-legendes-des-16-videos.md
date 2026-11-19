@@ -85,3 +85,10 @@ Vidéo courte de 40 secondes en motion design, avec voix off et vraies images de
 - **Légende** : 27 € de courses, 14 repas, pour deux. Je te montre comment en 40 secondes.
 - **Hashtags** : #petitbudget #courses #aldi #findemois #menudelasemaine
 - Les 27,03 €, les 14 repas et les prix par assiette sont ceux de l'appli pour 2 personnes chez Aldi, avec six produits déjà à la maison (la vidéo le dit). Le ticket à 61,40 € est imaginé, et marqué comme tel. La voix est une voix de synthèse.
+
+## Vidéo 33 : le spot « 27 € » (motion design)
+
+Spot de 26,5 secondes (`videos/33-spot-27-euros.mp4`), fabriqué à partir de `videos/spot/` : `spot.html` pour l'animation, `son.py` pour la bande-son composée pour le spot, `rendu.js` pour assembler. L'écran du téléphone montre de vraies images de l'appli. Le ticket de 61,40 € est un exemple imaginé (c'est écrit à l'écran) ; les 27,03 € viennent de l'appli (2 personnes chez Aldi, 6 produits déjà à la maison).
+
+- **Légende** : Ton total, tu le découvres à la caisse. Et si tu le décidais avant ?
+- **Hashtags** : #petitbudget #courses #findemois #menudelasemaine #bonplan
