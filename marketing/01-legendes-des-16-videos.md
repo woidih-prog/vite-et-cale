@@ -108,3 +108,11 @@ Film 3D de 30 secondes (`videos/35-film-3d.mp4`), rendu en temps réel avec thre
 - **Légende** : Les courses coûtent toujours plus cher. Et si ton budget décidait avant ?
 - **Hashtags** : #petitbudget #courses #findemois #menudelasemaine #bonplan
 - Le résultat affiché (16,87 € pour 14 repas) est un vrai calcul de l'appli : budget de 22 €, 1 personne, Lidl. Pour 2 personnes, 22 € ne couvrent pas une semaine entière, d'où ce choix.
+
+## Vidéo 36 : le film 3D « choc »
+
+Même film que la vidéo 35, précédé de 4,5 secondes de « choc » : une silhouette 3D au visage flouté découvre l'appli (« 16,87 € / 22 € » à l'écran), recule, et le texte dit « 16,87 € pour toute la semaine ?! », puis « Je suis choqué par cette appli. ». Fichiers : `videos/film3d/pub3d-choc.html`, `son4.py`, `rendu-choc.js`.
+
+- **Légende** : 16,87 € pour toute la semaine ?! Je suis choqué par cette appli.
+- **Hashtags** : #petitbudget #courses #findemois #menudelasemaine #bonplan
+- Le personnage est une animation 3D, pas une vraie personne. Le prix est un vrai calcul de l'appli : budget de 22 €, 1 personne, Lidl.
