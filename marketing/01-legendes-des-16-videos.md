@@ -116,3 +116,10 @@ Même film que la vidéo 35, précédé de 4,5 secondes de « choc » : une silh
 - **Légende** : 16,87 € pour toute la semaine ?! Je suis choqué par cette appli.
 - **Hashtags** : #petitbudget #courses #findemois #menudelasemaine #bonplan
 - Le personnage est une animation 3D, pas une vraie personne. Le prix est un vrai calcul de l'appli : budget de 22 €, 1 personne, Lidl.
+
+## Vidéo 37 : le directeur
+
+Sketch 3D de 20 secondes (`videos/37-le-directeur.mp4`, fichiers `videos/film3d/directeur.html`, `son5.py`, `rendu-dir.js`). Un directeur de supermarché fictif, visage flouté, découvre « 16,87 € / 22 € » sur l'appli, regarde autour de lui et cache son téléphone : « Surtout, que personne ne le sache. » La mention « Personnage fictif » reste à l'écran.
+
+- **Légende** : Ce que le directeur du supermarché ne veut pas que tu voies 🤫
+- **Hashtags** : #petitbudget #courses #findemois #bonplan #astuce
