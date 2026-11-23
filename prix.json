@@ -1,64 +1,64 @@
 {
- "maj": "2026-11-16",
- "depuis": "2025-11-16",
+ "maj": "2026-11-23",
+ "depuis": "2025-11-23",
  "source": "Open Prices (Open Food Facts), licence ODbL",
  "ingredients": {
   "avoine": {
    "base": "kg",
-   "n": 61,
+   "n": 67,
    "bas": 3.5,
    "surgele": false,
-   "median": 4.28,
+   "median": 4.2,
    "enseignes": {
     "auchan": {
      "bas": 3.455,
      "n": 10
     },
     "carrefour": {
-     "bas": 3.76,
-     "n": 18
+     "bas": 3.78,
+     "n": 19
     }
    }
   },
   "lait": {
    "base": "l",
-   "n": 235,
-   "bas": 1.25,
+   "n": 214,
+   "bas": 1.208,
    "surgele": false,
-   "median": 1.47,
+   "median": 1.6,
    "enseignes": {
     "auchan": {
-     "bas": 1.02,
-     "n": 38
+     "bas": 0.978,
+     "n": 29
     },
     "carrefour": {
-     "bas": 1.37,
-     "n": 55
+     "bas": 1.41,
+     "n": 51
     },
     "inter": {
-     "bas": 1.27,
-     "n": 16
+     "bas": 1.297,
+     "n": 14
     },
     "leclerc": {
      "bas": 1.152,
-     "n": 63
+     "n": 59
     },
     "monoprix": {
-     "bas": 1.282,
-     "n": 32
+     "bas": 1.288,
+     "n": 30
     },
     "superu": {
-     "bas": 1.203,
-     "n": 10
+     "bas": 1.17,
+     "n": 9
     }
    }
   },
   "fb": {
    "base": "kg",
-   "n": 182,
-   "bas": 2.15,
+   "n": 181,
+   "bas": 2.216,
    "surgele": false,
-   "median": 4.556,
+   "median": 4.625,
    "enseignes": {
     "carrefour": {
      "bas": 2.315,
@@ -66,15 +66,19 @@
     },
     "inter": {
      "bas": 1.79,
-     "n": 9
+     "n": 10
     },
     "leclerc": {
-     "bas": 2.63,
-     "n": 84
+     "bas": 2.795,
+     "n": 82
+    },
+    "monoprix": {
+     "bas": 1.95,
+     "n": 8
     },
     "superu": {
-     "bas": 2.089,
-     "n": 14
+     "bas": 2.078,
+     "n": 13
     }
    }
   },
@@ -97,14 +101,18 @@
   },
   "pain": {
    "base": "kg",
-   "n": 47,
-   "bas": 2.891,
+   "n": 49,
+   "bas": 2.955,
    "surgele": false,
    "median": 6.42,
    "enseignes": {
     "carrefour": {
-     "bas": 2.742,
-     "n": 9
+     "bas": 2.795,
+     "n": 10
+    },
+    "inter": {
+     "bas": 6.612,
+     "n": 8
     },
     "leclerc": {
      "bas": 3.164,
@@ -114,10 +122,10 @@
   },
   "oeuf": {
    "base": "piece",
-   "n": 385,
-   "bas": 0.263,
+   "n": 380,
+   "bas": 0.265,
    "surgele": false,
-   "median": 0.339,
+   "median": 0.34,
    "enseignes": {
     "auchan": {
      "bas": 0.279,
@@ -129,11 +137,11 @@
     },
     "inter": {
      "bas": 0.272,
-     "n": 14
+     "n": 15
     },
     "leclerc": {
-     "bas": 0.241,
-     "n": 220
+     "bas": 0.242,
+     "n": 214
     },
     "monoprix": {
      "bas": 0.332,
@@ -147,10 +155,10 @@
   },
   "thon": {
    "base": "kg",
-   "n": 98,
-   "bas": 11.7,
+   "n": 102,
+   "bas": 11.809,
    "surgele": false,
-   "median": 15.772,
+   "median": 16.176,
    "enseignes": {
     "auchan": {
      "bas": 18.522,
@@ -161,8 +169,8 @@
      "n": 11
     },
     "inter": {
-     "bas": 12.955,
-     "n": 9
+     "bas": 13.011,
+     "n": 12
     },
     "leclerc": {
      "bas": 10.645,
@@ -172,84 +180,80 @@
   },
   "maq": {
    "base": "kg",
-   "n": 207,
-   "bas": 13.704,
+   "n": 208,
+   "bas": 13.552,
    "surgele": false,
-   "median": 18.917,
+   "median": 18.903,
    "enseignes": {
     "auchan": {
-     "bas": 11.905,
-     "n": 28
+     "bas": 11.778,
+     "n": 27
     },
     "carrefour": {
      "bas": 13.931,
      "n": 34
     },
-    "inter": {
-     "bas": 12.074,
-     "n": 8
-    },
     "leclerc": {
-     "bas": 12.429,
-     "n": 61
+     "bas": 12.5,
+     "n": 63
     },
     "superu": {
-     "bas": 13.107,
-     "n": 22
+     "bas": 12.407,
+     "n": 25
     }
    }
   },
   "pates": {
    "base": "kg",
-   "n": 491,
-   "bas": 1.38,
+   "n": 519,
+   "bas": 1.63,
    "surgele": false,
-   "median": 2.28,
+   "median": 2.34,
    "enseignes": {
     "auchan": {
      "bas": 2.075,
      "n": 42
     },
     "carrefour": {
-     "bas": 2.375,
-     "n": 61
+     "bas": 2.335,
+     "n": 74
     },
     "inter": {
-     "bas": 4.1,
-     "n": 12
+     "bas": 2.54,
+     "n": 24
     },
     "leclerc": {
-     "bas": 1.15,
-     "n": 281
+     "bas": 1.16,
+     "n": 278
     },
     "superu": {
-     "bas": 2.232,
-     "n": 46
+     "bas": 2.25,
+     "n": 52
     }
    }
   },
   "riz": {
    "base": "kg",
-   "n": 231,
-   "bas": 3.46,
+   "n": 251,
+   "bas": 3.18,
    "surgele": false,
-   "median": 6.58,
+   "median": 5.55,
    "enseignes": {
     "auchan": {
      "bas": 2.88,
      "n": 18
     },
     "carrefour": {
-     "bas": 3.405,
-     "n": 41
+     "bas": 3.378,
+     "n": 44
     },
     "inter": {
-     "bas": 5.41,
-     "n": 20
+     "bas": 3.02,
+     "n": 35
     },
     "leclerc": {
-     "bas": 2.62,
-     "n": 65
+     "bas": 1.655,
+     "n": 72
     },
     "superu": {
      "bas": 3.396,
@@ -259,14 +263,14 @@
   },
   "semoule": {
    "base": "kg",
-   "n": 104,
+   "n": 112,
    "bas": 1.8,
    "surgele": false,
-   "median": 2.19,
+   "median": 2.21,
    "enseignes": {
     "carrefour": {
-     "bas": 2.995,
-     "n": 9
+     "bas": 3.09,
+     "n": 11
     },
     "leclerc": {
      "bas": 1.508,
@@ -274,31 +278,35 @@
     },
     "superu": {
      "bas": 1.8,
-     "n": 12
+     "n": 16
     }
    }
   },
   "lcorail": {
    "base": "kg",
-   "n": 61,
-   "bas": 5.563,
+   "n": 63,
+   "bas": 5.4,
    "surgele": false,
-   "median": 9.05,
+   "median": 8.875,
    "enseignes": {
     "carrefour": {
      "bas": 5.783,
      "n": 18
     },
+    "inter": {
+     "bas": 5.707,
+     "n": 8
+    },
     "superu": {
-     "bas": 8.69,
-     "n": 12
+     "bas": 7.07,
+     "n": 13
     }
    }
   },
   "lbocal": {
    "base": "kg",
    "n": 161,
-   "bas": 3.932,
+   "bas": 3.962,
    "surgele": false,
    "median": 6.226,
    "enseignes": {
@@ -311,8 +319,8 @@
      "n": 17
     },
     "inter": {
-     "bas": 5.731,
-     "n": 8
+     "bas": 5.878,
+     "n": 9
     },
     "leclerc": {
      "bas": 3.122,
@@ -327,17 +335,17 @@
   "pchiche": {
    "base": "kg",
    "n": 178,
-   "bas": 2.995,
+   "bas": 3.071,
    "surgele": false,
-   "median": 4.721,
+   "median": 4.862,
    "enseignes": {
     "auchan": {
-     "bas": 2.712,
-     "n": 12
+     "bas": 2.953,
+     "n": 13
     },
     "carrefour": {
-     "bas": 2.303,
-     "n": 26
+     "bas": 2.47,
+     "n": 25
     },
     "inter": {
      "bas": 4.053,
@@ -356,9 +364,9 @@
   "hrouge": {
    "base": "kg",
    "n": 129,
-   "bas": 3.19,
+   "bas": 3.36,
    "surgele": false,
-   "median": 5.28,
+   "median": 5.36,
    "enseignes": {
     "auchan": {
      "bas": 3.02,
@@ -369,8 +377,8 @@
      "n": 17
     },
     "inter": {
-     "bas": 4.237,
-     "n": 10
+     "bas": 4.95,
+     "n": 11
     },
     "leclerc": {
      "bas": 3.36,
@@ -384,10 +392,10 @@
   },
   "tomate": {
    "base": "kg",
-   "n": 62,
-   "bas": 2.452,
+   "n": 63,
+   "bas": 2.492,
    "surgele": false,
-   "median": 4.216,
+   "median": 4.231,
    "enseignes": {
     "carrefour": {
      "bas": 1.854,
@@ -398,29 +406,29 @@
      "n": 12
     },
     "superu": {
-     "bas": 4.195,
-     "n": 13
+     "bas": 4.251,
+     "n": 14
     }
    }
   },
   "coco": {
    "base": "l",
-   "n": 162,
-   "bas": 5.112,
+   "n": 168,
+   "bas": 5.13,
    "surgele": false,
-   "median": 6.965,
+   "median": 6.938,
    "enseignes": {
     "auchan": {
      "bas": 5.947,
      "n": 18
     },
     "carrefour": {
-     "bas": 6.315,
-     "n": 30
+     "bas": 6.36,
+     "n": 31
     },
     "inter": {
-     "bas": 5.923,
-     "n": 9
+     "bas": 5.505,
+     "n": 13
     },
     "leclerc": {
      "bas": 4.544,
@@ -434,22 +442,22 @@
   },
   "surg": {
    "base": "kg",
-   "n": 134,
-   "bas": 2.197,
+   "n": 127,
+   "bas": 2.2,
    "surgele": false,
-   "median": 3.375,
+   "median": 3.4,
    "enseignes": {
     "carrefour": {
      "bas": 3.163,
      "n": 32
     },
     "inter": {
-     "bas": 2.022,
-     "n": 13
+     "bas": 3.033,
+     "n": 9
     },
     "leclerc": {
      "bas": 2.062,
-     "n": 74
+     "n": 73
     }
    }
   },
@@ -476,7 +484,7 @@
   },
   "fromage": {
    "base": "kg",
-   "n": 136,
+   "n": 134,
    "bas": 7.98,
    "surgele": false,
    "median": 8.85,
@@ -490,17 +498,17 @@
      "n": 16
     },
     "leclerc": {
-     "bas": 7.375,
-     "n": 94
+     "bas": 7.325,
+     "n": 92
     }
    }
   },
   "jambon": {
    "base": "kg",
-   "n": 131,
-   "bas": 13.857,
+   "n": 132,
+   "bas": 13.951,
    "surgele": false,
-   "median": 18.542,
+   "median": 18.396,
    "enseignes": {
     "carrefour": {
      "bas": 14.25,
@@ -511,8 +519,8 @@
      "n": 72
     },
     "superu": {
-     "bas": 14.768,
-     "n": 12
+     "bas": 14.786,
+     "n": 13
     }
    }
   },
@@ -535,48 +543,52 @@
   },
   "poulet": {
    "base": "kg",
-   "n": 114,
+   "n": 118,
    "bas": 12.365,
    "surgele": false,
-   "median": 15.1,
+   "median": 15.113,
    "enseignes": {
+    "inter": {
+     "bas": 12.917,
+     "n": 9
+    },
     "leclerc": {
      "bas": 12.3,
-     "n": 87
+     "n": 89
     }
    }
   },
   "soupe": {
    "base": "l",
-   "n": 79,
-   "bas": 2.6,
+   "n": 77,
+   "bas": 2.515,
    "surgele": false,
-   "median": 3.36,
+   "median": 3.35,
    "enseignes": {
     "leclerc": {
-     "bas": 2.132,
-     "n": 37
+     "bas": 2.28,
+     "n": 35
     }
    }
   },
   "noix": {
    "base": "kg",
-   "n": 212,
+   "n": 201,
    "bas": 3.4,
    "surgele": false,
-   "median": 6.099,
+   "median": 6.125,
    "enseignes": {
     "auchan": {
      "bas": 3.68,
      "n": 11
     },
     "carrefour": {
-     "bas": 5.16,
-     "n": 31
+     "bas": 5.435,
+     "n": 30
     },
     "leclerc": {
-     "bas": 2.893,
-     "n": 140
+     "bas": 2.92,
+     "n": 134
     },
     "superu": {
      "bas": 3.447,
@@ -586,7 +598,7 @@
   },
   "banane": {
    "base": "kg",
-   "n": 61,
+   "n": 66,
    "bas": 1.99,
    "surgele": false,
    "median": 1.99,
@@ -599,10 +611,10 @@
   },
   "pdt": {
    "base": "kg",
-   "n": 75,
-   "bas": 1.59,
+   "n": 73,
+   "bas": 1.545,
    "surgele": false,
-   "median": 2.19,
+   "median": 2.29,
    "enseignes": {
     "carrefour": {
      "bas": 1.885,
@@ -624,7 +636,7 @@
   },
   "patate": {
    "base": "kg",
-   "n": 28,
+   "n": 27,
    "bas": 2.49,
    "surgele": false,
    "median": 2.99,
@@ -632,8 +644,8 @@
   },
   "fruit": {
    "base": "kg",
-   "n": 72,
-   "bas": 2.812,
+   "n": 77,
+   "bas": 2.74,
    "surgele": false,
    "median": 2.99,
    "enseignes": {
@@ -649,10 +661,10 @@
   },
   "leg": {
    "base": "kg",
-   "n": 60,
-   "bas": 1.982,
+   "n": 61,
+   "bas": 1.985,
    "surgele": false,
-   "median": 2.145,
+   "median": 2.19,
    "enseignes": {
     "carrefour": {
      "bas": 1.942,
@@ -662,26 +674,26 @@
   },
   "oignon": {
    "base": "kg",
-   "n": 18,
+   "n": 16,
    "bas": 1.89,
    "surgele": false,
-   "median": 2.465,
+   "median": 2.44,
    "enseignes": {}
   },
   "lardons": {
    "base": "kg",
-   "n": 202,
+   "n": 196,
    "bas": 6.867,
    "surgele": false,
-   "median": 9.634,
+   "median": 9.604,
    "enseignes": {
     "auchan": {
-     "bas": 7.702,
-     "n": 18
+     "bas": 7.701,
+     "n": 17
     },
     "carrefour": {
-     "bas": 7.921,
-     "n": 25
+     "bas": 8.447,
+     "n": 22
     },
     "inter": {
      "bas": 9.134,
@@ -689,7 +701,7 @@
     },
     "leclerc": {
      "bas": 6.3,
-     "n": 119
+     "n": 117
     },
     "superu": {
      "bas": 8.003,
@@ -699,8 +711,8 @@
   },
   "creme": {
    "base": "kg",
-   "n": 336,
-   "bas": 3.903,
+   "n": 333,
+   "bas": 3.922,
    "surgele": false,
    "median": 5.58,
    "enseignes": {
@@ -713,12 +725,12 @@
      "n": 37
     },
     "inter": {
-     "bas": 5.164,
-     "n": 13
+     "bas": 5.272,
+     "n": 14
     },
     "leclerc": {
      "bas": 3.78,
-     "n": 192
+     "n": 188
     },
     "superu": {
      "bas": 4.447,
@@ -736,7 +748,7 @@
   },
   "saucisse": {
    "base": "kg",
-   "n": 61,
+   "n": 62,
    "bas": 8.32,
    "surgele": false,
    "median": 10.576,
@@ -749,10 +761,10 @@
   },
   "colin": {
    "base": "kg",
-   "n": 126,
+   "n": 113,
    "bas": 7.475,
    "surgele": false,
-   "median": 9.02,
+   "median": 9.844,
    "enseignes": {
     "carrefour": {
      "bas": 7.537,
@@ -764,7 +776,7 @@
     },
     "leclerc": {
      "bas": 7.475,
-     "n": 92
+     "n": 79
     }
    }
   },
@@ -787,7 +799,7 @@
   },
   "poiscasse": {
    "base": "kg",
-   "n": 29,
+   "n": 30,
    "bas": 2.1,
    "surgele": false,
    "median": 2.34,
@@ -800,7 +812,7 @@
   },
   "pate": {
    "base": "kg",
-   "n": 29,
+   "n": 30,
    "bas": 5.13,
    "surgele": false,
    "median": 6.071,
@@ -813,10 +825,10 @@
   },
   "farine": {
    "base": "kg",
-   "n": 80,
-   "bas": 0.73,
+   "n": 84,
+   "bas": 0.765,
    "surgele": false,
-   "median": 1.44,
+   "median": 1.365,
    "enseignes": {
     "auchan": {
      "bas": 1.032,
@@ -827,8 +839,8 @@
      "n": 9
     },
     "inter": {
-     "bas": 0.675,
-     "n": 9
+     "bas": 0.775,
+     "n": 13
     },
     "leclerc": {
      "bas": 0.54,
@@ -838,10 +850,10 @@
   },
   "beurre": {
    "base": "kg",
-   "n": 249,
-   "bas": 9.35,
+   "n": 252,
+   "bas": 9.4,
    "surgele": false,
-   "median": 11.08,
+   "median": 11.1,
    "enseignes": {
     "auchan": {
      "bas": 9.96,
@@ -852,11 +864,11 @@
      "n": 33
     },
     "inter": {
-     "bas": 10.09,
-     "n": 17
+     "bas": 10.225,
+     "n": 20
     },
     "leclerc": {
-     "bas": 7.625,
+     "bas": 7.7,
      "n": 152
     },
     "superu": {
@@ -880,8 +892,8 @@
   },
   "biere": {
    "base": "l",
-   "n": 52,
-   "bas": 3.137,
+   "n": 50,
+   "bas": 3.134,
    "surgele": false,
    "median": 3.92,
    "enseignes": {
@@ -889,22 +901,26 @@
      "bas": 2.902,
      "n": 9
     },
+    "inter": {
+     "bas": 2.903,
+     "n": 8
+    },
     "leclerc": {
      "bas": 3.113,
      "n": 12
     },
     "superu": {
-     "bas": 2.62,
-     "n": 9
+     "bas": 2.5,
+     "n": 8
     }
    }
   },
   "merguez": {
    "base": "kg",
-   "n": 18,
-   "bas": 12.689,
+   "n": 19,
+   "bas": 12.697,
    "surgele": false,
-   "median": 13.769,
+   "median": 14.258,
    "enseignes": {
     "leclerc": {
      "bas": 12.682,
@@ -914,8 +930,8 @@
   },
   "boeuf": {
    "base": "kg",
-   "n": 49,
-   "bas": 9.921,
+   "n": 53,
+   "bas": 9.537,
    "surgele": false,
    "median": 14.917,
    "enseignes": {
@@ -924,8 +940,8 @@
      "n": 8
     },
     "leclerc": {
-     "bas": 9.475,
-     "n": 31
+     "bas": 9.219,
+     "n": 32
     }
    }
   },
@@ -944,10 +960,10 @@
   },
   "reblochon": {
    "base": "kg",
-   "n": 33,
-   "bas": 14.704,
+   "n": 32,
+   "bas": 14.452,
    "surgele": false,
-   "median": 16.417,
+   "median": 16.197,
    "enseignes": {
     "leclerc": {
      "bas": 13.889,
@@ -970,67 +986,67 @@
   },
   "confiture": {
    "base": "kg",
-   "n": 504,
-   "bas": 5.892,
+   "n": 518,
+   "bas": 5.885,
    "surgele": false,
-   "median": 7.47,
+   "median": 7.432,
    "enseignes": {
     "auchan": {
      "bas": 5.932,
      "n": 65
     },
     "carrefour": {
-     "bas": 5.743,
-     "n": 156
+     "bas": 5.77,
+     "n": 158
     },
     "inter": {
-     "bas": 5.463,
-     "n": 49
+     "bas": 5.613,
+     "n": 55
     },
     "leclerc": {
-     "bas": 6.134,
-     "n": 74
+     "bas": 6.119,
+     "n": 73
     },
     "monoprix": {
      "bas": 6.532,
      "n": 14
     },
     "superu": {
-     "bas": 6.894,
-     "n": 49
+     "bas": 6.893,
+     "n": 48
     }
    }
   },
   "cereales": {
    "base": "kg",
-   "n": 349,
-   "bas": 5.57,
+   "n": 356,
+   "bas": 5.56,
    "surgele": false,
    "median": 7.4,
    "enseignes": {
     "auchan": {
-     "bas": 5.63,
-     "n": 41
+     "bas": 5.595,
+     "n": 40
     },
     "carrefour": {
-     "bas": 5.4,
-     "n": 91
+     "bas": 5.39,
+     "n": 93
     },
     "inter": {
-     "bas": 5.254,
-     "n": 14
+     "bas": 5.131,
+     "n": 18
     },
     "leclerc": {
      "bas": 5.3,
-     "n": 103
+     "n": 99
     },
     "monoprix": {
      "bas": 7.301,
      "n": 10
     },
     "superu": {
-     "bas": 5.667,
-     "n": 31
+     "bas": 5.79,
+     "n": 36
     }
    }
   },
@@ -1039,11 +1055,11 @@
    "n": 106,
    "bas": 1.4,
    "surgele": false,
-   "median": 2.583,
+   "median": 2.883,
    "enseignes": {
     "carrefour": {
      "bas": 4.36,
-     "n": 17
+     "n": 18
     },
     "inter": {
      "bas": 2.883,
@@ -1051,16 +1067,16 @@
     },
     "leclerc": {
      "bas": 1.4,
-     "n": 71
+     "n": 70
     }
    }
   },
   "citron": {
    "base": "kg",
-   "n": 40,
-   "bas": 3.555,
+   "n": 42,
+   "bas": 3.9,
    "surgele": false,
-   "median": 3.985,
+   "median": 3.99,
    "enseignes": {}
   },
   "cacahuete": {
@@ -1091,8 +1107,8 @@
      "n": 11
     },
     "superu": {
-     "bas": 9.4,
-     "n": 12
+     "bas": 9.514,
+     "n": 13
     }
    }
   }
